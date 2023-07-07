@@ -123,7 +123,301 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grasslands_dirt_tl
+      name: dirt_tl_ni
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffb7a5b8a7e9a2468f4d4bac39734dd
+      internalID: -871163920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tb_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6e29b17f59fd847b3d17bba38609be
+      internalID: -2063349745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tb_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bbf13c892900c54daa780970cfc46bc
+      internalID: -1575804847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tb_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0aeda62dfe52474e8a395af11d8e54b
+      internalID: 1033165267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tr_ni
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c26fb8c050fee6d48928ef3698e7a702
+      internalID: -1092734512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tj_nott
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f7a96cf2c870404aa10b5b129c8e528
+      internalID: 1297733003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tj_notr
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 946ab910929bf2a418be10098a7eed7b
+      internalID: 1114349089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_rl_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2273c5bb44677ec47aba22acbac98013
+      internalID: 1792354662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass_tree_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd885c98a3cad749828469498aaf680
+      internalID: -608011560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass_sand
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c09b532a07878a740881a0daee181aea
+      internalID: -475051614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass_stone
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5b51d467d739b4c8ceff3ac9dfa170
+      internalID: -912708771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_rl_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83071522dec28c4cb51d7332ad8ebdd
+      internalID: 1634292960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tj_notl
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 022e17c21d6f0a04b8ea0b36c938b91f
+      internalID: 372976546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_tj_notb
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf6a4d0d22a2b641bfc75fef0c504d2
+      internalID: -1613600304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_rl_5
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +425,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4ae788c05a2f5f4da515aaeac4e3aac
-      internalID: -1553981588
+      spriteID: 9a2cc884f7882fe41b2b647104ccb479
+      internalID: -1391804041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_t1
+      name: grass_tree_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,20 +446,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a62170989cb21478589e9aee41513b
-      internalID: 302033436
+      spriteID: be311ef278028f64b8fcaeb149c94041
+      internalID: -1325832077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_t2
+      name: grasslands_16
       rect:
         serializedVersion: 2
         x: 64
@@ -173,20 +467,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bada0365acb3fe44a6053781507b8dc
-      internalID: 1174247687
+      spriteID: a91e9e7f1374d704093c88fafee3eb47
+      internalID: 167416772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_t3
+      name: grass_flower
       rect:
         serializedVersion: 2
         x: 96
@@ -194,20 +488,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ceccfe482d0cb44c8384725f54d5622
-      internalID: -1287905362
+      spriteID: 5c14fbc36d19d5040938afb821703161
+      internalID: -792729683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_tr
+      name: dirt_rl_2
       rect:
         serializedVersion: 2
         x: 128
@@ -215,20 +509,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 384946d38af13364f8a06cddec173566
-      internalID: 891470098
+      spriteID: 82b1e1be5417d29449abe012e3ecea18
+      internalID: 224818023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_l3
+      name: dirt_rl_6
       rect:
         serializedVersion: 2
         x: 0
@@ -236,20 +530,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3fc1b0733831e64daa632f28f177812
-      internalID: 1282170868
+      spriteID: 10a90cc917eb00f42b5ef97af93016fd
+      internalID: -1948702983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_tree_2
+      name: grass_forest
       rect:
         serializedVersion: 2
         x: 32
@@ -257,20 +551,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9024ed9f2e0560e499a6789e1d4e98ee
-      internalID: 1446995291
+      spriteID: e9de670929df3324083c028b1d5e2880
+      internalID: -1591677723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_sand
+      name: grasslands_21
       rect:
         serializedVersion: 2
         x: 64
@@ -278,20 +572,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36a1ddd9b2781544c96738f602f8ff29
-      internalID: -1129517440
+      spriteID: 13d2aef443b948647960c3eaa1f71281
+      internalID: -2083225696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_stone
+      name: grass_pond
       rect:
         serializedVersion: 2
         x: 96
@@ -299,20 +593,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc74edc449e605144928b211a85b104d
-      internalID: 1072894905
+      spriteID: 967dc837300eb5a40bdfeef31d4a19da
+      internalID: 1341561671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_r1
+      name: dirt_rl_3
       rect:
         serializedVersion: 2
         x: 128
@@ -320,20 +614,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77de6d9e6db35fe449e4ec57fdd499f9
-      internalID: 1060988310
+      spriteID: bc990432db92d9e4daa7096b92bd532f
+      internalID: 443046034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_l2
+      name: dirt_bl_ni
       rect:
         serializedVersion: 2
         x: 0
@@ -341,20 +635,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb27f131eaa90924c9600d8fd12a4402
-      internalID: 1982738320
+      spriteID: 591e134f3e4639b4eb8a85dfeeee9712
+      internalID: -2085842038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_tree_1
+      name: dirt_tb_1
       rect:
         serializedVersion: 2
         x: 32
@@ -362,20 +656,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5e614ceb4e7d1147a8e624602716ca0
-      internalID: 330856342
+      spriteID: 2dd313d8521f61547af21197dfeabe40
+      internalID: 2133758185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_2
+      name: dirt_tb_2
       rect:
         serializedVersion: 2
         x: 64
@@ -383,20 +677,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c47b3f0967465794cb88abea10e6ec57
-      internalID: 2143456135
+      spriteID: 1c27f0dc9bbc23440b2f52612777a333
+      internalID: -1015544394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_flowers
+      name: dirt_tb_3
       rect:
         serializedVersion: 2
         x: 96
@@ -404,20 +698,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2b0557ec18b4f641904c2e1d60de717
-      internalID: 2033132567
+      spriteID: 35c7981aca09f204282928954d8a4da4
+      internalID: -38009875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_r2
+      name: dirt_br_ni
       rect:
         serializedVersion: 2
         x: 128
@@ -425,20 +719,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3293c0f46711b994d9244b7d85fb2d75
-      internalID: -313366344
+      spriteID: 5ce5f2ea6c7a9c2458b38e947a06e745
+      internalID: 196449953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_l1
+      name: dirt_tl
       rect:
         serializedVersion: 2
         x: 0
@@ -446,20 +740,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3db71b2c2978196459d327cf98101f68
-      internalID: 195473773
+      spriteID: 4e61f890c7de53a4a96e3e46f617a2da
+      internalID: 995146565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_tree_3
+      name: dirt_tr
       rect:
         serializedVersion: 2
         x: 32
@@ -467,20 +761,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3f7a3b021b02e54aadebaf01c40fcfa
-      internalID: -802791171
+      spriteID: b0ad4e0f0d981c241ad77a032f481307
+      internalID: -510264776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_1
+      name: dirt_none
       rect:
         serializedVersion: 2
         x: 64
@@ -488,20 +782,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 238993da08ec4664da7b69a0ac27655c
-      internalID: -727027927
+      spriteID: 8cadcb311dd84fb48b0a80e3b53e9e5e
+      internalID: 288774434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_pond
+      name: dirt_all
       rect:
         serializedVersion: 2
         x: 96
@@ -509,41 +803,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e681f10a453a8d24cbdc22c12ec97e48
-      internalID: -278143284
+      spriteID: 3bbb55bd53d3ed94db7efc93532cd89a
+      internalID: 1989123694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_r3
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1fe75d1bba51784eb19e3d61484781e
-      internalID: -1133928658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grasslands_dirt_bl
+      name: dirt_bl
       rect:
         serializedVersion: 2
         x: 0
@@ -551,20 +824,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04261c18a1f2b8846b75b7d393efd4a5
-      internalID: -784158739
+      spriteID: ef9d5525dff839444821eab2ac068c3a
+      internalID: -224525867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_b3
+      name: dirt_br
       rect:
         serializedVersion: 2
         x: 32
@@ -572,20 +845,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15aa771cc0029d242bcdb29b64121faf
-      internalID: 659492453
+      spriteID: fac78fc14ae80dd48aae54dee4579bda
+      internalID: -1420556455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_b2
+      name: dirt_l
       rect:
         serializedVersion: 2
         x: 64
@@ -593,20 +866,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2762e805e4faad40bac532eb9431d84
-      internalID: -1699507148
+      spriteID: 7210495302d673f449841a1afece472e
+      internalID: -462487456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_b1
+      name: dirt_b
       rect:
         serializedVersion: 2
         x: 96
@@ -614,20 +887,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfa3b81534a6e9745a765d6d72c371ea
-      internalID: 43658796
+      spriteID: 3083aec6609118342a51e667a4da272c
+      internalID: 337876745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grasslands_dirt_br
+      name: dirt_r
       rect:
         serializedVersion: 2
         x: 128
@@ -635,14 +908,35 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16c2af1960de7c14cb52e7d0a7eb37e6
-      internalID: 2040326093
+      spriteID: 646647f1e38147f41b602a5d80f14169
+      internalID: -1795604539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt_t
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de0b40ac6ce71cc439bb196a0c133fd9
+      internalID: 1238218000
       vertices: []
       indices: 
       edges: []
@@ -658,31 +952,45 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      grasslands_1: -727027927
-      grasslands_2: 2143456135
-      grasslands_dirt_b1: 43658796
-      grasslands_dirt_b2: -1699507148
-      grasslands_dirt_b3: 659492453
-      grasslands_dirt_bl: -784158739
-      grasslands_dirt_br: 2040326093
-      grasslands_dirt_l1: 195473773
-      grasslands_dirt_l2: 1982738320
-      grasslands_dirt_l3: 1282170868
-      grasslands_dirt_r1: 1060988310
-      grasslands_dirt_r2: -313366344
-      grasslands_dirt_r3: -1133928658
-      grasslands_dirt_t1: 302033436
-      grasslands_dirt_t2: 1174247687
-      grasslands_dirt_t3: -1287905362
-      grasslands_dirt_tl: -1553981588
-      grasslands_dirt_tr: 891470098
-      grasslands_flowers: 2033132567
-      grasslands_pond: -278143284
-      grasslands_sand: -1129517440
-      grasslands_stone: 1072894905
-      grasslands_tree_1: 330856342
-      grasslands_tree_2: 1446995291
-      grasslands_tree_3: -802791171
+      dirt_all: 1989123694
+      dirt_b: 337876745
+      dirt_bl: -224525867
+      dirt_bl_ni: -2085842038
+      dirt_br: -1420556455
+      dirt_br_ni: 196449953
+      dirt_l: -462487456
+      dirt_none: 288774434
+      dirt_r: -1795604539
+      dirt_rl_1: 1634292960
+      dirt_rl_2: 224818023
+      dirt_rl_3: 443046034
+      dirt_rl_4: 1792354662
+      dirt_rl_5: -1391804041
+      dirt_rl_6: -1948702983
+      dirt_t: 1238218000
+      dirt_tb_1: 2133758185
+      dirt_tb_2: -1015544394
+      dirt_tb_3: -38009875
+      dirt_tb_4: -2063349745
+      dirt_tb_5: -1575804847
+      dirt_tb_6: 1033165267
+      dirt_tj_notb: -1613600304
+      dirt_tj_notl: 372976546
+      dirt_tj_notr: 1114349089
+      dirt_tj_nott: 1297733003
+      dirt_tl: 995146565
+      dirt_tl_ni: -871163920
+      dirt_tr: -510264776
+      dirt_tr_ni: -1092734512
+      grass_flower: -792729683
+      grass_forest: -1591677723
+      grass_pond: 1341561671
+      grass_sand: -475051614
+      grass_stone: -912708771
+      grass_tree_1: -1325832077
+      grass_tree_2: -608011560
+      grasslands_16: 167416772
+      grasslands_21: -2083225696
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

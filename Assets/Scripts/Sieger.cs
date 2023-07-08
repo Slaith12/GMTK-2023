@@ -4,10 +4,10 @@ using UnityEngine.SocialPlatforms;
 
 public class Sieger : MonoBehaviour
 {
-    public enum Task
+    private enum Task
     {
-        ADVANCE,
-        TURN
+        Advance,
+        Turn
     }
 
     public float movementSpeed;
@@ -20,7 +20,7 @@ public class Sieger : MonoBehaviour
     private Quaternion _startAngle;
     private float _turnPercentage;
 
-    private Task _currentTask = Task.ADVANCE;
+    private Task _currentTask = Task.Advance;
 
     private float _pathPercentage = 0;
     private float _pathLength = 0;
@@ -30,7 +30,7 @@ public class Sieger : MonoBehaviour
     {
         _path = newPath;
         _pathPercentage = 0;
-        _currentTask = Task.ADVANCE;
+        _currentTask = Task.Advance;
         _pathLength = _path.GetTotalLength();
         _nextNode = 1;
         _targetAngle = Quaternion.Euler(0, 0, _path.GetDirection(0));
@@ -48,10 +48,10 @@ public class Sieger : MonoBehaviour
         if (!_path) return;
         switch (_currentTask)
         {
-            case Task.ADVANCE:
+            case Task.Advance:
                 Advance();
                 break;
-            case Task.TURN:
+            case Task.Turn:
                 Turn();
                 break;
             default:
@@ -69,7 +69,7 @@ public class Sieger : MonoBehaviour
         if (next != _nextNode)
         {
             _nextNode = next;
-            _currentTask = Task.TURN;
+            _currentTask = Task.Turn;
             _startAngle = transform.rotation;
             _targetAngle = Quaternion.Euler(0, 0, _path.GetDirection(_pathPercentage));
             _turnPercentage = 0;
@@ -81,7 +81,7 @@ public class Sieger : MonoBehaviour
         if (Quaternion.Angle(_startAngle, _targetAngle) <= 1)
         {
             transform.rotation = _targetAngle;
-            _currentTask = Task.ADVANCE;
+            _currentTask = Task.Advance;
             return;
         }
         _turnPercentage += turningSpeed * Time.deltaTime * (1 / Quaternion.Angle(_startAngle, _targetAngle));
@@ -89,7 +89,7 @@ public class Sieger : MonoBehaviour
         if (_turnPercentage >= 1.0f)
         {
             transform.rotation = _targetAngle;
-            _currentTask = Task.ADVANCE;
+            _currentTask = Task.Advance;
         }
     }
 }

@@ -12,7 +12,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<SiegeMachine>().transform;
-        rb.SetRotation(Mathf.Atan((player.position.y - transform.position.y) / (player.position.x - transform.position.x)) * Mathf.Rad2Deg);
+        rb.SetRotation(Mathf.Atan(( transform.position.y - player.position.y) / (transform.position.x - player.position.x)) * Mathf.Rad2Deg);
         rb.AddForce((player.position - transform.position).normalized * arrowForce);
         
         Destroy(this.gameObject, 1.5f);

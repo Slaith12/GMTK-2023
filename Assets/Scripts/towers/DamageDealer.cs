@@ -27,12 +27,16 @@ public class DamageDealer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HealthObject obj = collision.gameObject.GetComponent<HealthObject>();
-        if (this.CompareTag(obj.damageType)) 
+        if (obj != null) 
         {
-            obj.healthPoints -= damageAmount;
-            if (bullet)
-                Destroy(this.gameObject);
+            if (this.CompareTag(obj.damageType))
+            {
+                obj.healthPoints -= damageAmount;
+                if (bullet)
+                    Destroy(this.gameObject);
+            }
         }
+        
         
     }
 

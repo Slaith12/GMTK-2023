@@ -132,8 +132,19 @@ public class SiegePath : MonoBehaviour
 
     public float GetDirection(float percentage)
     {
-        var next = (Vector2)GetNextNode(percentage).Item2;
-        var current = (Vector2)GetPosition(percentage);
+        Vector2 next;
+        Vector2 current;
+        if (percentage == 0)
+        {
+            next = _percentageToNode[1].Item2;
+            current = _percentageToNode[0].Item2;
+        }
+        else
+        {
+            next = GetNextNode(percentage).Item2;
+            current = GetPosition(percentage);
+        }
+
         var direction = next - current;
         var angle = Vector2.SignedAngle(Vector2.up, direction.normalized);
         return angle;

@@ -1,6 +1,5 @@
-﻿/*noinspection CssInvalidPseudoSelector*/
 :root {
-    /* fuck you */
+    --unity-metrics-single_line-height: 50;
 }
 
 .unity-button {
@@ -25,7 +24,6 @@
     height: 20%;
     transition: height 100ms ease;
     background-color: rgb(48, 48, 48);
-    /*noinspection CssUnknownTarget*/
     background-image: url('project://database/Assets/UIs/PartsBackgroundTiled.png?fileID=2800000&guid=aef251e761f729e45aef21cf81399ae4&type=3#PartsBackgroundTiled');
     -unity-background-scale-mode: scale-and-crop;
 }
@@ -33,6 +31,7 @@
 #palette > .unity-scroll-view {
     flex-grow: 1;
 }
+
 #palette .unity-scroller--vertical {
     opacity: 0;
     transition: opacity 100ms ease;
@@ -42,9 +41,39 @@
     padding: 10px;
 }
 
+#palette .unity-scroller--vertical #unity-high-button {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UIs/ArrowDown.png?fileID=2800000&guid=81a3d48ab681b8046890d60f458a99b6&type=3#ArrowDown');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-width: 0;
+}
+
+#palette .unity-scroller--vertical #unity-low-button {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UIs/ArrowUp.png?fileID=2800000&guid=77beb7d28b8dde24f9654e7d5217b449&type=3#ArrowUp');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-width: 0;
+}
+
+#palette .unity-scroller--vertical #unity-dragger {
+    background-color: rgb(255, 255, 255);
+    border-width: 0;
+    transition: background-color 100ms ease;
+}
+
+#palette .unity-scroller--vertical #unity-dragger:hover {
+    background-color: rgb(192, 192, 255);
+}
+
+#palette .unity-scroller--vertical #unity-tracker {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-width: 0;
+}
+
 #palette:hover {
     height: 50%;
 }
+
 #palette:hover .unity-scroller--vertical {
     opacity: 1;
 }
@@ -63,27 +92,28 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    background-color: #404080;
+    background-color: rgb(64, 64, 128);
     padding-left: 4px;
 }
+
 #status-header .unity-text-element {
-    color: #bbf;
+    color: rgb(187, 187, 255);
 }
 
 #status-header.test-fail {
-    background-color: #804040;
+    background-color: rgb(128, 64, 64);
 }
 
 #status-header.test-fail .unity-text-element {
-    color: #fbb;
+    color: rgb(255, 187, 187);
 }
 
 #status-header.test-pass {
-    background-color: #408040;
+    background-color: rgb(64, 128, 64);
 }
 
 #status-header.test-pass .unity-text-element {
-    color: #bfb;
+    color: rgb(187, 255, 187);
 }
 
 #status-header .button-main {
@@ -104,6 +134,7 @@
     padding: 2px;
     margin-right: 4px;
 }
+
 #status-header .info-stack > .unity-text-element {
     padding: 0;
     margin: 0;
@@ -112,6 +143,42 @@
 
 #status-header .info-stack > .unity-text-element.smol-info-header {
     font-size: 10px;
-    color: #bbb;
+    color: rgb(187, 187, 187);
     padding: 0;
+}
+
+#placements {
+    flex-grow: 1;
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#placements #rows {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#placements #rows .column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#placements #rows .column .slot {
+    width: 100px;
+    height: 100px;
+    border-width: 2px;
+    border-color: rgb(136, 136, 136);
+    background-color: rgb(64, 64, 64);
+    background-image: url('project://database/Assets/UIs/ModuleSlot.png?fileID=2800000&guid=485f7845603251844a2d14b4ac8747c6&type=3#ModuleSlot');
+    -unity-background-image-tint-color: rgb(128, 128, 128);
+}
+
+#unity-export-test {
+    background-image: url('project://database/Assets/UIs/ArrowDown.png?fileID=2800000&guid=81a3d48ab681b8046890d60f458a99b6&type=3#ArrowDown');
 }

@@ -1,14 +1,60 @@
-﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle" />
     <ui:VisualElement name="main">
+        <ui:VisualElement name="placements">
+            <ui:VisualElement name="rows">
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+                <ui:VisualElement class="column">
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="palette">
-            <ui:ScrollView>
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
+            <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
                 <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
             </ui:ScrollView>
         </ui:VisualElement>
@@ -21,7 +67,7 @@
                 <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" class="smol-info-header" />
                 <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" name="orcs-test-info" />
             </ui:VisualElement>
-            <ui:Button text="Script error!" display-tooltip-when-elided="true" class="button-main" />
+            <ui:Button text="Siege!" display-tooltip-when-elided="true" class="button-main" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

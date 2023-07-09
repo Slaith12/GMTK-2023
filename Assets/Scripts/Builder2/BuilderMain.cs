@@ -21,6 +21,8 @@ namespace Builder2
 
         private readonly Dictionary<Tuple<int, int>, Slot> _vslots = new();
 
+        [HideInInspector] public int nextLevel;
+
         private void Start()
         {
             var document = GetComponent<UIDocument>();
@@ -111,6 +113,13 @@ namespace Builder2
                 }
                 return true;
             };
+
+            var siegeButton = document.rootVisualElement.Q("siege-button");
+            siegeButton.RegisterCallback<ClickEvent>(evt =>
+            {
+                GameManager.SetSiegeMachineData(null); //TODO: replace with proper siege machine data
+                GameManager.GoToLevelSelect();
+            });
         }
     }
 }

@@ -19,6 +19,6 @@ public class TitleScreen : MonoBehaviour
 
     public void nextScene() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.GoToBuilder();
     }
 }

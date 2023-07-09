@@ -3,7 +3,6 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private float cooldownTime;
-    [SerializeField] private GameObject siegeMachine;
     [SerializeField] private GameObject projectile;
     [SerializeField] private int shots;
 

@@ -19,6 +19,6 @@ public class TitleScreen : MonoBehaviour
 
     public void nextScene() 
     {
-        GameManager.GoToBuilder();
+        GameManager.LeaveTitleScreen();
     }
 }

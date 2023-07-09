@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2676411614680125637}
   - component: {fileID: 1115134324350937714}
   - component: {fileID: 6669059951811079786}
+  - component: {fileID: 769707537930575225}
   m_Layer: 0
   m_Name: Siege
   m_TagString: Untagged
@@ -49,6 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2.5
   turningSpeed: 250
+  arrowPrefab: {fileID: 1534525023338773965, guid: d7ca5434c5c04da4b84952173497e9a7, type: 3}
+  attackOrcsAvailable: 0
   debugInitialPath: {fileID: 0}
 --- !u!61 &1115134324350937714
 BoxCollider2D:
@@ -110,6 +113,19 @@ MonoBehaviour:
   maxHealth: 80
   healthPoints: 0
   damageType: HumanProj
+--- !u!114 &769707537930575225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938396307097130949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc99f851d501674eb7228c6dba4c046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orc: {fileID: 5691266888755789611, guid: 0fcb1fadbd0abf249aed242a5ba8a31d, type: 3}
 --- !u!1 &6498319682392849101
 GameObject:
   m_ObjectHideFlags: 0

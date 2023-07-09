@@ -6,6 +6,8 @@ public class Sieger : MonoBehaviour
     public float movementSpeed;
     public float turningSpeed;
 
+    public GameObject arrowPrefab;
+
     public int attackOrcsAvailable;
 
     public SiegePath debugInitialPath;
@@ -25,6 +27,8 @@ public class Sieger : MonoBehaviour
     private float mspeedslow;
     private float mspeed;
 
+    private OrcCage _cage;
+
     private void Start()
     {
         BeginNewPath(debugInitialPath);
@@ -32,6 +36,7 @@ public class Sieger : MonoBehaviour
         slowdown = false;
         mspeed = movementSpeed;
         mspeedslow = movementSpeed * .5f;
+        _cage = GetComponentInChildren<OrcCage>();
     }
 
     private void InitModules()
@@ -46,6 +51,11 @@ public class Sieger : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _cage.SpawnOrcs();
+        }
+        
         if (!_path) return;
         switch (_currentTask)
         {

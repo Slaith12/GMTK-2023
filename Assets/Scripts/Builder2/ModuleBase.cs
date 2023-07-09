@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using modules;
 
 namespace Builder2
 {
@@ -85,7 +86,7 @@ namespace Builder2
         public override int OriginalHeight => 1;
         public override int Weight => 4;
         public override int Orcs => 3;
-        public override Action<Sieger> ModuleEffect => (sieger => sieger.gameObject.AddComponent<Crossbow>());
+        public override Action<Sieger> ModuleEffect => (sieger => sieger.gameObject.AddComponent<Autobow>());
 
         protected override bool[][] Blocked => new[]
         {

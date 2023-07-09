@@ -18,13 +18,17 @@ namespace Builder2
 
         private readonly List<DragAndDropManipulator> _dragAndDropManipulators = new();
 
+        public static int InitialOrcs = 10;
         private readonly Dictionary<Tuple<int, int>, Slot> _vslots = new();
         private VisualElement _dragVisualizer;
-        private int _orcs;
+        private int _orcs; // TODO
+        private int _weight = 0;
         private List<VisualElement> _slots = new();
 
         private void Start()
         {
+            _orcs = InitialOrcs;
+            _weight = 0;
             var document = GetComponent<UIDocument>();
 
             var slotRoot = document.rootVisualElement.Q<VisualElement>("placements");
@@ -85,8 +89,11 @@ namespace Builder2
                     Debug.Log("unslot at " + tuple);
                     vslot.MarkUnoccupied();
                 }
+
+                _orcs -= module.Orcs;
+                _weight -= module.Weight;
             };
-            DragAndDropManipulator.OnSuccessfulDrop += (manipulator, type, slot) =>
+            DragAndDropManipulator.OnSuccessfulDrop += (manipulator, module, slot) =>
             {
                 audioPlayer.PlayOneShot(snapSound);
                 for (var x = -1; x <= 1; x++)
@@ -94,9 +101,11 @@ namespace Builder2
                 {
                     var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
                     if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
-                    if (!type.IsBlocked(x, y)) continue;
+                    if (!module.IsBlocked(x, y)) continue;
                     vslot.MarkOccupied();
                 }
+                _orcs += module.Orcs;
+                _weight += module.Weight;
             };
             DragAndDropManipulator.OnRejectedDrop += _ => { audioPlayer.PlayOneShot(failSound); };
             DragAndDropManipulator.OnDeleted += _ => { audioPlayer.PlayOneShot(delSound); };
@@ -153,6 +162,12 @@ namespace Builder2
                 GameManager.SetSiegeMachineData(modules);
                 GameManager.GoToLevelSelect();
             });
+        }
+
+        private void RefreshDisplays()
+        {
+            var document = GetComponent<UIDocument>().rootVisualElement;
+            var weightDisplay = document.Q<Label>("weight-display");
         }
     }
 }

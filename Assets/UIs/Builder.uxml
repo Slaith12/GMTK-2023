@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle" />
     <ui:VisualElement name="main">
         <ui:VisualElement name="placements">
-            <ui:VisualElement name="rows">
+            <ui:VisualElement class="rows">
                 <ui:VisualElement class="column">
                     <ui:VisualElement class="slot" />
                     <ui:VisualElement class="slot" />
@@ -52,6 +52,58 @@
                     <ui:VisualElement class="slot" />
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:VisualElement name="virtual-placements" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement class="rows">
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="column">
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="palette">
             <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
@@ -59,6 +111,7 @@
                 <ui:VisualElement name="palette-items">
                     <UIs.PaletteModule module-type="crossbow" label="Crossbow Turret" description="1 orc\nClick to shoot the\nnearest tower" />
                     <UIs.PaletteModule module-type="shield" label="Shield" description="Blocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate" />
                 </ui:VisualElement>
             </ui:ScrollView>
         </ui:VisualElement>

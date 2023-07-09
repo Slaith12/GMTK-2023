@@ -77,7 +77,10 @@ namespace UIs
 
         public VisualElement GetImageCopy()
         {
-            var image = new VisualElement();
+            var image = new ModuleImage
+            {
+                Type = ModuleType
+            };
             image.AddToClassList("module-icon");
             image.AddToClassList("module-type-" + ModuleType);
             image.focusable = true;

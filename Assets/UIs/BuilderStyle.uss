@@ -147,6 +147,10 @@
     background-image: url('project://database/Assets/Modules/CrossbowTurret.png?fileID=2800000&guid=925f47a827176dd429025e5d4b9b4389&type=3#CrossbowTurret');
 }
 
+.module-icon.module-type-cockpit {
+    background-image: url('project://database/Assets/Modules/Cockpit.png?fileID=-1775733644&guid=cf41037b58f6aa2468367858b8bb4e4e&type=3#Cockpit_0');
+}
+
 .module-icon.module-type-shield {
     background-image: url('project://database/Assets/Modules/Shield.png?fileID=2800000&guid=ca1341f4d6f597845b4af3fd7419d37e&type=3#Shield');
 }
@@ -222,32 +226,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-#placements #rows {
+#placements #virtual-placements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#placements .rows {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
-#placements #rows .column {
+#placements .rows .column {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
-#placements #rows .column .slot {
+#placements .rows .column .slot {
     width: 100px;
     height: 100px;
     border-width: 2px;
     border-color: rgb(136, 136, 136);
     background-color: rgb(64, 64, 64);
     background-image: url('project://database/Assets/UIs/ModuleSlot.png?fileID=2800000&guid=485f7845603251844a2d14b4ac8747c6&type=3#ModuleSlot');
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     -unity-background-image-tint-color: rgb(128, 128, 128);
+}
+
+#placements .rows .column .virtual-slot {
+    width: 100px;
+    height: 100px;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 #drag-overlay {

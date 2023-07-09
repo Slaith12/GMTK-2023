@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UIs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,22 +9,33 @@ namespace Builder2
 {
     public class DragAndDropManipulator : PointerManipulator
     {
-        public delegate void SuccessfulDropHandler(PointerManipulator manipulator, VisualElement slot);
+        private ModuleBase _wip = null;
 
         public delegate void RejectedDropHandler(PointerManipulator manipulator);
 
-        public static event SuccessfulDropHandler OnSuccessfulDrop;
-        public static event RejectedDropHandler OnRejectedDrop;
+        public delegate void SuccessfulDropHandler(PointerManipulator manipulator, string type, VisualElement slot);
 
-        public DragAndDropManipulator(VisualElement draggable, VisualElement slotRoot, VisualElement dragVisualizer)
+        public delegate void DeletedHandler(PointerManipulator manipulator);
+
+        public delegate bool CanDropHandler(PointerManipulator manipulator, string type, VisualElement slot);
+
+        public DragAndDropManipulator(VisualElement draggable, VisualElement slotRoot,
+            Dictionary<Tuple<int, int>, Slot> slots, VisualElement dragVisualizer)
         {
             target = draggable;
             Root = slotRoot;
             DragVisualizer = dragVisualizer;
-            AllSlots = Root.Query<VisualElement>(className: "slot").ToList();
+
+            AllVirtualSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
+            Debug.Log("found " + AllVirtualSlots.Count + " virtual slots");
+            AllSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
+            Debug.Log("found " + AllSlots.Count + " virtual slots");
         }
 
+        public static CanDropHandler CanDropCheck { get; set; }
+
         public List<VisualElement> AllSlots { get; }
+        public List<VisualElement> AllVirtualSlots { get; }
 
         private Vector2 TargetStartPosition { get; set; }
         private VisualElement OriginalParent { get; set; }
@@ -30,6 +43,10 @@ namespace Builder2
         private bool Enabled { get; set; }
         private VisualElement Root { get; }
         private VisualElement DragVisualizer { get; }
+
+        public static event SuccessfulDropHandler OnSuccessfulDrop;
+        public static event RejectedDropHandler OnRejectedDrop;
+        public static event DeletedHandler OnDeleted;
 
 
         protected override void RegisterCallbacksOnTarget()
@@ -62,12 +79,20 @@ namespace Builder2
                 TargetStartPosition = visualSpace;
                 PointerStartPosition = evt.position;
                 target.CapturePointer(evt.pointerId);
+                var type = ((ModuleImage) target).Type;
+                _wip = ModuleBase.ModuleTypes[type]();
                 Enabled = true;
             }
             else if (evt.button == (int) MouseButton.RightMouse)
             {
                 target.RemoveFromHierarchy();
+                OnDeleted?.Invoke(this);
             }
+        }
+
+        public void RotateCW()
+        {
+            
         }
 
         private void Revert()
@@ -82,7 +107,6 @@ namespace Builder2
             }
         }
 
-
         /**
          * Move the target if the mouse pointer is captured.
          */
@@ -95,8 +119,6 @@ namespace Builder2
                     TargetStartPosition.x + delta.x,
                     TargetStartPosition.y + delta.y
                 );
-                var overlapping = AllSlots.Where(OverlapsTarget);
-                var closestOverlapping = FindClosestSlot(overlapping.ToList());
             }
         }
 
@@ -117,7 +139,7 @@ namespace Builder2
             if (Enabled)
             {
                 Enabled = false;
-                var overlapping = AllSlots.Where(OverlapsTarget);
+                var overlapping = AllVirtualSlots.Where(OverlapsTarget);
                 var closestOverlapping = FindClosestSlot(overlapping.ToList());
                 if (closestOverlapping != null)
                 {
@@ -127,10 +149,10 @@ namespace Builder2
                         return;
                     }
 
-                    OnSuccessfulDrop?.Invoke(this, closestOverlapping);
-                    target.transform.position = VisualizerSpaceOfSlot(closestOverlapping) +
-                                                ((Vector3) new Vector2(closestOverlapping.layout.width,
-                                                    closestOverlapping.layout.height) / 2);
+                    target.RemoveFromHierarchy();
+                    closestOverlapping.Add(target);
+                    target.transform.position = Vector3.zero;
+                    OnSuccessfulDrop?.Invoke(this, ((ModuleImage) target).Type, closestOverlapping);
                 }
                 else
                 {
@@ -164,7 +186,9 @@ namespace Builder2
 
         private Vector3 VisualizerSpaceOfSlot(VisualElement slot)
         {
-            var slotWorldSpace = slot.parent.LocalToWorld(slot.layout.position);
+            // calculate the center of the slot
+            var corner = slot.layout.position;
+            var slotWorldSpace = slot.parent.LocalToWorld(corner);
             return DragVisualizer.WorldToLocal(slotWorldSpace);
         }
     }

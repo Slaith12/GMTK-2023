@@ -24,7 +24,7 @@ namespace modules
 
         private void shoot()
         {
-            Instantiate(_projectile, transform);
+            Instantiate(_projectile, transform.position, Quaternion.identity);
             timer = CooldownTime;
         }
     }

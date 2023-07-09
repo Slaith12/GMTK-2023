@@ -404,3 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fe99910011408a973592c44d8935cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 1278633854}
+  snapSound: {fileID: 8300000, guid: 0a0db02cd03ddcd49876bf3f2086c46a, type: 3}
+  failSound: {fileID: 0}

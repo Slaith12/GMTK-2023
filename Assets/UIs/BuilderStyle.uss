@@ -261,16 +261,16 @@
     border-color: rgb(136, 136, 136);
     background-color: rgb(64, 64, 64);
     background-image: url('project://database/Assets/UIs/ModuleSlot.png?fileID=2800000&guid=485f7845603251844a2d14b4ac8747c6&type=3#ModuleSlot');
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     -unity-background-image-tint-color: rgb(128, 128, 128);
 }
 
 #placements .rows .column .virtual-slot {
     width: 100px;
     height: 100px;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
 }
 
 #drag-overlay {

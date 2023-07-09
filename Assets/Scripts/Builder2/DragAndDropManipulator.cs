@@ -13,11 +13,12 @@ namespace Builder2
 
         public delegate void RejectedDropHandler(PointerManipulator manipulator);
 
-        public delegate void SuccessfulDropHandler(PointerManipulator manipulator, string type, VisualElement slot);
+        public delegate void SuccessfulDropHandler(PointerManipulator manipulator, ModuleBase module,
+            VisualElement slot);
 
         public delegate void DeletedHandler(PointerManipulator manipulator);
 
-        public delegate bool CanDropHandler(PointerManipulator manipulator, string type, VisualElement slot);
+        public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, VisualElement slot);
 
         public DragAndDropManipulator(VisualElement draggable, VisualElement slotRoot,
             Dictionary<Tuple<int, int>, Slot> slots, VisualElement dragVisualizer)
@@ -90,9 +91,13 @@ namespace Builder2
             }
         }
 
-        public void RotateCW()
+        public void Rotate()
         {
-            
+            if (Enabled && _wip != null)
+            {
+                _wip.RotateCW();
+                target.transform.rotation = Quaternion.Euler(0, 0, _wip.GetRotationAngle());
+            }
         }
 
         private void Revert()
@@ -152,7 +157,7 @@ namespace Builder2
                     target.RemoveFromHierarchy();
                     closestOverlapping.Add(target);
                     target.transform.position = Vector3.zero;
-                    OnSuccessfulDrop?.Invoke(this, ((ModuleImage) target).Type, closestOverlapping);
+                    OnSuccessfulDrop?.Invoke(this, _wip, closestOverlapping);
                 }
                 else
                 {
@@ -172,7 +177,8 @@ namespace Builder2
             VisualElement closest = null;
             foreach (var slot in slots)
             {
-                var displacement = VisualizerSpaceOfSlot(slot) - target.transform.position;
+                var displacement = VisualizerSpaceOfSlot(slot) -
+                                   (target.transform.position + (Vector3) slot.layout.size / 2);
                 var squaredDistance = displacement.sqrMagnitude;
                 if (squaredDistance < bestSquaredDistance)
                 {
@@ -187,7 +193,7 @@ namespace Builder2
         private Vector3 VisualizerSpaceOfSlot(VisualElement slot)
         {
             // calculate the center of the slot
-            var corner = slot.layout.position;
+            var corner = slot.layout.position - slot.layout.size / 2;
             var slotWorldSpace = slot.parent.LocalToWorld(corner);
             return DragVisualizer.WorldToLocal(slotWorldSpace);
         }

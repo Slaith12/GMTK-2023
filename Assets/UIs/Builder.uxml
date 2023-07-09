@@ -124,8 +124,9 @@
                 <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" class="smol-info-header" />
                 <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" name="orcs-test-info" />
             </ui:VisualElement>
-            <ui:Button text="Siege!" display-tooltip-when-elided="true" class="button-main" />
+            <ui:Button text="Siege!" display-tooltip-when-elided="true" name="siege-button" class="button-main" />
         </ui:VisualElement>
         <ui:VisualElement name="drag-overlay" picking-mode="Ignore" style="display: none;" />
     </ui:VisualElement>
+    <ui:Toggle label="Toggle" />
 </ui:UXML>

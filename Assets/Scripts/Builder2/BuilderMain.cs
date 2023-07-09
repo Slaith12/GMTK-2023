@@ -23,6 +23,7 @@ namespace Builder2
         private void Start()
         {
             var document = GetComponent<UIDocument>();
+            
 
             var slotRoot = document.rootVisualElement.Q<VisualElement>("placements");
 
@@ -77,18 +78,17 @@ namespace Builder2
             DragAndDropManipulator.OnDeleted += _ => { audioPlayer.PlayOneShot(delSound); };
             DragAndDropManipulator.CanDropCheck = (manipulator, type, slot) =>
             {
-                var moduleInfo = ModuleBase.ModuleTypes[type];
-                if (moduleInfo == null)
-                {
-                    return false;
-                }
                 
                 return true;
             };
         }
 
-        private void OnGUI()
+        private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                _dragAndDropManipulators.ForEach(e => e.Rotate());
+            }
         }
     }
 }

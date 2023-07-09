@@ -208,7 +208,7 @@ namespace Builder2
 
         public override int OriginalWidth => 3;
         public override int OriginalHeight => 3;
-        public override int Weight => 5;
+        public override int Weight => 7;
         public override int Orcs => 5;
     }
 
@@ -277,7 +277,7 @@ namespace Builder2
         public override int OriginalWidth => 1;
         public override int OriginalHeight => 1;
         public override int Weight => 7;
-        public override int Orcs => 0;
+        public override int Orcs => 2;
 
         protected override bool[][] Blocked => new[]
         {

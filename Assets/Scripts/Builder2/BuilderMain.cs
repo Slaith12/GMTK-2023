@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UIs;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -18,7 +20,7 @@ namespace Builder2
 
         private readonly List<DragAndDropManipulator> _dragAndDropManipulators = new();
 
-        public static int InitialOrcs = 10;
+        public static int InitialOrcs = 20;
         private readonly Dictionary<Tuple<int, int>, Slot> _vslots = new();
         private VisualElement _dragVisualizer;
         private int _orcs; // TODO
@@ -70,6 +72,7 @@ namespace Builder2
                         var rootSpace =
                             _dragVisualizer.WorldToLocal(
                                 paletteModule.Image.LocalToWorld(paletteModule.Image.layout.position));
+                        _dragVisualizer.Clear();
                         _dragVisualizer.Add(copy);
                         copy.transform.position = rootSpace;
                         _dragAndDropManipulators.Add(new DragAndDropManipulator(copy, slotRoot, _vslots,
@@ -77,97 +80,150 @@ namespace Builder2
                     });
                 });
 
-            DragAndDropManipulator.BeforeUnslot += (manipulator, module, slot) =>
-            {
-                Debug.Log("unslot");
-                for (var x = -1; x <= 1; x++)
-                for (var y = -1; y <= 1; y++)
-                {
-                    var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
-                    if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
-                    if (!module.IsBlocked(x, y)) continue;
-                    Debug.Log("unslot at " + tuple);
-                    vslot.MarkUnoccupied();
-                }
-
-                _orcs -= module.Orcs;
-                _weight -= module.Weight;
-            };
-            DragAndDropManipulator.OnSuccessfulDrop += (manipulator, module, slot) =>
-            {
-                audioPlayer.PlayOneShot(snapSound);
-                for (var x = -1; x <= 1; x++)
-                for (var y = -1; y <= 1; y++)
-                {
-                    var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
-                    if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
-                    if (!module.IsBlocked(x, y)) continue;
-                    vslot.MarkOccupied();
-                }
-                _orcs += module.Orcs;
-                _weight += module.Weight;
-            };
-            DragAndDropManipulator.OnRejectedDrop += _ => { audioPlayer.PlayOneShot(failSound); };
-            DragAndDropManipulator.OnDeleted += _ => { audioPlayer.PlayOneShot(delSound); };
-            DragAndDropManipulator.CanDropCheck = (manipulator, type, slot) =>
-            {
-                for (var x = -1; x <= 1; x++)
-                for (var y = -1; y <= 1; y++)
-                {
-                    var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
-                    if (_vslots.TryGetValue(tuple, out var vslot))
-                    {
-                        var blocked = type.IsBlocked(x, y);
-                        var occupied = vslot.Occupied;
-                        Debug.Log("slot at " + tuple.Item1 + ", " + tuple.Item2 + " is " +
-                                  (blocked ? "blocked" : "not blocked") + " and " +
-                                  (occupied ? "occupied" : "not occupied"));
-                        if (type.IsBlocked(x, y) && vslot.Occupied) return false;
-                    }
-                    else if (type.IsBlocked(x, y))
-                    {
-                        Debug.Log("rejected: " + type + " at " + slot.X + ", " + slot.Y +
-                                  " because no slot found and blocked");
-                        return false;
-                    }
-                }
-
-                switch (type)
-                {
-                    case ShieldUp when slot.Y != 0:
-                    case ShieldDown when slot.Y != 3:
-                    case ShieldLeft when slot.X != 0:
-                    case ShieldRight when slot.X != 7:
-                        Debug.Log("rejected: constraints failed");
-                        return false;
-
-                    default:
-                        return true;
-                }
-            };
+            DragAndDropManipulator.BeforeUnslot += OnDragAndDropManipulatorOnBeforeUnslot;
+            DragAndDropManipulator.OnSuccessfulDrop += OnDragAndDropManipulatorOnOnSuccessfulDrop;
+            DragAndDropManipulator.OnRejectedDrop += OnDragAndDropManipulatorOnOnRejectedDrop;
+            DragAndDropManipulator.OnDeleted += OnDragAndDropManipulatorOnOnDeleted;
+            DragAndDropManipulator.CanDropCheck = CanDropCheck;
 
             var siegeButton = document.rootVisualElement.Q("siege-button");
             siegeButton.RegisterCallback<ClickEvent>(evt =>
             {
-                var slots = _vslots.Values.ToList();
-                List<ModuleData> modules = new List<ModuleData>();
-                foreach(Slot slot in slots)
-                {
-                    ModuleImage image = slot.PlacementSlot.Children().FirstOrDefault() as ModuleImage;
-                    if (image == null)
-                        continue;
-                    ModuleBase module = ModuleBase.ModuleTypes[image.Type]();
-                    modules.Add(new ModuleData(module, new Vector2(slot.X, slot.Y)));
-                }
+                if (document.rootVisualElement.Q<VisualElement>("status-header").ClassListContains("test-fail")) return;
+                var modules = GetSlottedModules();
                 GameManager.SetSiegeMachineData(modules);
+                DragAndDropManipulator.CanDropCheck = null;
+
+                DragAndDropManipulator.BeforeUnslot -= OnDragAndDropManipulatorOnBeforeUnslot;
+                DragAndDropManipulator.OnSuccessfulDrop -= OnDragAndDropManipulatorOnOnSuccessfulDrop;
+                DragAndDropManipulator.OnRejectedDrop -= OnDragAndDropManipulatorOnOnRejectedDrop;
+                DragAndDropManipulator.OnDeleted -= OnDragAndDropManipulatorOnOnDeleted;
                 GameManager.GoToLevelSelect();
             });
+            RefreshDisplays();
+        }
+
+        private void OnDragAndDropManipulatorOnBeforeUnslot(PointerManipulator manipulator, ModuleBase module, Slot slot)
+        {
+            Debug.Log("unslot");
+            for (var x = -1; x <= 1; x++)
+            for (var y = -1; y <= 1; y++)
+            {
+                var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
+                if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
+                if (!module.IsBlocked(x, y)) continue;
+                Debug.Log("unslot at " + tuple);
+                vslot.MarkUnoccupied();
+            }
+
+            _orcs += module.Orcs;
+            RefreshDisplays();
+        }
+
+        private void OnDragAndDropManipulatorOnOnSuccessfulDrop(PointerManipulator manipulator, ModuleBase module, Slot slot)
+        {
+            audioPlayer.PlayOneShot(snapSound);
+            for (var x = -1; x <= 1; x++)
+            for (var y = -1; y <= 1; y++)
+            {
+                var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
+                if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
+                if (!module.IsBlocked(x, y)) continue;
+                vslot.MarkOccupied();
+            }
+
+            _orcs -= module.Orcs;
+            RefreshDisplays();
+        }
+
+        private void OnDragAndDropManipulatorOnOnRejectedDrop(PointerManipulator _)
+        {
+            audioPlayer.PlayOneShot(failSound);
+        }
+
+        private void OnDragAndDropManipulatorOnOnDeleted(PointerManipulator _)
+        {
+            audioPlayer.PlayOneShot(delSound);
+        }
+
+        private bool CanDropCheck(PointerManipulator manipulator, ModuleBase type, Slot slot)
+        {
+            for (var x = -1; x <= 1; x++)
+            for (var y = -1; y <= 1; y++)
+            {
+                var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
+                if (_vslots.TryGetValue(tuple, out var vslot))
+                {
+                    var blocked = type.IsBlocked(x, y);
+                    var occupied = vslot.Occupied;
+                    Debug.Log("slot at " + tuple.Item1 + ", " + tuple.Item2 + " is " + (blocked ? "blocked" : "not blocked") + " and " + (occupied ? "occupied" : "not occupied"));
+                    if (type.IsBlocked(x, y) && vslot.Occupied) return false;
+                }
+                else if (type.IsBlocked(x, y))
+                {
+                    Debug.Log("rejected: " + type + " at " + slot.X + ", " + slot.Y + " because no slot found and blocked");
+                    return false;
+                }
+            }
+
+            switch (type)
+            {
+                case ShieldUp when slot.Y != 0:
+                case ShieldDown when slot.Y != 3:
+                case ShieldLeft when slot.X != 0:
+                case ShieldRight when slot.X != 7:
+                    Debug.Log("rejected: constraints failed");
+                    return false;
+
+                default:
+                    return true;
+            }
+        }
+
+        private List<ModuleData> GetSlottedModules()
+        {
+            var slots = _vslots.Values.ToList();
+            List<ModuleData> modules = new List<ModuleData>();
+            foreach (Slot slot in slots)
+            {
+                ModuleImage image = slot.PlacementSlot.Children().FirstOrDefault() as ModuleImage;
+                if (image == null)
+                    continue;
+                ModuleBase module = ModuleBase.ModuleTypes[image.Type]();
+                modules.Add(new ModuleData(module, new Vector2(slot.X, slot.Y)));
+            }
+
+            return modules;
         }
 
         private void RefreshDisplays()
         {
             var document = GetComponent<UIDocument>().rootVisualElement;
-            var weightDisplay = document.Q<Label>("weight-display");
+            var panel = document.Q<VisualElement>("status-header");
+            var orcDisplay = panel.Q<Label>("orcs-test-info");
+            var button = panel.Q<Button>("siege-button");
+            orcDisplay.text = "" + _orcs;
+            if (_orcs < 0)
+            {
+                button.text = "Not enough orcs!";
+                panel.RemoveFromClassList("test-pass");
+                panel.AddToClassList("test-fail");
+            }
+            else
+            {
+                var slots = GetSlottedModules();
+                if (slots.FirstOrDefault(e => e.type is Cockpit) == null)
+                {
+                    button.text = "No cockpit!";
+                    panel.RemoveFromClassList("test-pass");
+                    panel.AddToClassList("test-fail");
+                    return;
+                }
+                button.text = "Siege!";
+                panel.AddToClassList("test-pass");
+                panel.RemoveFromClassList("test-fail");
+                
+            }
         }
     }
 }

@@ -15,6 +15,10 @@ namespace Builder2
             {"shield-left", () => new ShieldLeft()},
             {"shield-right", () => new ShieldRight()},
             {"cockpit", () => new Cockpit()},
+            {"orc-attack-party-0", () => new OrcAttackParty0()},
+            {"orc-attack-party-90", () => new OrcAttackParty90()},
+            {"orc-attack-party-180", () => new OrcAttackParty180()},
+            {"orc-attack-party-270", () => new OrcAttackParty270()},
         };
 
         protected ModuleBase(string displayType)
@@ -93,11 +97,6 @@ namespace Builder2
         public override int Weight => 5;
         public override int Orcs => 2;
 
-        protected override bool[][] Blocked => new[]
-        {
-            new[] {true, true, true}
-        };
-
         protected Shield(string displayType) : base(displayType)
         {
         }
@@ -111,6 +110,11 @@ namespace Builder2
 
         public override int OriginalWidth => 3;
         public override int OriginalHeight => 1;
+
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true, true, true}
+        };
     }
 
     public class ShieldDown : Shield
@@ -121,6 +125,11 @@ namespace Builder2
 
         public override int OriginalWidth => 3;
         public override int OriginalHeight => 1;
+
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true, true, true}
+        };
     }
 
     public class ShieldLeft : Shield
@@ -131,6 +140,13 @@ namespace Builder2
 
         public override int OriginalWidth => 1;
         public override int OriginalHeight => 3;
+
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true},
+            new[] {true},
+            new[] {true}
+        };
     }
 
 
@@ -142,6 +158,13 @@ namespace Builder2
 
         public override int OriginalWidth => 1;
         public override int OriginalHeight => 3;
+
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true},
+            new[] {true},
+            new[] {true}
+        };
     }
 
     public class Cockpit : ModuleBase
@@ -158,6 +181,74 @@ namespace Builder2
         protected override bool[][] Blocked => new[]
         {
             new[] {true}
+        };
+    }
+    
+    public abstract class OrcAttackParty : ModuleBase
+    {
+        public override int OriginalWidth => 3;
+        public override int OriginalHeight => 3;
+        public override int Weight => 5;
+        public override int Orcs => 5;
+
+        protected OrcAttackParty(string displayType) : base(displayType)
+        {
+        }
+    }
+
+    public class OrcAttackParty0 : OrcAttackParty
+    {
+        public OrcAttackParty0() : base("orc-attack-party-0")
+        {
+        }
+
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true, false, false},
+            new[] {true, false, false},
+            new[] {true, true, true}
+        };
+    }
+
+    public class OrcAttackParty90 : OrcAttackParty
+    {
+        public OrcAttackParty90() : base("orc-attack-party-90")
+        {
+        }
+        
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true, true, true},
+            new[] {true, false, false},
+            new[] {true, false, false}
+        };
+    }
+    
+    public class OrcAttackParty180 : OrcAttackParty
+    {
+        public OrcAttackParty180() : base("orc-attack-party-180")
+        {
+        }
+        
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {true, true, true},
+            new[] {false, false, true},
+            new[] {false, false, true}
+        };
+    }
+    
+    public class OrcAttackParty270 : OrcAttackParty
+    {
+        public OrcAttackParty270() : base("orc-attack-party-270")
+        {
+        }
+        
+        protected override bool[][] Blocked => new[]
+        {
+            new[] {false, false, true},
+            new[] {false, false, true},
+            new[] {true, true, true}
         };
     }
 }

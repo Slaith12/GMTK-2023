@@ -25,11 +25,13 @@ namespace Builder2
         public void MarkOccupied()
         {
             _multiSlotOccupied = true;
+            VisualSlot.AddToClassList("occupied");
         }
         
         public void MarkUnoccupied()
         {
             _multiSlotOccupied = false;
+            VisualSlot.RemoveFromClassList("occupied");
         }
 
         public void AddModule(VisualElement moduleElement)

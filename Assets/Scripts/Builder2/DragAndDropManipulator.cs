@@ -22,11 +22,13 @@ namespace Builder2
 
         public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
 
-        public DragAndDropManipulator(VisualElement draggable, VisualElement slotRoot,
+        public delegate void BeforeUnslotHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
+
+        public DragAndDropManipulator(VisualElement draggable, VisualElement allSlotRoot,
             Dictionary<Tuple<int, int>, Slot> slots, VisualElement dragVisualizer)
         {
             target = draggable;
-            Root = slotRoot;
+            AllSlotRoot = allSlotRoot;
             DragVisualizer = dragVisualizer;
 
             SlotSlots = slots.Values.ToList();
@@ -42,15 +44,16 @@ namespace Builder2
         public List<VisualElement> AllVirtualSlots { get; }
 
         private Vector2 TargetStartPosition { get; set; }
-        private VisualElement OriginalParent { get; set; }
+        private Slot OriginalParent { get; set; }
         private Vector3 PointerStartPosition { get; set; }
         private bool Enabled { get; set; }
-        private VisualElement Root { get; }
+        public VisualElement AllSlotRoot { get; }
         private VisualElement DragVisualizer { get; }
 
         public static event SuccessfulDropHandler OnSuccessfulDrop;
         public static event RejectedDropHandler OnRejectedDrop;
         public static event DeletedHandler OnDeleted;
+        public static event BeforeUnslotHandler BeforeUnslot;
 
 
         protected override void RegisterCallbacksOnTarget()
@@ -76,7 +79,7 @@ namespace Builder2
                 Debug.Log("PointerDownHandler");
                 // convert the position to the DragVisualizer's local space
                 var visualSpace = DragVisualizer.WorldToLocal(target.LocalToWorld(target.layout.position));
-                OriginalParent = target.parent;
+                OriginalParent = SlotSlots.FirstOrDefault(x => x.PlacementSlot == target.parent);
                 target.RemoveFromHierarchy();
                 DragVisualizer.Add(target);
                 target.transform.position = visualSpace;
@@ -84,11 +87,14 @@ namespace Builder2
                 PointerStartPosition = evt.position;
                 target.CapturePointer(evt.pointerId);
                 var type = ((ModuleImage) target).Type;
+                AllSlotRoot.AddToClassList("dragging-module-" + type);
                 _wip = ModuleBase.ModuleTypes[type]();
                 Enabled = true;
             }
             else if (evt.button == (int) MouseButton.RightMouse)
             {
+                var parent = SlotSlots.FirstOrDefault(x => x.PlacementSlot == target.parent);
+                BeforeUnslot?.Invoke(this, ModuleBase.ModuleTypes[((ModuleImage) target).Type](), parent);
                 target.RemoveFromHierarchy();
                 OnDeleted?.Invoke(this);
             }
@@ -99,7 +105,7 @@ namespace Builder2
             if (OriginalParent != null)
             {
                 target.RemoveFromHierarchy();
-                OriginalParent.Add(target);
+                OriginalParent.PlacementSlot.Add(target);
                 target.transform.position = Vector3.zero;
                 OnRejectedDrop?.Invoke(this);
                 OriginalParent = null;
@@ -137,6 +143,10 @@ namespace Builder2
         {
             if (Enabled)
             {
+                foreach (var s in AllSlotRoot.GetClasses().Where(x => x.StartsWith("dragging-module-")).ToList())
+                {
+                    AllSlotRoot.RemoveFromClassList(s);
+                }
                 Enabled = false;
                 var overlapping = SlotSlots.Where(OverlapsTarget);
                 var closestOverlapping = FindClosestSlot(overlapping.ToList());
@@ -147,11 +157,15 @@ namespace Builder2
                         Revert();
                         return;
                     }
+
                     if (!CanDropCheck?.Invoke(this, _wip, closestOverlapping) ?? false)
                     {
                         Revert();
                         return;
                     }
+
+                    if (OriginalParent != null)
+                        BeforeUnslot?.Invoke(this, _wip, OriginalParent);
                     target.RemoveFromHierarchy();
                     closestOverlapping.PlacementSlot.Add(target);
                     target.transform.position = Vector3.zero;
@@ -173,7 +187,7 @@ namespace Builder2
         {
             var bestSquaredDistance = float.MaxValue;
             Slot closest = null;
-            var myCenter = (Vector3)((Vector2) target.transform.position + target.layout.size / 2);
+            var myCenter = (Vector3) ((Vector2) target.transform.position + target.layout.size / 2);
             foreach (var slot in slots)
             {
                 var displacement = VisualizerSpaceOfSlot(slot.PlacementSlot) - myCenter;

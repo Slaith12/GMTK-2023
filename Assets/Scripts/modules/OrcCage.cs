@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class OrcCage : MonoBehaviour
 {
-    [SerializeField] private int orcCount;
     [SerializeField] private GameObject orc;
 
     // Start is called before the first frame update
@@ -15,8 +14,10 @@ public class OrcCage : MonoBehaviour
     {
     }
 
-    private void spawnOrcs()
+    public void SpawnOrcs()
     {
-        for (var i = 0; i < orcCount; i++) Instantiate(orc, transform);
+        var sieger = GetComponent<Sieger>();
+        for (var i = 0; i < sieger.attackOrcsAvailable; i++) Instantiate(orc, transform.position, Quaternion.identity);
+        sieger.attackOrcsAvailable = 0;
     }
 }

@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Crossbow : MonoBehaviour
 {
-    [SerializeField] private float cooldownTime;
-    [SerializeField] private GameObject projectile;
+    private const float CooldownTime = 0.5f;
+    private GameObject _projectile;
     private float timer;
+    
+    
 
     // Start is called before the first frame update
     private void Start()
     {
-        timer = cooldownTime;
+        _projectile = GetComponent<Sieger>().arrowPrefab;
+        timer = CooldownTime;
     }
 
     // Update is called once per frame
@@ -21,7 +25,7 @@ public class Crossbow : MonoBehaviour
 
     private void shoot()
     {
-        Instantiate(projectile, transform);
-        timer = cooldownTime;
+        Instantiate(_projectile, transform.position, Quaternion.identity);
+        timer = CooldownTime;
     }
 }

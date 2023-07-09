@@ -6,6 +6,8 @@ public class Sieger : MonoBehaviour
     public float movementSpeed;
     public float turningSpeed;
 
+    public int attackOrcsAvailable;
+
     public SiegePath debugInitialPath;
 
     private Task _currentTask = Task.Advance;
@@ -19,19 +21,20 @@ public class Sieger : MonoBehaviour
     private Quaternion _targetAngle;
     private float _turnPercentage;
 
-    
-    public bool slowdown;
-    private float mspeedslow;
-    private float mspeed;
-
     private void Start()
     {
         BeginNewPath(debugInitialPath);
-        slowdown = false;
+        InitModules();
+    }
 
-        mspeed = movementSpeed;
-        mspeedslow = movementSpeed * .5f;
-        
+    private void InitModules()
+    {
+        if (GameManager.gameManager.siegeMachineData == null)
+            return;
+        foreach(ModuleData module in GameManager.gameManager.siegeMachineData)
+        {
+            module.type.ModuleEffect(this);
+        }
     }
 
     private void Update()
@@ -48,11 +51,6 @@ public class Sieger : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-
-        if (slowdown)
-            movementSpeed = mspeedslow;
-        else
-            movementSpeed = mspeed;
     }
 
     public void BeginNewPath(SiegePath newPath)
@@ -107,11 +105,4 @@ public class Sieger : MonoBehaviour
         Advance,
         Turn
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        slowdown = (collision.gameObject.GetComponent<SlowdownProj>() != null);
-    }
-
-
 }

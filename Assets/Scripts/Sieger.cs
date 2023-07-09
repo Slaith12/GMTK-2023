@@ -7,6 +7,7 @@ public class Sieger : MonoBehaviour
     public float turningSpeed;
 
     public GameObject arrowPrefab;
+    [SerializeField] LevelEnd levelEnd;
 
     public int attackOrcsAvailable;
 
@@ -47,6 +48,11 @@ public class Sieger : MonoBehaviour
         {
             module.type.ModuleEffect(this);
         }
+    }
+
+    private void OnDestroy()
+    {
+        levelEnd.ShowLose();
     }
 
     private void Update()

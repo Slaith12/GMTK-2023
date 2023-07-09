@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UIs;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,6 +8,10 @@ namespace Builder2
 {
     public class BuilderMain : MonoBehaviour
     {
+        [SerializeField] private AudioSource audioPlayer;
+        [SerializeField] private AudioClip snapSound;
+        [SerializeField] private AudioClip failSound;
+        
         private readonly List<DragAndDropManipulator> _dragAndDropManipulators = new();
         private VisualElement _dragVisualizer;
         private List<VisualElement> _slots = new();
@@ -36,6 +41,15 @@ namespace Builder2
                         _dragAndDropManipulators.Add(new DragAndDropManipulator(copy, slotRoot, _dragVisualizer));
                     });
                 });
+
+            DragAndDropManipulator.OnSuccessfulDrop += (_, _) =>
+            {
+                audioPlayer.PlayOneShot(snapSound);
+            };
+            DragAndDropManipulator.OnRejectedDrop += _ =>
+            {
+                audioPlayer.PlayOneShot(failSound);
+            };
         }
 
         private void OnGUI()

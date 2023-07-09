@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BuilderTakeTwo.unity
     guid: a3e544a7e4e8d914696cc839c6e9b2e4
   - enabled: 1
+    path: Assets/Scenes/Level Select.unity
+    guid: b66c9eb7f6a23ae4e82d51b4c20197a0
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 53dbb6047fe34354bbdc69118d70f0ae
   - enabled: 1

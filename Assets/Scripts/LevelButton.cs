@@ -20,6 +20,6 @@ public class LevelButton : MonoBehaviour
 
     public void nextScene() 
     {
-        GameManager.GoToBuilder();
+        GameManager.LeaveTitleScreen();
     }
 }

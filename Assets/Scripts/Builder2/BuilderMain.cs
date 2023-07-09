@@ -71,10 +71,26 @@ namespace Builder2
                                 paletteModule.Image.LocalToWorld(paletteModule.Image.layout.position));
                         _dragVisualizer.Add(copy);
                         copy.transform.position = rootSpace;
-                        _dragAndDropManipulators.Add(new DragAndDropManipulator(copy, slotRoot, _vslots, _dragVisualizer));
+                        _dragAndDropManipulators.Add(new DragAndDropManipulator(copy, slotRoot, _vslots,
+                            _dragVisualizer));
                     });
                 });
 
+            DragAndDropManipulator.BeforeUnslot += (manipulator, module, slot) =>
+            {
+                Debug.Log("unslot");
+                for (var x = -1; x <= 1; x++)
+                {
+                    for (var y = -1; y <= 1; y++)
+                    {
+                        var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
+                        if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
+                        if (!module.IsBlocked(x, y)) continue;
+                        Debug.Log("unslot at " + tuple);
+                        vslot.MarkUnoccupied();
+                    }
+                }
+            };
             DragAndDropManipulator.OnSuccessfulDrop += (manipulator, type, slot) =>
             {
                 audioPlayer.PlayOneShot(snapSound);
@@ -86,7 +102,6 @@ namespace Builder2
                         if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
                         if (!type.IsBlocked(x, y)) continue;
                         vslot.MarkOccupied();
-                        return;
                     }
                 }
             };
@@ -103,14 +118,21 @@ namespace Builder2
                         {
                             var blocked = type.IsBlocked(x, y);
                             var occupied = vslot.Occupied;
-                            Debug.Log("slot at " + tuple.Item1 + ", " + tuple.Item2 + " is " + (blocked ? "blocked" : "not blocked") + " and " + (occupied ? "occupied" : "not occupied"));
+                            Debug.Log("slot at " + tuple.Item1 + ", " + tuple.Item2 + " is " +
+                                      (blocked ? "blocked" : "not blocked") + " and " +
+                                      (occupied ? "occupied" : "not occupied"));
                             if (type.IsBlocked(x, y) && vslot.Occupied)
                             {
                                 return false;
                             }
                         }
+                        else if (type.IsBlocked(x, y))
+                        {
+                            return false;
+                        }
                     }
                 }
+
                 return true;
             };
 

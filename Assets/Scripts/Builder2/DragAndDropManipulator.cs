@@ -11,14 +11,16 @@ namespace Builder2
     {
         private ModuleBase _wip = null;
 
+        private List<Slot> SlotSlots { get; set; }
+
         public delegate void RejectedDropHandler(PointerManipulator manipulator);
 
         public delegate void SuccessfulDropHandler(PointerManipulator manipulator, ModuleBase module,
-            VisualElement slot);
+            Slot slot);
 
         public delegate void DeletedHandler(PointerManipulator manipulator);
 
-        public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, VisualElement slot);
+        public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
 
         public DragAndDropManipulator(VisualElement draggable, VisualElement slotRoot,
             Dictionary<Tuple<int, int>, Slot> slots, VisualElement dragVisualizer)
@@ -27,6 +29,7 @@ namespace Builder2
             Root = slotRoot;
             DragVisualizer = dragVisualizer;
 
+            SlotSlots = slots.Values.ToList();
             AllVirtualSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
             Debug.Log("found " + AllVirtualSlots.Count + " virtual slots");
             AllSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
@@ -91,15 +94,6 @@ namespace Builder2
             }
         }
 
-        public void Rotate()
-        {
-            if (Enabled && _wip != null)
-            {
-                _wip.RotateCW();
-                target.transform.rotation = Quaternion.Euler(0, 0, _wip.GetRotationAngle());
-            }
-        }
-
         private void Revert()
         {
             if (OriginalParent != null)
@@ -144,18 +138,22 @@ namespace Builder2
             if (Enabled)
             {
                 Enabled = false;
-                var overlapping = AllVirtualSlots.Where(OverlapsTarget);
+                var overlapping = SlotSlots.Where(OverlapsTarget);
                 var closestOverlapping = FindClosestSlot(overlapping.ToList());
                 if (closestOverlapping != null)
                 {
-                    if (closestOverlapping.childCount > 0)
+                    if (closestOverlapping.Occupied)
                     {
                         Revert();
                         return;
                     }
-
+                    if (!CanDropCheck?.Invoke(this, _wip, closestOverlapping) ?? false)
+                    {
+                        Revert();
+                        return;
+                    }
                     target.RemoveFromHierarchy();
-                    closestOverlapping.Add(target);
+                    closestOverlapping.PlacementSlot.Add(target);
                     target.transform.position = Vector3.zero;
                     OnSuccessfulDrop?.Invoke(this, _wip, closestOverlapping);
                 }
@@ -166,19 +164,19 @@ namespace Builder2
             }
         }
 
-        private bool OverlapsTarget(VisualElement slot)
+        private bool OverlapsTarget(Slot slot)
         {
-            return target.worldBound.Overlaps(slot.worldBound);
+            return target.worldBound.Overlaps(slot.PlacementSlot.worldBound);
         }
 
-        private VisualElement FindClosestSlot(List<VisualElement> slots)
+        private Slot FindClosestSlot(List<Slot> slots)
         {
             var bestSquaredDistance = float.MaxValue;
-            VisualElement closest = null;
+            Slot closest = null;
+            var myCenter = (Vector3)((Vector2) target.transform.position + target.layout.size / 2);
             foreach (var slot in slots)
             {
-                var displacement = VisualizerSpaceOfSlot(slot) -
-                                   (target.transform.position + (Vector3) slot.layout.size / 2);
+                var displacement = VisualizerSpaceOfSlot(slot.PlacementSlot) - myCenter;
                 var squaredDistance = displacement.sqrMagnitude;
                 if (squaredDistance < bestSquaredDistance)
                 {
@@ -193,7 +191,7 @@ namespace Builder2
         private Vector3 VisualizerSpaceOfSlot(VisualElement slot)
         {
             // calculate the center of the slot
-            var corner = slot.layout.position - slot.layout.size / 2;
+            var corner = slot.layout.position + slot.layout.size / 2;
             var slotWorldSpace = slot.parent.LocalToWorld(corner);
             return DragVisualizer.WorldToLocal(slotWorldSpace);
         }

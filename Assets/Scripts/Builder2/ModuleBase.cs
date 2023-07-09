@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace Builder2
 {
@@ -9,7 +10,10 @@ namespace Builder2
         public static readonly Dictionary<string, Func<ModuleBase>> ModuleTypes = new()
         {
             {"crossbow", () => new CrossbowTurret()},
-            {"shield", () => new Shield()},
+            {"shield-up", () => new ShieldUp()},
+            {"shield-down", () => new ShieldDown()},
+            {"shield-left", () => new ShieldLeft()},
+            {"shield-right", () => new ShieldRight()},
             {"cockpit", () => new Cockpit()},
         };
 
@@ -53,37 +57,15 @@ namespace Builder2
 
         public bool IsBlocked(int offsetX, int offsetY)
         {
-            // rotate Blocked clockwise 90 degrees
-            var x = offsetX;
-            var y = offsetY;
+            // it is centered so move everything by half
+            offsetX += (int)Math.Floor(Width / 2f);
+            offsetY += (int)Math.Floor(Height / 2f);
+            Debug.Log("query is " + offsetX + ", " + offsetY + " for " + DisplayType + " with rotation " + Rotation + " blocked? ");
 
-            switch (Rotation)
-            {
-                case 0:
-                    break;
-                case 1:
-                    offsetX = -y;
-                    offsetY = x;
-                    break;
-                case 2:
-                    offsetX = -x;
-                    offsetY = -y;
-                    break;
-                case 3:
-                    offsetX = y;
-                    offsetY = -x;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            if (offsetX < 0) offsetX = Blocked.Length + offsetX;
-            if (offsetY < 0) offsetY = Blocked[0].Length + offsetY;
-            
             // not colliding with any part of the Blocked[][] grid
             // therefore, not blocked
-            if (offsetX >= Blocked.Length || offsetX < 0) return false;
-            if (offsetY >= Blocked[0].Length || offsetY < 0) return false;
+            if (offsetY >= Blocked.Length || offsetX < 0) return false;
+            if (offsetX >= Blocked[0].Length || offsetY < 0) return false;
 
             return Blocked[offsetY][offsetX];
         }
@@ -106,14 +88,8 @@ namespace Builder2
         };
     }
 
-    public class Shield : ModuleBase
+    public abstract class Shield : ModuleBase
     {
-        public Shield() : base("shield")
-        {
-        }
-
-        public override int OriginalWidth => 3;
-        public override int OriginalHeight => 1;
         public override int Weight => 5;
         public override int Orcs => 2;
 
@@ -121,6 +97,51 @@ namespace Builder2
         {
             new[] {true, true, true}
         };
+
+        protected Shield(string displayType) : base(displayType)
+        {
+        }
+    }
+
+    public class ShieldUp : Shield
+    {
+        public ShieldUp() : base("shield-up")
+        {
+        }
+
+        public override int OriginalWidth => 3;
+        public override int OriginalHeight => 1;
+    }
+
+    public class ShieldDown : Shield
+    {
+        public ShieldDown() : base("shield-down")
+        {
+        }
+
+        public override int OriginalWidth => 3;
+        public override int OriginalHeight => 1;
+    }
+
+    public class ShieldLeft : Shield
+    {
+        public ShieldLeft() : base("shield-left")
+        {
+        }
+
+        public override int OriginalWidth => 1;
+        public override int OriginalHeight => 3;
+    }
+
+
+    public class ShieldRight : Shield
+    {
+        public ShieldRight() : base("shield-right")
+        {
+        }
+
+        public override int OriginalWidth => 1;
+        public override int OriginalHeight => 3;
     }
 
     public class Cockpit : ModuleBase

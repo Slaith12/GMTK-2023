@@ -128,11 +128,27 @@
 .module-icon.module-in-use {
     width: 96px;
     height: 96px;
+    flex-shrink: 0;
 }
 
-.module-icon.module-in-use.module-type-shield {
+.module-icon.module-in-use.module-type-shield-up {
     width: 288px;
     height: 96px;
+}
+
+.module-icon.module-in-use.module-type-shield-down {
+    width: 288px;
+    height: 96px;
+}
+
+.module-icon.module-in-use.module-type-shield-left {
+    width: 96px;
+    height: 288px;
+}
+
+.module-icon.module-in-use.module-type-shield-right {
+    width: 96px;
+    height: 288px;
 }
 
 .module-desc-stack .module-label {
@@ -151,8 +167,22 @@
     background-image: url('project://database/Assets/Modules/Cockpit.png?fileID=-1775733644&guid=cf41037b58f6aa2468367858b8bb4e4e&type=3#Cockpit_0');
 }
 
-.module-icon.module-type-shield {
+.module-icon.module-type-shield-up {
     background-image: url('project://database/Assets/Modules/Shield.png?fileID=2800000&guid=ca1341f4d6f597845b4af3fd7419d37e&type=3#Shield');
+}
+
+.module-icon.module-type-shield-down {
+    background-image: url('project://database/Assets/Modules/Shield.png?fileID=2800000&guid=ca1341f4d6f597845b4af3fd7419d37e&type=3#Shield');
+    rotate: 180deg;
+}
+
+.module-icon.module-type-shield-left {
+    background-image: url('project://database/Assets/Modules/ShieldV.png?fileID=2800000&guid=496e532a696738146a9e2cbd72fac259&type=3#ShieldV');
+    rotate: 180deg;
+}
+
+.module-icon.module-type-shield-right {
+    background-image: url('project://database/Assets/Modules/ShieldV.png?fileID=2800000&guid=496e532a696738146a9e2cbd72fac259&type=3#ShieldV');
 }
 
 #status-header {

@@ -4,15 +4,20 @@ namespace Builder2
 {
     public class Slot
     {
-        public bool Occupied => VisualSlot.childCount > 0 || _multiSlotOccupied;
+        public bool Occupied => PlacementSlot.childCount > 0 || _multiSlotOccupied;
 
         private bool _multiSlotOccupied;
         public VisualElement PlacementSlot { get; }
 
         public VisualElement VisualSlot { get; }
+        
+        public int X { get; }
+        public int Y { get; }
 
-        public Slot(VisualElement placementSlot, VisualElement visualSlot)
+        public Slot(int x, int y, VisualElement placementSlot, VisualElement visualSlot)
         {
+            X = x;
+            Y = y;
             PlacementSlot = placementSlot;
             VisualSlot = visualSlot;
         }

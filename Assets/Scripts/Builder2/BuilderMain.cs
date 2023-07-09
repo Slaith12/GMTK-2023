@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UIs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,7 +24,6 @@ namespace Builder2
         private void Start()
         {
             var document = GetComponent<UIDocument>();
-            
 
             var slotRoot = document.rootVisualElement.Q<VisualElement>("placements");
 
@@ -47,7 +47,7 @@ namespace Builder2
                 {
                     var virtualSlot = virtualColumn.Children().ElementAt(y);
                     var visualSlot = visualColumn.Children().ElementAt(y);
-                    var slot = new Slot(virtualSlot, visualSlot);
+                    var slot = new Slot(x, y, virtualSlot, visualSlot);
                     _vslots.Add(new Tuple<int, int>(x, y), slot);
                 }
             }
@@ -73,22 +73,44 @@ namespace Builder2
                     });
                 });
 
-            DragAndDropManipulator.OnSuccessfulDrop += (_, _, _) => { audioPlayer.PlayOneShot(snapSound); };
+            DragAndDropManipulator.OnSuccessfulDrop += (manipulator, type, slot) =>
+            {
+                audioPlayer.PlayOneShot(snapSound);
+                for (var x = -1; x <= 1; x++)
+                {
+                    for (var y = -1; y <= 1; y++)
+                    {
+                        var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
+                        if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
+                        if (!type.IsBlocked(x, y)) continue;
+                        vslot.MarkOccupied();
+                        return;
+                    }
+                }
+            };
             DragAndDropManipulator.OnRejectedDrop += _ => { audioPlayer.PlayOneShot(failSound); };
             DragAndDropManipulator.OnDeleted += _ => { audioPlayer.PlayOneShot(delSound); };
             DragAndDropManipulator.CanDropCheck = (manipulator, type, slot) =>
             {
-                
+                for (var x = -1; x <= 1; x++)
+                {
+                    for (var y = -1; y <= 1; y++)
+                    {
+                        var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
+                        if (_vslots.TryGetValue(tuple, out var vslot))
+                        {
+                            var blocked = type.IsBlocked(x, y);
+                            var occupied = vslot.Occupied;
+                            Debug.Log("slot at " + tuple.Item1 + ", " + tuple.Item2 + " is " + (blocked ? "blocked" : "not blocked") + " and " + (occupied ? "occupied" : "not occupied"));
+                            if (type.IsBlocked(x, y) && vslot.Occupied)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
                 return true;
             };
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                _dragAndDropManipulators.ForEach(e => e.Rotate());
-            }
         }
     }
 }

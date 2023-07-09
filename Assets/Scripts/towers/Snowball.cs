@@ -15,7 +15,6 @@ public class Snowball : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         var degrees = Random.Range(0, 2 * Mathf.PI);
-        int LR;
         rb.velocity = new Vector2(Mathf.Cos(degrees), Mathf.Sin(degrees)) * speed;
 
         timer += Random.Range(-2 * timerVar, timerVar);

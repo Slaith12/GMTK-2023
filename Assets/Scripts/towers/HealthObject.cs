@@ -8,7 +8,7 @@ public class HealthObject : MonoBehaviour
     public string damageType;
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         healthPoints = maxHealth;
     }

@@ -30,6 +30,7 @@ namespace Builder2
         public abstract int OriginalHeight { get; }
         public abstract int Weight { get; }
         public abstract int Orcs { get; }
+        public abstract Action<Sieger> ModuleEffect { get; }
 
         // y is vertical, x is horizontal, apparently
         protected abstract bool[][] Blocked { get; }
@@ -84,6 +85,7 @@ namespace Builder2
         public override int OriginalHeight => 1;
         public override int Weight => 4;
         public override int Orcs => 3;
+        public override Action<Sieger> ModuleEffect => (sieger => sieger.gameObject.AddComponent<Crossbow>());
 
         protected override bool[][] Blocked => new[]
         {
@@ -101,6 +103,7 @@ namespace Builder2
         public override int OriginalHeight => 1;
         public override int Weight => 2;
         public override int Orcs => 1;
+        public override Action<Sieger> ModuleEffect => (sieger => sieger.gameObject.AddComponent<Crossbow>());
 
         protected override bool[][] Blocked => new[]
         {
@@ -116,6 +119,10 @@ namespace Builder2
 
         public override int Weight => 5;
         public override int Orcs => 2;
+        public override Action<Sieger> ModuleEffect => (sieger => { 
+            HealthObject health = sieger.GetComponent<HealthObject>();
+            health.healthPoints += 30;
+        });
     }
 
     public class ShieldUp : Shield
@@ -193,6 +200,7 @@ namespace Builder2
         public override int OriginalHeight => 1;
         public override int Weight => 2;
         public override int Orcs => 1;
+        public override Action<Sieger> ModuleEffect => sieger => sieger.enabled = true;
 
         protected override bool[][] Blocked => new[]
         {
@@ -210,6 +218,7 @@ namespace Builder2
         public override int OriginalHeight => 3;
         public override int Weight => 7;
         public override int Orcs => 5;
+        public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 5;
     }
 
     public class OrcAttackParty0 : OrcAttackParty
@@ -279,6 +288,7 @@ namespace Builder2
         public override int Weight => 7;
         public override int Orcs => 2;
 
+        public override Action<Sieger> ModuleEffect => (sieger => sieger.movementSpeed += 0.5f);
         protected override bool[][] Blocked => new[]
         {
             new[] {true}

@@ -6,6 +6,8 @@ public class Sieger : MonoBehaviour
     public float movementSpeed;
     public float turningSpeed;
 
+    public int attackOrcsAvailable;
+
     public SiegePath debugInitialPath;
 
     private Task _currentTask = Task.Advance;
@@ -22,6 +24,17 @@ public class Sieger : MonoBehaviour
     private void Start()
     {
         BeginNewPath(debugInitialPath);
+        InitModules();
+    }
+
+    private void InitModules()
+    {
+        if (GameManager.gameManager.siegeMachineData == null)
+            return;
+        foreach(ModuleData module in GameManager.gameManager.siegeMachineData)
+        {
+            module.type.ModuleEffect(this);
+        }
     }
 
     private void Update()

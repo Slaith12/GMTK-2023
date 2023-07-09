@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
     private const string LEVEL_SELECT_SCENE = "Level Select";
     private const string SIEGE_SCENE_PREFIX = "Level";
     private static GameManager m_gameManager;
-    private List<ModuleData> siegeMachineData;
+    public List<ModuleData> siegeMachineData;
     [SerializeField] private bool onLevelSelect; //whether to go straight to level select when leaving title screen or go to workshop first
 
-    private static GameManager gameManager
+    public static GameManager gameManager
     {
         get
         {
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     public static void GoToSiege(int level)
     {
         SceneManager.LoadScene(SIEGE_SCENE_PREFIX + level);
-        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_SIEGE_PREVIEW);
+        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_SIEGE_PLAY);
+        MusicManager.instance.Restart();
     }
 }

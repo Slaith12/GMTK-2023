@@ -39,7 +39,7 @@ public class MusicManager : MonoBehaviour
     {
         string1.volume = level >= 1 ? 1 : 0;
         highReed.volume = level >= 1 ? 1 : 0;
-        string2.volume = level >= 2 ? 1 : 0;
+        //string2.volume = level >= 3 ? 1 : 0;
         flute.volume = level >= 2 ? 1 : 0;
         drums.volume = level >= 3 ? 1 : 0;
         bassReed.volume = level >= 4 ? 1 : 0;

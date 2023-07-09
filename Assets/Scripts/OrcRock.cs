@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OrcRock : MonoBehaviour
@@ -10,19 +8,17 @@ public class OrcRock : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         var targetlist = FindObjectsByType<Tower>(FindObjectsSortMode.None);
         var target = targetlist[0].transform;
         var dist = Vector2.Distance(target.position, transform.position);
         foreach (var t in targetlist)
-        {
             if (Vector2.Distance(t.transform.position, transform.position) < dist)
             {
                 dist = Vector2.Distance(t.transform.position, transform.position);
                 target = t.transform;
             }
-        }
 
         rb.AddForce((target.transform.position - transform.position).normalized * throwForce);
 
@@ -30,8 +26,7 @@ public class OrcRock : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 }

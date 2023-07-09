@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
             return m_gameManager;
         } }
     private static GameManager m_gameManager;
-    private object siegeMachineData; //TODO: replace with proper data type
+    private List<ModuleData> siegeMachineData;
     [SerializeField] private bool onLevelSelect; //whether to go straight to level select when leaving title screen or go to workshop first
 
     private void Awake()
@@ -59,9 +59,13 @@ public class GameManager : MonoBehaviour
         gameManager.onLevelSelect = false;
     }
 
-    public static void SetSiegeMachineData(object data) //TODO: replace with proper data type
+    public static void SetSiegeMachineData(List<ModuleData> data)
     {
         gameManager.siegeMachineData = data;
+        foreach (ModuleData module in data)
+        {
+            Debug.Log(module);
+        }
     }
 
     public static void GoToLevelSelect()

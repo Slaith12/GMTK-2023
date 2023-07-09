@@ -139,7 +139,17 @@ namespace Builder2
             var siegeButton = document.rootVisualElement.Q("siege-button");
             siegeButton.RegisterCallback<ClickEvent>(evt =>
             {
-                GameManager.SetSiegeMachineData(null); //TODO: replace with proper siege machine data
+                var slots = _vslots.Values.ToList();
+                List<ModuleData> modules = new List<ModuleData>();
+                foreach(Slot slot in slots)
+                {
+                    ModuleImage image = slot.PlacementSlot.Children().FirstOrDefault() as ModuleImage;
+                    if (image == null)
+                        continue;
+                    ModuleBase module = ModuleBase.ModuleTypes[image.Type]();
+                    modules.Add(new ModuleData(module, new Vector2(slot.X, slot.Y)));
+                }
+                GameManager.SetSiegeMachineData(modules);
                 GameManager.GoToLevelSelect();
             });
         }

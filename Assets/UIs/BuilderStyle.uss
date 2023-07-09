@@ -323,7 +323,7 @@
     -unity-background-image-tint-color: rgb(64, 64, 64);
 }
 
-#placements.dragging-module-crossbow .slot.highlight-crossbow {
+#placements.dragging-module-crossbow .slot {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 

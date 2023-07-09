@@ -80,6 +80,10 @@ namespace Builder2
                 // convert the position to the DragVisualizer's local space
                 var visualSpace = DragVisualizer.WorldToLocal(target.LocalToWorld(target.layout.position));
                 OriginalParent = SlotSlots.FirstOrDefault(x => x.PlacementSlot == target.parent);
+                
+                if (OriginalParent != null)
+                    BeforeUnslot?.Invoke(this, _wip, OriginalParent);
+                
                 target.RemoveFromHierarchy();
                 DragVisualizer.Add(target);
                 target.transform.position = visualSpace;
@@ -108,6 +112,7 @@ namespace Builder2
                 OriginalParent.PlacementSlot.Add(target);
                 target.transform.position = Vector3.zero;
                 OnRejectedDrop?.Invoke(this);
+                OnSuccessfulDrop?.Invoke(this, _wip, OriginalParent);
                 OriginalParent = null;
             }
         }
@@ -163,9 +168,6 @@ namespace Builder2
                         Revert();
                         return;
                     }
-
-                    if (OriginalParent != null)
-                        BeforeUnslot?.Invoke(this, _wip, OriginalParent);
                     target.RemoveFromHierarchy();
                     closestOverlapping.PlacementSlot.Add(target);
                     target.transform.position = Vector3.zero;

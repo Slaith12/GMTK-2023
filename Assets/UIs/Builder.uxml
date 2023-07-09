@@ -115,10 +115,10 @@
                     <UIs.PaletteModule module-type="shield-down" label="Shield (down)" description="Blocks incoming damage\nTakes a limited amount of hits" />
                     <UIs.PaletteModule module-type="shield-left" label="Shield (left)" description="Blocks incoming damage\nTakes a limited amount of hits" />
                     <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate" />
-                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)" description="5 orcs\nRelease to attack towers" />
-                    <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="5 orcs\nRelease to attack towers" />
-                    <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)" description="5 orcs\nRelease to attack towers" />
-                    <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)" description="5 orcs\nRelease to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)" description="5 orcs\nRelease to attack towers\nPress Space" />
+                    <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="5 orcs\nRelease to attack towers\nPress Space" />
+                    <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)" description="5 orcs\nRelease to attack towers\nPress Space" />
+                    <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)" description="5 orcs\nRelease to attack towers\nPress Space" />
                     <UIs.PaletteModule module-type="autobow" label="Autobow" description="3 orcs\nAutomatically shoots\nthe nearest tower" />
                     <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="Increases vehicle speed" />
                 </ui:VisualElement>

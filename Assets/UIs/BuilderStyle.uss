@@ -127,34 +127,49 @@
 }
 
 .module-icon.module-in-use {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
     flex-shrink: 0;
 }
 
 .module-icon.module-in-use.module-type-shield-up {
-    width: 288px;
-    height: 96px;
+    width: 192px;
+    height: 64px;
 }
 
 .module-icon.module-in-use.module-type-shield-down {
-    width: 288px;
-    height: 96px;
+    width: 192px;
+    height: 64px;
 }
 
 .module-icon.module-in-use.module-type-shield-left {
-    width: 96px;
-    height: 288px;
+    width: 64px;
+    height: 192px;
 }
 
 .module-icon.module-in-use.module-type-shield-right {
-    width: 96px;
-    height: 288px;
+    width: 64px;
+    height: 192px;
 }
 
-.module-icon.module-in-use.module-type-orc-attack-party-0, .module-icon.module-in-use.module-type-orc-attack-party-90, .module-icon.module-in-use.module-type-orc-attack-party-180, .module-icon.module-in-use.module-type-orc-attack-party-270 {
-    width: 288px;
-    height: 288px;
+.module-icon.module-in-use.module-type-orc-attack-party-0 {
+    width: 192px;
+    height: 192px;
+}
+
+.module-icon.module-in-use.module-type-orc-attack-party-90 {
+    width: 192px;
+    height: 192px;
+}
+
+.module-icon.module-in-use.module-type-orc-attack-party-180 {
+    width: 192px;
+    height: 192px;
+}
+
+.module-icon.module-in-use.module-type-orc-attack-party-270 {
+    width: 192px;
+    height: 192px;
 }
 
 .module-desc-stack .module-label {
@@ -195,17 +210,25 @@
     rotate: 0;
     background-image: url('project://database/Assets/Modules/AttackParty.png?fileID=2800000&guid=b11429639136dca48ade9081fd67b1bd&type=3#AttackParty');
 }
+
 .module-icon.module-type-orc-attack-party-90 {
-    rotate: 90deg;
-    background-image: url('project://database/Assets/Modules/AttackParty.png?fileID=2800000&guid=b11429639136dca48ade9081fd67b1bd&type=3#AttackParty');
+    background-image: url('project://database/Assets/Modules/AttackParty1.png?fileID=2800000&guid=c5f0057485737d948b13a941524852a6&type=3#AttackParty1');
 }
+
 .module-icon.module-type-orc-attack-party-180 {
-    rotate: 180deg;
-    background-image: url('project://database/Assets/Modules/AttackParty.png?fileID=2800000&guid=b11429639136dca48ade9081fd67b1bd&type=3#AttackParty');
+    background-image: url('project://database/Assets/Modules/AttackParty2.png?fileID=2800000&guid=ccd4da465e765ab4f9ba8bd21e073f42&type=3#AttackParty2');
 }
+
 .module-icon.module-type-orc-attack-party-270 {
-    rotate: 270deg;
-    background-image: url('project://database/Assets/Modules/AttackParty.png?fileID=2800000&guid=b11429639136dca48ade9081fd67b1bd&type=3#AttackParty');
+    background-image: url('project://database/Assets/Modules/AttackParty3.png?fileID=2800000&guid=e7efa56e6ad8a034fab3ef60a13874db&type=3#AttackParty3');
+}
+
+.module-icon.module-type-autobow {
+    background-image: url('project://database/Assets/Modules/AutoBow.png?fileID=2800000&guid=69bbcbe381a9e6944971b41b896b0620&type=3#AutoBow');
+}
+
+.module-icon.module-type-small-motor {
+    background-image: url('project://database/Assets/Modules/MotorSmall.png?fileID=2800000&guid=523d867c5f0353649806a3633d64adbc&type=3#MotorSmall');
 }
 
 #status-header {
@@ -308,8 +331,8 @@
 }
 
 #placements .rows .column .slot {
-    width: 100px;
-    height: 100px;
+    width: 68px;
+    height: 68px;
     border-width: 2px;
     border-color: rgb(136, 136, 136);
     background-color: rgb(64, 64, 64);
@@ -323,15 +346,31 @@
     -unity-background-image-tint-color: rgb(64, 64, 64);
 }
 
-#placements.dragging-module-crossbow .slot.highlight-crossbow {
+#placements.dragging-module-crossbow .slot.highlight-any {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
-#placements.dragging-module-shield-top .slot.highlight-shield-top {
+#placements.dragging-module-cockpit .slot.highlight-any {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
-#placements.dragging-module-shield-bottom .slot.highlight-shield-bottom {
+#placements.dragging-module-autobow .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-small-motor .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-autobow .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-shield-up .slot.highlight-shield-up {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-shield-down .slot.highlight-shield-down {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
@@ -348,8 +387,8 @@
 }
 
 #placements .rows .column .virtual-slot {
-    width: 100px;
-    height: 100px;
+    width: 68px;
+    height: 68px;
     align-items: center;
     justify-content: center;
 }

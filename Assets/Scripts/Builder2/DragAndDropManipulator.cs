@@ -9,20 +9,18 @@ namespace Builder2
 {
     public class DragAndDropManipulator : PointerManipulator
     {
-        private ModuleBase _wip = null;
+        public delegate void BeforeUnslotHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
 
-        private List<Slot> SlotSlots { get; set; }
+        public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
+
+        public delegate void DeletedHandler(PointerManipulator manipulator);
 
         public delegate void RejectedDropHandler(PointerManipulator manipulator);
 
         public delegate void SuccessfulDropHandler(PointerManipulator manipulator, ModuleBase module,
             Slot slot);
 
-        public delegate void DeletedHandler(PointerManipulator manipulator);
-
-        public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
-
-        public delegate void BeforeUnslotHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
+        private ModuleBase _wip;
 
         public DragAndDropManipulator(VisualElement draggable, VisualElement allSlotRoot,
             Dictionary<Tuple<int, int>, Slot> slots, VisualElement dragVisualizer)
@@ -37,6 +35,8 @@ namespace Builder2
             AllSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
             Debug.Log("found " + AllSlots.Count + " virtual slots");
         }
+
+        private List<Slot> SlotSlots { get; }
 
         public static CanDropHandler CanDropCheck { get; set; }
 
@@ -80,6 +80,10 @@ namespace Builder2
                 // convert the position to the DragVisualizer's local space
                 var visualSpace = DragVisualizer.WorldToLocal(target.LocalToWorld(target.layout.position));
                 OriginalParent = SlotSlots.FirstOrDefault(x => x.PlacementSlot == target.parent);
+
+                if (OriginalParent != null)
+                    BeforeUnslot?.Invoke(this, _wip, OriginalParent);
+
                 target.RemoveFromHierarchy();
                 DragVisualizer.Add(target);
                 target.transform.position = visualSpace;
@@ -108,7 +112,13 @@ namespace Builder2
                 OriginalParent.PlacementSlot.Add(target);
                 target.transform.position = Vector3.zero;
                 OnRejectedDrop?.Invoke(this);
+                OnSuccessfulDrop?.Invoke(this, _wip, OriginalParent);
                 OriginalParent = null;
+            }
+            else
+            {
+                target.RemoveFromHierarchy();
+                // bye lol
             }
         }
 
@@ -144,9 +154,7 @@ namespace Builder2
             if (Enabled)
             {
                 foreach (var s in AllSlotRoot.GetClasses().Where(x => x.StartsWith("dragging-module-")).ToList())
-                {
                     AllSlotRoot.RemoveFromClassList(s);
-                }
                 Enabled = false;
                 var overlapping = SlotSlots.Where(OverlapsTarget);
                 var closestOverlapping = FindClosestSlot(overlapping.ToList());
@@ -164,8 +172,6 @@ namespace Builder2
                         return;
                     }
 
-                    if (OriginalParent != null)
-                        BeforeUnslot?.Invoke(this, _wip, OriginalParent);
                     target.RemoveFromHierarchy();
                     closestOverlapping.PlacementSlot.Add(target);
                     target.transform.position = Vector3.zero;

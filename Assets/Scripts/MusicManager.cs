@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
@@ -10,24 +8,24 @@ public class MusicManager : MonoBehaviour
     public const int LEVEL_SIEGE_PREVIEW = 3;
     public const int LEVEL_SIEGE_PLAY = 4;
 
-    public static MusicManager instance { get { return m_instance; } }
-    private static MusicManager m_instance;
+    [SerializeField] private AudioSource string1;
+    [SerializeField] private AudioSource highReed;
+    [SerializeField] private AudioSource string2;
+    [SerializeField] private AudioSource flute;
+    [SerializeField] private AudioSource drums;
+    [SerializeField] private AudioSource bassReed;
 
-    [SerializeField] AudioSource string1;
-    [SerializeField] AudioSource highReed;
-    [SerializeField] AudioSource string2;
-    [SerializeField] AudioSource flute;
-    [SerializeField] AudioSource drums;
-    [SerializeField] AudioSource bassReed;
+    public static MusicManager instance { get; private set; }
 
     private void Awake()
     {
-        if(m_instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        m_instance = this;
+
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -55,7 +53,7 @@ public class MusicManager : MonoBehaviour
         flute.Stop();
         drums.Stop();
         bassReed.Stop();
-        double time = AudioSettings.dspTime;
+        var time = AudioSettings.dspTime;
         string1.PlayScheduled(time);
         highReed.PlayScheduled(time);
         string2.PlayScheduled(time);

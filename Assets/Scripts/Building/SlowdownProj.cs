@@ -23,6 +23,7 @@ public class SlowdownProj : MonoBehaviour
             objspeed = rb.velocity;
             rb.velocity *= slowdownAmount;
         }
+
         var sieger = FindAnyObjectByType<Sieger>();
         if (sieger != null)
         {
@@ -41,7 +42,7 @@ public class SlowdownProj : MonoBehaviour
         if (rb != null) rb.velocity = objspeed;
 
         var sieger = FindAnyObjectByType<Sieger>();
-        if (sieger != null) 
+        if (sieger != null)
         {
             sieger.movementSpeed = siegerSpeed;
             sieger.turningSpeed = siegerTurnSpeed;

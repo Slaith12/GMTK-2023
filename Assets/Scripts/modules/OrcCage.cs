@@ -1,29 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OrcCage : MonoBehaviour
 {
-    [SerializeField] int orcCount;
-    [SerializeField] GameObject orc;
+    [SerializeField] private int orcCount;
+    [SerializeField] private GameObject orc;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
-    void spawnOrcs()
+    private void spawnOrcs()
     {
-        for(int i = 0; i < orcCount; i++) 
-        {
-            Instantiate(orc, this.transform);
-        }
+        for (var i = 0; i < orcCount; i++) Instantiate(orc, transform);
     }
 }

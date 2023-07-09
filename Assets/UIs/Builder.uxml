@@ -4,52 +4,52 @@
         <ui:VisualElement name="placements">
             <ui:VisualElement class="rows">
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-left" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-left" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-left" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-left" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-right" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-right" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-right" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-right" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="virtual-placements" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
@@ -119,6 +119,8 @@
                     <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="5 orcs\nRelease to attack towers" />
                     <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)" description="5 orcs\nRelease to attack towers" />
                     <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)" description="5 orcs\nRelease to attack towers" />
+                    <UIs.PaletteModule module-type="autobow" label="Autobow" description="3 orcs\nAutomatically shoots\nthe nearest tower" />
+                    <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="Increases vehicle speed" />
                 </ui:VisualElement>
             </ui:ScrollView>
         </ui:VisualElement>

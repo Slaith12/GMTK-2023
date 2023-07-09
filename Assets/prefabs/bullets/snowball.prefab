@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025e359cfefe98c4c9eb63fa54be2d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 3.1
-  timerVar: 0.4
+  timer: 2.7
+  timerVar: 0.25
   puddle: {fileID: 7775883565477699203, guid: 401cb522841c754469e8bac694f96dfb, type: 3}
-  speed: 1
+  speed: 1.3
 --- !u!50 &7514030731969300970
 Rigidbody2D:
   serializedVersion: 4

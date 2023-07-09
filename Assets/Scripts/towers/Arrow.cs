@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        player = FindObjectOfType<SiegeMachine>().transform;
+        player = FindObjectOfType<Sieger>().transform;
         rb.SetRotation(
             Mathf.Atan((transform.position.y - player.position.y) / (transform.position.x - player.position.x)) *
             Mathf.Rad2Deg);

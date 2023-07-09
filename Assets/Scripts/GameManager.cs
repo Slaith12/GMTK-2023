@@ -1,34 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    const string TITLE_SCENE = "TitleScreen";
-    const string BUILDER_SCENE = "BuilderTakeTwo";
-    const string LEVEL_SELECT_SCENE = "Level Select";
-    const string SIEGE_SCENE_PREFIX = "Level";
-
-    static GameManager gameManager { get 
-        {
-            if(m_gameManager == null)
-            {
-                m_gameManager = new GameObject("Game Manager").AddComponent<GameManager>();
-            }
-            return m_gameManager;
-        } }
+    private const string TITLE_SCENE = "TitleScreen";
+    private const string BUILDER_SCENE = "BuilderTakeTwo";
+    private const string LEVEL_SELECT_SCENE = "Level Select";
+    private const string SIEGE_SCENE_PREFIX = "Level";
     private static GameManager m_gameManager;
     private List<ModuleData> siegeMachineData;
     [SerializeField] private bool onLevelSelect; //whether to go straight to level select when leaving title screen or go to workshop first
 
+    private static GameManager gameManager
+    {
+        get
+        {
+            if (m_gameManager == null) m_gameManager = new GameObject("Game Manager").AddComponent<GameManager>();
+            return m_gameManager;
+        }
+    }
+
     private void Awake()
     {
-        if(m_gameManager != null)
+        if (m_gameManager != null)
         {
             Destroy(gameObject);
             return;
         }
+
         m_gameManager = this;
         DontDestroyOnLoad(gameObject);
         onLevelSelect = false;
@@ -37,19 +36,17 @@ public class GameManager : MonoBehaviour
     public static void GoToTitle()
     {
         SceneManager.LoadScene(TITLE_SCENE);
-        MusicManager.instance.SetMusicLevel(gameManager.onLevelSelect ? MusicManager.LEVEL_LEVEL_SELECT : MusicManager.LEVEL_WORKSHOP);
+        MusicManager.instance.SetMusicLevel(gameManager.onLevelSelect
+            ? MusicManager.LEVEL_LEVEL_SELECT
+            : MusicManager.LEVEL_WORKSHOP);
     }
 
     public static void LeaveTitleScreen()
     {
-        if(gameManager.onLevelSelect)
-        {
+        if (gameManager.onLevelSelect)
             GoToLevelSelect();
-        }
         else
-        {
             GoToBuilder();
-        }
     }
 
     public static void GoToBuilder()

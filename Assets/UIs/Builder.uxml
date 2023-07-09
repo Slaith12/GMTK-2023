@@ -1,149 +1,140 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
-         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
-         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle"/>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle" />
     <ui:VisualElement name="main">
         <ui:VisualElement name="placements">
             <ui:VisualElement class="rows">
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top highlight-shield-left"/>
-                    <ui:VisualElement class="slot highlight-shield-left"/>
-                    <ui:VisualElement class="slot highlight-shield-left"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom highlight-shield-left"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-left" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-left" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-left" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-left" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-shield-top highlight-shield-right"/>
-                    <ui:VisualElement class="slot highlight-shield-right"/>
-                    <ui:VisualElement class="slot highlight-shield-right"/>
-                    <ui:VisualElement class="slot highlight-shield-bottom highlight-shield-right"/>
+                    <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-right" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-right" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-right" />
+                    <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-right" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="virtual-placements" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement class="rows">
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                     <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot"/>
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="palette">
             <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2"/>
+                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
                 <ui:VisualElement name="palette-items">
-                    <UIs.PaletteModule module-type="crossbow" label="Crossbow Turret"
-                                       description="1 orc\nClick to shoot the\nnearest tower"/>
-                    <UIs.PaletteModule module-type="shield-up" label="Shield (up)"
-                                       description="Blocks incoming damage\nTakes a limited amount of hits"/>
-                    <UIs.PaletteModule module-type="shield-right" label="Shield (right)"
-                                       description="Blocks incoming damage\nTakes a limited amount of hits"/>
-                    <UIs.PaletteModule module-type="shield-down" label="Shield (down)"
-                                       description="Blocks incoming damage\nTakes a limited amount of hits"/>
-                    <UIs.PaletteModule module-type="shield-left" label="Shield (left)"
-                                       description="Blocks incoming damage\nTakes a limited amount of hits"/>
-                    <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate"/>
-                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)"
-                                       description="5 orcs\nRelease to attack towers"/>
-                    <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)"
-                                       description="5 orcs\nRelease to attack towers"/>
-                    <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)"
-                                       description="5 orcs\nRelease to attack towers"/>
-                    <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)"
-                                       description="5 orcs\nRelease to attack towers"/>
+                    <UIs.PaletteModule module-type="crossbow" label="Crossbow Turret" description="1 orc\nClick to shoot the\nnearest tower" />
+                    <UIs.PaletteModule module-type="shield-up" label="Shield (up)" description="Blocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-right" label="Shield (right)" description="Blocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-down" label="Shield (down)" description="Blocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-left" label="Shield (left)" description="Blocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate" />
+                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)" description="5 orcs\nRelease to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="5 orcs\nRelease to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)" description="5 orcs\nRelease to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)" description="5 orcs\nRelease to attack towers" />
+                    <UIs.PaletteModule module-type="autobow" label="Autobow" description="3 orcs\nAutomatically shoots\nthe nearest tower" />
+                    <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="Increases vehicle speed" />
                 </ui:VisualElement>
             </ui:ScrollView>
         </ui:VisualElement>
         <ui:VisualElement name="status-header">
             <ui:VisualElement class="info-stack">
-                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" class="smol-info-header"/>
-                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" name="weight-test-info"/>
+                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" class="smol-info-header" />
+                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" name="weight-test-info" />
             </ui:VisualElement>
             <ui:VisualElement class="info-stack">
-                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" class="smol-info-header"/>
-                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" name="orcs-test-info"/>
+                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" class="smol-info-header" />
+                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" name="orcs-test-info" />
             </ui:VisualElement>
-            <ui:Button text="Siege!" display-tooltip-when-elided="true" name="siege-button" class="button-main"/>
+            <ui:Button text="Siege!" display-tooltip-when-elided="true" name="siege-button" class="button-main" />
         </ui:VisualElement>
-        <ui:VisualElement name="drag-overlay" picking-mode="Ignore" style="display: none;"/>
+        <ui:VisualElement name="drag-overlay" picking-mode="Ignore" style="display: none;" />
     </ui:VisualElement>
 </ui:UXML>

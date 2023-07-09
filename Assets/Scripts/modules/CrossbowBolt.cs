@@ -12,13 +12,12 @@ public class CrossbowBolt : MonoBehaviour
         var target = targetlist[0].transform;
         var dist = Vector2.Distance(target.position, transform.position);
         foreach (var t in targetlist)
-        {
             if (Vector2.Distance(t.transform.position, transform.position) < dist)
             {
                 dist = Vector2.Distance(t.transform.position, transform.position);
                 target = t.transform;
             }
-        }
+
         var rot = Mathf.Atan((transform.position.y - target.position.y) /
                              (transform.position.x - target.position.x)) * Mathf.Rad2Deg;
         if (target.position.x < transform.position.x)

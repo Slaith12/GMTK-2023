@@ -20,25 +20,43 @@ public class GameManager : MonoBehaviour
         } }
     private static GameManager m_gameManager;
     private object siegeMachineData; //TODO: replace with proper data type
+    [SerializeField] private bool onLevelSelect; //whether to go straight to level select when leaving title screen or go to workshop first
 
     private void Awake()
     {
         if(m_gameManager != null)
         {
             Destroy(gameObject);
+            return;
         }
         m_gameManager = this;
         DontDestroyOnLoad(gameObject);
+        onLevelSelect = false;
     }
 
     public static void GoToTitle()
     {
         SceneManager.LoadScene(TITLE_SCENE);
+        MusicManager.instance.SetMusicLevel(gameManager.onLevelSelect ? MusicManager.LEVEL_LEVEL_SELECT : MusicManager.LEVEL_WORKSHOP);
+    }
+
+    public static void LeaveTitleScreen()
+    {
+        if(gameManager.onLevelSelect)
+        {
+            GoToLevelSelect();
+        }
+        else
+        {
+            GoToBuilder();
+        }
     }
 
     public static void GoToBuilder()
     {
         SceneManager.LoadScene(BUILDER_SCENE);
+        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_WORKSHOP);
+        gameManager.onLevelSelect = false;
     }
 
     public static void SetSiegeMachineData(object data) //TODO: replace with proper data type
@@ -49,11 +67,13 @@ public class GameManager : MonoBehaviour
     public static void GoToLevelSelect()
     {
         SceneManager.LoadScene(LEVEL_SELECT_SCENE);
+        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_LEVEL_SELECT);
+        gameManager.onLevelSelect = true;
     }
 
     public static void GoToSiege(int level)
     {
         SceneManager.LoadScene(SIEGE_SCENE_PREFIX + level);
-        //change music
+        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_SIEGE_PREVIEW);
     }
 }

@@ -53,6 +53,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 1534525023338773965, guid: d7ca5434c5c04da4b84952173497e9a7, type: 3}
   attackOrcsAvailable: 0
   debugInitialPath: {fileID: 0}
+  slowdown: 0
 --- !u!61 &1115134324350937714
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340c126461cb5745be15053d212b4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 80
+  maxHealth: 40
   healthPoints: 0
   damageType: HumanProj
 --- !u!114 &769707537930575225

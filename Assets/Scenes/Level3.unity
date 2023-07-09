@@ -4828,7 +4828,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 648080917179119126, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
       propertyPath: m_Name
-      value: gate
+      value: Level3Gate
       objectReference: {fileID: 0}
     - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
       propertyPath: m_Size.x

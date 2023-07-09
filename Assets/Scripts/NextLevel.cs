@@ -7,6 +7,7 @@ public class NextLevel : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        levelEnd.ShowWin();
+        if (collision.GetComponent<Sieger>())
+            levelEnd.ShowWin();
     }
 }

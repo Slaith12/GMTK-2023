@@ -20,17 +20,15 @@ namespace Builder2
 
         private readonly List<DragAndDropManipulator> _dragAndDropManipulators = new();
 
-        public static int InitialOrcs = 20;
+        public static int InitialOrcs = 21;
         private readonly Dictionary<Tuple<int, int>, Slot> _vslots = new();
         private VisualElement _dragVisualizer;
-        private int _orcs; // TODO
-        private int _weight = 0;
+        private int _orcs;
         private List<VisualElement> _slots = new();
 
         private void Start()
         {
             _orcs = InitialOrcs;
-            _weight = 0;
             var document = GetComponent<UIDocument>();
 
             var slotRoot = document.rootVisualElement.Q<VisualElement>("placements");

@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle"/>
+    <UIs.PaletteModule module-type="crossbow">
+        <ui:VisualElement name="VisualElement" class="palette-item">
+            <ui:VisualElement class="module-icon"
+                              style="background-image: url(&apos;project://database/Assets/Modules/CrossbowTurret.png?fileID=2800000&amp;guid=925f47a827176dd429025e5d4b9b4389&amp;type=3#CrossbowTurret&apos;);"/>
+        </ui:VisualElement>
+    </UIs.PaletteModule>
+</ui:UXML>

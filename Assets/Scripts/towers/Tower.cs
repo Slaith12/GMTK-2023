@@ -1,33 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] float cooldownTime;
-    [SerializeField] GameObject siegeMachine;
-    [SerializeField] GameObject projectile;
-    [SerializeField] int shots;
-    
+    [SerializeField] private float cooldownTime;
+    [SerializeField] private GameObject siegeMachine;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private int shots;
+
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         InvokeRepeating("shoot", cooldownTime, cooldownTime);
-        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
-    void shoot() 
+    private void shoot()
     {
-        for (int i = 0; i < shots; i++)
-        {
-            Instantiate(projectile, this.transform);
-        }
+        for (var i = 0; i < shots; i++) Instantiate(projectile, transform);
     }
 }

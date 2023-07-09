@@ -7,8 +7,8 @@ public class SiegePath : MonoBehaviour
 {
     public Vector2[] path;
     private readonly List<Vector3> _path3 = new();
-    private float _totalLength = 0;
     private readonly List<Tuple<float, Vector3>> _percentageToNode = new();
+    private float _totalLength;
 
     private void Awake()
     {
@@ -17,20 +17,30 @@ public class SiegePath : MonoBehaviour
 
     private void Update()
     {
-        if (!Application.isPlaying)
+        if (!Application.isPlaying) RefreshPathData();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0.5f, 0);
+        var i = 0;
+        foreach (var p in _path3)
         {
-            RefreshPathData();
+            if (i == 0 || i == _path3.Count - 1)
+                Gizmos.DrawSphere(p, 0.25f);
+            else
+                Gizmos.DrawSphere(p, 0.125f);
+            i++;
         }
+
+        Gizmos.DrawLineStrip(_path3.ToArray(), false);
     }
 
     private void RefreshPathData()
     {
         if (path.Length < 2) return;
         _path3.Clear();
-        foreach (var p in path)
-        {
-            _path3.Add(new Vector3(p.x, p.y, 0));
-        }
+        foreach (var p in path) _path3.Add(new Vector3(p.x, p.y, 0));
 
         _totalLength = CalculateTotalLength();
         _percentageToNode.Clear();
@@ -42,35 +52,14 @@ public class SiegePath : MonoBehaviour
             _percentageToNode.Add(Tuple.Create(counter, _path3[i]));
             counter += percentage;
         }
-        _percentageToNode.Add(Tuple.Create(1f, _path3[^1]));
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1, 0.5f, 0);
-        var i = 0;
-        foreach (var p in _path3)
-        {
-            if (i == 0 || i == _path3.Count - 1)
-            {
-                Gizmos.DrawSphere(p, 0.25f);
-            }
-            else
-            {
-                Gizmos.DrawSphere(p, 0.125f);   
-            }
-            i++;
-        }
-        Gizmos.DrawLineStrip(_path3.ToArray(), false);
+        _percentageToNode.Add(Tuple.Create(1f, _path3[^1]));
     }
 
     private float CalculateTotalLength()
     {
         var counter = 0f;
-        for (var i = 0; i < path.Length - 1; i++)
-        {
-            counter += Vector2.Distance(path[i], path[i + 1]);
-        }
+        for (var i = 0; i < path.Length - 1; i++) counter += Vector2.Distance(path[i], path[i + 1]);
 
         return counter;
     }
@@ -78,10 +67,8 @@ public class SiegePath : MonoBehaviour
     public float GetTotalLength()
     {
         if (_totalLength == 0)
-        {
             // update order got messed up, recalculate
             _totalLength = CalculateTotalLength();
-        }
         return _totalLength;
     }
 

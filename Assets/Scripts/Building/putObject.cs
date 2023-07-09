@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,16 +15,13 @@ public class putObject : MonoBehaviour
         TheresKing = false;
         isUsed = false;
     }
+
     private void Update()
     {
         if (isUsed)
-        {
             GetComponent<Image>().sprite = objInComponent.GetComponent<SpriteRenderer>().sprite;
-        }
         else
-        {
             GetComponent<Image>().sprite = square;
-        }
         if (!GetComponentInParent<siegeBuilder>().TheresKing)
         {
             kingButton.SetActive(true);
@@ -38,16 +33,15 @@ public class putObject : MonoBehaviour
             kingComponent.SetActive(true);
         }
     }
+
     public void pressbutton()
     {
         if (GetComponentInParent<siegeBuilder>().chosenComponent != null)
         {
             if (GetComponentInParent<siegeBuilder>().chosenComponent.name != "king")
             {
-
                 isUsed = true;
                 objInComponent = GetComponentInParent<siegeBuilder>().chosenComponent;
-
             }
             else
             {
@@ -60,8 +54,7 @@ public class putObject : MonoBehaviour
             isUsed = false;
             objInComponent = null;
         }
+
         GetComponentInParent<siegeBuilder>().chosenComponent = null;
-
-
     }
 }

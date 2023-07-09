@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AOERuin : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField ]float attackTime;
-    [SerializeField] float radius;
+    [SerializeField] private float attackTime;
+    [SerializeField] private float radius;
 
-    void Start()
+    private void Start()
     {
-        LeanTween.scale(this.gameObject, new Vector2(radius, radius), attackTime);
-        Destroy(this.gameObject, attackTime);
+        LeanTween.scale(gameObject, new Vector2(radius, radius), attackTime);
+        Destroy(gameObject, attackTime);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 }

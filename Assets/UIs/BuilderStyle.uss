@@ -1,5 +1,8 @@
 :root {
     --unity-metrics-single_line-height: 50;
+    -unity-font: url('project://database/Assets/UIs/PlayfairDisplaySC-Regular.ttf?fileID=12800000&guid=0b528be9ddf156a419a632ab56e64187&type=3#PlayfairDisplaySC-Regular');
+    -unity-font-definition: url('project://database/Assets/UIs/PlayfairDisplaySC-Regular%20SDF.asset?fileID=11400000&guid=54abffbe38f21794c822187faadafa00&type=2#PlayfairDisplaySC-Regular SDF');
+    -unity-font-style: bold;
 }
 
 .unity-button {
@@ -9,7 +12,7 @@
 }
 
 .header-2 {
-    font-size: 18px;
+    font-size: 20px;
     -unity-font-style: bold;
 }
 
@@ -82,11 +85,68 @@
     color: rgb(187, 187, 187);
 }
 
+#palette-items {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.palette-item {
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.module-desc-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.module-desc-stack .unity-text-element {
+    color: rgb(187, 187, 187);
+    margin: 0 0 2px 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.module-icon {
+    width: 64px;
+    height: 64px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.module-icon.module-in-use {
+    width: 96px;
+    height: 96px;
+}
+
+.module-desc-stack .module-label {
+    -unity-font-style: bold;
+    font-size: 18px;
+}
+
+.module-desc-stack .module-desc {
+}
+
+.module-icon.module-type-crossbow {
+    background-image: url('project://database/Assets/Modules/CrossbowTurret.png?fileID=2800000&guid=925f47a827176dd429025e5d4b9b4389&type=3#CrossbowTurret');
+}
+
 #status-header {
     position: absolute;
     top: 0;
     right: 0;
-    height: 38px;
+    height: 42px;
     width: auto;
     min-width: 0;
     display: flex;
@@ -117,7 +177,7 @@
 }
 
 #status-header .button-main {
-    font-size: 18px;
+    font-size: 20px;
     background-color: rgba(0, 0, 0, 0.13);
 }
 
@@ -138,11 +198,11 @@
 #status-header .info-stack > .unity-text-element {
     padding: 0;
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #status-header .info-stack > .unity-text-element.smol-info-header {
-    font-size: 10px;
+    font-size: 12px;
     color: rgb(187, 187, 187);
     padding: 0;
 }
@@ -176,7 +236,19 @@
     border-color: rgb(136, 136, 136);
     background-color: rgb(64, 64, 64);
     background-image: url('project://database/Assets/UIs/ModuleSlot.png?fileID=2800000&guid=485f7845603251844a2d14b4ac8747c6&type=3#ModuleSlot');
+    align-items: center;
+    justify-content: center;
     -unity-background-image-tint-color: rgb(128, 128, 128);
+}
+
+#drag-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
 }
 
 #unity-export-test {

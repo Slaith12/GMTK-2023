@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Snowball : MonoBehaviour
 {
-    [SerializeField] float timer;
-    [SerializeField] float timerVar;
-    [SerializeField] GameObject puddle;
-    [SerializeField] float speed;
-    Rigidbody2D rb;
+    [SerializeField] private float timer;
+    [SerializeField] private float timerVar;
+    [SerializeField] private GameObject puddle;
+    [SerializeField] private float speed;
+
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
-        float degrees = Random.Range(0, 2*Mathf.PI);
+
+        var degrees = Random.Range(0, 2 * Mathf.PI);
         int LR;
         rb.velocity = new Vector2(Mathf.Cos(degrees), Mathf.Sin(degrees)) * speed;
 

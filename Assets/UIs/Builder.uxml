@@ -1,73 +1,80 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle"/>
     <ui:VisualElement name="main">
         <ui:VisualElement name="placements">
             <ui:VisualElement name="rows">
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
-                    <ui:VisualElement class="slot" />
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
+                    <ui:VisualElement class="slot"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="palette">
             <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
-                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
+                <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2"/>
+                <ui:VisualElement name="palette-items">
+                    <UIs.PaletteModule module-type="crossbow" label="Crossbow Turret"
+                                       description="1 orc\nClick to shoot the\nnearest tower"/>
+                </ui:VisualElement>
             </ui:ScrollView>
         </ui:VisualElement>
         <ui:VisualElement name="status-header">
             <ui:VisualElement class="info-stack">
-                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" class="smol-info-header" />
-                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" name="weight-test-info" />
+                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" class="smol-info-header"/>
+                <ui:Label tabindex="-1" text="WEIGHT" display-tooltip-when-elided="true" name="weight-test-info"/>
             </ui:VisualElement>
             <ui:VisualElement class="info-stack">
-                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" class="smol-info-header" />
-                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" name="orcs-test-info" />
+                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" class="smol-info-header"/>
+                <ui:Label tabindex="-1" text="ORCS" display-tooltip-when-elided="true" name="orcs-test-info"/>
             </ui:VisualElement>
-            <ui:Button text="Siege!" display-tooltip-when-elided="true" class="button-main" />
+            <ui:Button text="Siege!" display-tooltip-when-elided="true" class="button-main"/>
         </ui:VisualElement>
+        <ui:VisualElement name="drag-overlay" picking-mode="Ignore" style="display: none;"/>
     </ui:VisualElement>
 </ui:UXML>

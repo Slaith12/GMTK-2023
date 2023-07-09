@@ -1,26 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] float arrowForce;
-    [SerializeField] Transform player;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float arrowForce;
+    [SerializeField] private Transform player;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         player = FindObjectOfType<SiegeMachine>().transform;
-        rb.SetRotation(Mathf.Atan(( transform.position.y - player.position.y) / (transform.position.x - player.position.x)) * Mathf.Rad2Deg);
+        rb.SetRotation(
+            Mathf.Atan((transform.position.y - player.position.y) / (transform.position.x - player.position.x)) *
+            Mathf.Rad2Deg);
         rb.AddForce((player.position - transform.position).normalized * arrowForce);
-        
-        Destroy(this.gameObject, 1.5f);
+
+        Destroy(gameObject, 1.5f);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 }

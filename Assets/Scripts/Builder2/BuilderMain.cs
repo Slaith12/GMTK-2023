@@ -51,11 +51,6 @@ namespace Builder2
                 }
             }
 
-            foreach (var ((item1, item2), value) in _vslots)
-            {
-                var x = (value.PlacementSlot.Children().FirstOrDefault() as ModuleImage)?.Type;
-            }
-
             _dragAndDropManipulators.Clear();
             _slots = document.rootVisualElement.Query<VisualElement>(null, "slot").ToList();
             _dragVisualizer = document.rootVisualElement.Q<VisualElement>("drag-overlay");

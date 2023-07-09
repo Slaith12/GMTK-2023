@@ -366,6 +366,22 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
+#placements.dragging-module-orc-attack-party-0 .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-orc-attack-party-90 .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-orc-attack-party-180 .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+#placements.dragging-module-orc-attack-party-270 .slot.highlight-any {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
 #placements.dragging-module-shield-up .slot.highlight-shield-up {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }

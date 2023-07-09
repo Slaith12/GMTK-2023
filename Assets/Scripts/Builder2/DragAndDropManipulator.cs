@@ -106,12 +106,12 @@ namespace Builder2
 
         private void Revert()
         {
+            OnRejectedDrop?.Invoke(this);
             if (OriginalParent != null)
             {
                 target.RemoveFromHierarchy();
                 OriginalParent.PlacementSlot.Add(target);
                 target.transform.position = Vector3.zero;
-                OnRejectedDrop?.Invoke(this);
                 OnSuccessfulDrop?.Invoke(this, _wip, OriginalParent);
                 OriginalParent = null;
             }

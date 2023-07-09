@@ -19,9 +19,19 @@ public class Sieger : MonoBehaviour
     private Quaternion _targetAngle;
     private float _turnPercentage;
 
+    
+    public bool slowdown;
+    private float mspeedslow;
+    private float mspeed;
+
     private void Start()
     {
         BeginNewPath(debugInitialPath);
+        slowdown = false;
+
+        mspeed = movementSpeed;
+        mspeedslow = movementSpeed * .5f;
+        
     }
 
     private void Update()
@@ -38,6 +48,11 @@ public class Sieger : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        if (slowdown)
+            movementSpeed = mspeedslow;
+        else
+            movementSpeed = mspeed;
     }
 
     public void BeginNewPath(SiegePath newPath)
@@ -92,4 +107,11 @@ public class Sieger : MonoBehaviour
         Advance,
         Turn
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        slowdown = (collision.gameObject.GetComponent<SlowdownProj>() != null);
+    }
+
+
 }

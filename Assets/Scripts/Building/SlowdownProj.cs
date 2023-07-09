@@ -23,16 +23,6 @@ public class SlowdownProj : MonoBehaviour
             objspeed = rb.velocity;
             rb.velocity *= slowdownAmount;
         }
-
-        var sieger = FindAnyObjectByType<Sieger>();
-        if (sieger != null)
-        {
-            Debug.Log("sieger");
-            siegerSpeed = sieger.movementSpeed;
-            siegerTurnSpeed = sieger.turningSpeed;
-            sieger.movementSpeed *= slowdownAmount;
-            sieger.turningSpeed *= slowdownAmount;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -40,12 +30,6 @@ public class SlowdownProj : MonoBehaviour
         Debug.Log("object exited");
         var rb = col.gameObject.GetComponent<Rigidbody2D>();
         if (rb != null) rb.velocity = objspeed;
-
-        var sieger = FindAnyObjectByType<Sieger>();
-        if (sieger != null)
-        {
-            sieger.movementSpeed = siegerSpeed;
-            sieger.turningSpeed = siegerTurnSpeed;
-        }
     }
+
 }

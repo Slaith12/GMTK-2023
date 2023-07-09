@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340c126461cb5745be15053d212b4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 130
+  maxHealth: 80
   healthPoints: 0
   damageType: HumanProj
 --- !u!1 &6498319682392849101

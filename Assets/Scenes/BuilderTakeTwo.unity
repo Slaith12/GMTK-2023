@@ -407,4 +407,5 @@ MonoBehaviour:
   audioPlayer: {fileID: 1278633854}
   snapSound: {fileID: 8300000, guid: 0a0db02cd03ddcd49876bf3f2086c46a, type: 3}
   delSound: {fileID: 8300000, guid: 0a0db02cd03ddcd49876bf3f2086c46a, type: 3}
-  failSound: {fileID: 0}
+  failSound: {fileID: 8300000, guid: 6b59769ed3ef5c04dbcee1cf71b206d6, type: 3}
+  nextLevel: 0

@@ -5190,22 +5190,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: gate
       objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Size.x
-      value: 2.498065
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3899026
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.0050296783
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.19003463
-      objectReference: {fileID: 0}
     - target: {fileID: 6925010584607510433, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
       propertyPath: m_RootOrder
       value: 14

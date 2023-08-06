@@ -18,30 +18,30 @@ namespace Builder2
 
         [HideInInspector] public int nextLevel;
 
-        private readonly List<DragAndDropManipulator> _dragAndDropManipulators = new();
-
         public static int InitialOrcs = 21;
-        private readonly Dictionary<Tuple<int, int>, Slot> _vslots = new();
-        private VisualElement _dragVisualizer;
+        private readonly Dictionary<Vector2Int, Slot> _vslots = new(); //lists 
+        private VisualElement _dragVisualizer; //displays item that is being dragged by player (doesn't actually move, only a container)
         private int _orcs;
-        private List<VisualElement> _slots = new();
 
         private void Start()
         {
             _orcs = InitialOrcs;
-            var document = GetComponent<UIDocument>();
+            var document = GetComponent<UIDocument>(); //get the ui document
 
-            var slotRoot = document.rootVisualElement.Q<VisualElement>("placements");
+            var slotRoot = document.rootVisualElement.Q<VisualElement>("placements"); //get the ui layer where the slot sprites are
 
-            var virtualSlotRoot = slotRoot.Q<VisualElement>("virtual-placements");
+            var virtualSlotRoot = slotRoot.Q<VisualElement>("virtual-placements"); //get the ui layer where the modules are placed
 
-            var visualRows = slotRoot.Children().FirstOrDefault(child => child.ClassListContains("rows"));
+            var visualRows = slotRoot.Children().FirstOrDefault(child => child.ClassListContains("rows")); //get the ui element that contains the table of slot sprites
             if (visualRows == null) throw new ArgumentException("Could not find rows element (visual rows)");
 
-            var virtualRows = virtualSlotRoot.Q<VisualElement>(className: "rows");
+            var virtualRows = virtualSlotRoot.Q<VisualElement>(className: "rows"); //get the ui element that contains the table of placed modules
 
+            //convert the element tables into arrays of the columns
             var virtualColumns = virtualRows.Children().ToList();
             var visualColumns = visualRows.Children().ToList();
+
+            //go through each slot and register it in _vslots using the coordinates and ui elements associated with it
             for (var x = 0; x < virtualColumns.Count; x++)
             {
                 var virtualColumn = virtualColumns[x];
@@ -51,30 +51,31 @@ namespace Builder2
                     var virtualSlot = virtualColumn.Children().ElementAt(y);
                     var visualSlot = visualColumn.Children().ElementAt(y);
                     var slot = new Slot(x, y, virtualSlot, visualSlot);
-                    _vslots.Add(new Tuple<int, int>(x, y), slot);
+                    _vslots.Add(new Vector2Int(x, y), slot);
                 }
             }
 
-            _dragAndDropManipulators.Clear();
-            _slots = document.rootVisualElement.Query<VisualElement>(null, "slot").ToList();
+            //initialize drag and drop functionality
             _dragVisualizer = document.rootVisualElement.Q<VisualElement>("drag-overlay");
             _dragVisualizer.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
+
+            //go through every module available to the player and register them
             document.rootVisualElement.Query<PaletteModule>(null, "palette-item")
                 .ForEach(paletteModule =>
                 {
                     Debug.Log("register: " + paletteModule);
+                    //when clicked, make a copy of the module and place it on drag visualizer to be dragged by the player
                     paletteModule.Image.RegisterCallback<PointerDownEvent>(evt =>
                     {
-                        var copy = paletteModule.GetImageCopy();
+                        VisualElement copy = paletteModule.GetImageCopy();
                         copy.AddToClassList("module-in-use");
-                        var rootSpace =
+                        Vector2 rootSpace =
                             _dragVisualizer.WorldToLocal(
                                 paletteModule.Image.LocalToWorld(paletteModule.Image.layout.position));
                         _dragVisualizer.Clear();
                         _dragVisualizer.Add(copy);
                         copy.transform.position = rootSpace;
-                        _dragAndDropManipulators.Add(new DragAndDropManipulator(copy, slotRoot, _vslots,
-                            _dragVisualizer));
+                        new DragAndDropManipulator(copy, slotRoot, _vslots.Values.ToList(), _dragVisualizer, evt);
                     });
                 });
 
@@ -107,10 +108,10 @@ namespace Builder2
             for (var x = -1; x <= 1; x++)
             for (var y = -1; y <= 1; y++)
             {
-                var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
-                if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
+                var pos = new Vector2Int(slot.X + x, slot.Y + y);
+                if (!_vslots.TryGetValue(pos, out var vslot)) continue;
                 if (!module.IsBlocked(x, y)) continue;
-                Debug.Log("unslot at " + tuple);
+                Debug.Log("unslot at " + pos);
                 vslot.MarkUnoccupied();
             }
 
@@ -124,8 +125,8 @@ namespace Builder2
             for (var x = -1; x <= 1; x++)
             for (var y = -1; y <= 1; y++)
             {
-                var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
-                if (!_vslots.TryGetValue(tuple, out var vslot)) continue;
+                var pos = new Vector2Int(slot.X + x, slot.Y + y);
+                if (!_vslots.TryGetValue(pos, out var vslot)) continue;
                 if (!module.IsBlocked(x, y)) continue;
                 vslot.MarkOccupied();
             }
@@ -149,12 +150,12 @@ namespace Builder2
             for (var x = -1; x <= 1; x++)
             for (var y = -1; y <= 1; y++)
             {
-                var tuple = new Tuple<int, int>(slot.X + x, slot.Y + y);
-                if (_vslots.TryGetValue(tuple, out var vslot))
+                var pos = new Vector2Int(slot.X + x, slot.Y + y);
+                if (_vslots.TryGetValue(pos, out var vslot))
                 {
                     var blocked = type.IsBlocked(x, y);
                     var occupied = vslot.Occupied;
-                    Debug.Log("slot at " + tuple.Item1 + ", " + tuple.Item2 + " is " + (blocked ? "blocked" : "not blocked") + " and " + (occupied ? "occupied" : "not occupied"));
+                    Debug.Log("slot at " + pos.x + ", " + pos.y + " is " + (blocked ? "blocked" : "not blocked") + " and " + (occupied ? "occupied" : "not occupied"));
                     if (type.IsBlocked(x, y) && vslot.Occupied) return false;
                 }
                 else if (type.IsBlocked(x, y))

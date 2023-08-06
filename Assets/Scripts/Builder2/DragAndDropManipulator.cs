@@ -23,17 +23,19 @@ namespace Builder2
         private ModuleBase _wip;
 
         public DragAndDropManipulator(VisualElement draggable, VisualElement allSlotRoot,
-            Dictionary<Tuple<int, int>, Slot> slots, VisualElement dragVisualizer)
+            List<Slot> slots, VisualElement dragVisualizer, PointerDownEvent evt)
         {
             target = draggable;
             AllSlotRoot = allSlotRoot;
             DragVisualizer = dragVisualizer;
 
-            SlotSlots = slots.Values.ToList();
-            AllVirtualSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
+            SlotSlots = slots.ToList();
+            AllVirtualSlots = slots.Select(k => k.PlacementSlot).ToList();
             Debug.Log("found " + AllVirtualSlots.Count + " virtual slots");
-            AllSlots = slots.Values.Select(k => k.PlacementSlot).ToList();
+            AllSlots = slots.Select(k => k.PlacementSlot).ToList();
             Debug.Log("found " + AllSlots.Count + " virtual slots");
+
+            PointerDownHandler(evt);
         }
 
         private List<Slot> SlotSlots { get; }

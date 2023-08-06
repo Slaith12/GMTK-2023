@@ -13,7 +13,7 @@ namespace Builder2
 
         public delegate bool CanDropHandler(PointerManipulator manipulator, ModuleBase module, Slot slot);
 
-        public delegate void DeletedHandler(PointerManipulator manipulator);
+        public delegate void DeletedHandler(ModuleBase module);
 
         public delegate void RejectedDropHandler(PointerManipulator manipulator);
 
@@ -100,9 +100,10 @@ namespace Builder2
             else if (evt.button == (int) MouseButton.RightMouse)
             {
                 var parent = SlotSlots.FirstOrDefault(x => x.PlacementSlot == target.parent);
-                BeforeUnslot?.Invoke(this, ModuleBase.ModuleTypes[((ModuleImage) target).Type](), parent);
+                ModuleBase moduleType = ModuleBase.ModuleTypes[((ModuleImage)target).Type]();
+                BeforeUnslot?.Invoke(this, moduleType, parent);
                 target.RemoveFromHierarchy();
-                OnDeleted?.Invoke(this);
+                OnDeleted?.Invoke(moduleType);
             }
         }
 
@@ -120,6 +121,7 @@ namespace Builder2
             else
             {
                 target.RemoveFromHierarchy();
+                OnDeleted?.Invoke(ModuleBase.ModuleTypes[((ModuleImage)target).Type]());
                 // bye lol
             }
         }

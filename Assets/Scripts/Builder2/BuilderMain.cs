@@ -76,6 +76,8 @@ namespace Builder2
                         _dragVisualizer.Add(copy);
                         copy.transform.position = rootSpace;
                         new DragAndDropManipulator(copy, slotRoot, _vslots.Values.ToList(), _dragVisualizer, evt);
+                        _orcs -= ModuleBase.ModuleTypes[((ModuleImage)copy).Type]().Orcs;
+                        RefreshDisplays();
                     });
                 });
 
@@ -115,7 +117,6 @@ namespace Builder2
                 vslot.MarkUnoccupied();
             }
 
-            _orcs += module.Orcs;
             RefreshDisplays();
         }
 
@@ -131,7 +132,6 @@ namespace Builder2
                 vslot.MarkOccupied();
             }
 
-            _orcs -= module.Orcs;
             RefreshDisplays();
         }
 
@@ -140,9 +140,11 @@ namespace Builder2
             audioPlayer.PlayOneShot(failSound);
         }
 
-        private void OnDragAndDropManipulatorOnOnDeleted(PointerManipulator _)
+        private void OnDragAndDropManipulatorOnOnDeleted(ModuleBase module)
         {
             audioPlayer.PlayOneShot(delSound);
+            _orcs += module.Orcs;
+            RefreshDisplays();
         }
 
         private bool CanDropCheck(PointerManipulator manipulator, ModuleBase type, Slot slot)

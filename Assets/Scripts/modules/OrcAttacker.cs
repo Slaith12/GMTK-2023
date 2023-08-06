@@ -4,9 +4,11 @@ public class OrcAttacker : MonoBehaviour
 {
     [SerializeField] private float offset;
     [SerializeField] private GameObject proj;
-    [SerializeField] private float hitTime;
+    [SerializeField] private float attackCooldown;
     [SerializeField] private float speed;
     [SerializeField] private float moveChangeTime;
+    [SerializeField] float siegeProtectionRadius;
+    [HideInInspector] public Transform siegeMachine;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -14,7 +16,7 @@ public class OrcAttacker : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         InvokeRepeating("moveToAttack", moveChangeTime, moveChangeTime);
-        InvokeRepeating("attack", hitTime, hitTime);
+        InvokeRepeating("attack", attackCooldown, attackCooldown);
     }
 
     private void attack()
@@ -24,14 +26,19 @@ public class OrcAttacker : MonoBehaviour
 
     private void moveToAttack()
     {
-        var targetlist = FindObjectsByType<Tower>(FindObjectsSortMode.None);
-        var target = targetlist[0].transform;
-        var dist = Vector2.Distance(target.position, transform.position);
-        foreach (var t in targetlist)
+        Tower[] targetlist = FindObjectsByType<Tower>(FindObjectsSortMode.None);
+        Transform target = targetlist[0].transform;
+        float dist = Vector2.Distance(target.position, transform.position);
+        bool protecting = Vector2.Distance(target.position, siegeMachine.position) < siegeProtectionRadius;
+        foreach (Tower t in targetlist)
             if (Vector2.Distance(t.transform.position, transform.position) < dist)
             {
+                bool wouldProtect = Vector2.Distance(t.transform.position, siegeMachine.position) < siegeProtectionRadius;
+                if(protecting && ! wouldProtect)
+                    continue;
                 dist = Vector2.Distance(t.transform.position, transform.position);
                 target = t.transform;
+                protecting = wouldProtect;
             }
 
         var targetPos = new Vector2(target.position.x + Random.Range(-offset, offset),

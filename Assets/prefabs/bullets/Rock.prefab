@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 984608979492057589}
-  throwForce: 100
+  throwForce: 250
   lifetime: 0.5
 --- !u!114 &-2293367020093642990
 MonoBehaviour:

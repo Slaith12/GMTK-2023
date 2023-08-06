@@ -102,9 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 2
   proj: {fileID: 2257683290785342888, guid: 5f3ade7611e957c439d1dce16102d6fc, type: 3}
-  hitTime: 0.5
-  speed: 2
-  moveChangeTime: 0.3
+  attackCooldown: 0.3
+  speed: 5
+  moveChangeTime: 0.2
+  siegeProtectionRadius: 6
+  siegeMachine: {fileID: 0}
 --- !u!114 &1355356113341517528
 MonoBehaviour:
   m_ObjectHideFlags: 0

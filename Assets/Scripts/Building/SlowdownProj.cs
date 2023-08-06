@@ -21,7 +21,7 @@ public class SlowdownProj : MonoBehaviour
         if (rb != null)
         {
             objspeed = rb.velocity;
-            rb.velocity *= slowdownAmount;
+            //rb.velocity *= slowdownAmount;
         }
     }
 
@@ -29,7 +29,7 @@ public class SlowdownProj : MonoBehaviour
     {
         Debug.Log("object exited");
         var rb = col.gameObject.GetComponent<Rigidbody2D>();
-        if (rb != null) rb.velocity = objspeed;
+        //if (rb != null) rb.velocity = objspeed;
     }
 
 }

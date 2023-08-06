@@ -7,7 +7,7 @@ public class DamageDealer : MonoBehaviour
 
     [Tooltip("true if the object is a bullet that should destroy when it hits something, false if it shouldn't")]
     [SerializeField]
-    private bool bullet; //whether or not the player
+    private bool bullet;
 
     private Collider2D col;
     private Rigidbody2D rb;

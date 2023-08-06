@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1115134324350937714}
   - component: {fileID: 6669059951811079786}
   - component: {fileID: 769707537930575225}
+  - component: {fileID: -3453220867504552364}
+  - component: {fileID: -6229194671123869058}
   m_Layer: 0
   m_Name: Siege
   m_TagString: Untagged
@@ -51,6 +53,7 @@ MonoBehaviour:
   movementSpeed: 2.5
   turningSpeed: 250
   arrowPrefab: {fileID: 1534525023338773965, guid: d7ca5434c5c04da4b84952173497e9a7, type: 3}
+  levelEnd: {fileID: 0}
   attackOrcsAvailable: 0
   debugInitialPath: {fileID: 0}
   slowdown: 0
@@ -127,6 +130,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orc: {fileID: 5691266888755789611, guid: 0fcb1fadbd0abf249aed242a5ba8a31d, type: 3}
+--- !u!114 &-3453220867504552364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938396307097130949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894459781209f5d49a35b60e1ee92e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6229194671123869058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938396307097130949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad4b89917f749298f66ab5e68db4c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6498319682392849101
 GameObject:
   m_ObjectHideFlags: 0

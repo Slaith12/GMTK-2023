@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2869972903625022607}
   - component: {fileID: 1118544269848049708}
-  - component: {fileID: 8025263021160079409}
   - component: {fileID: 4847271816238511273}
   - component: {fileID: 8131069251139509674}
+  - component: {fileID: 8025263021160079409}
   - component: {fileID: 7376203555813692701}
   m_Layer: 0
   m_Name: crossbowbolt
@@ -88,20 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8025263021160079409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534525023338773965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c8a029ec4edb941a93f026773e4a18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4847271816238511273}
-  arrowForce: 200
 --- !u!50 &4847271816238511273
 Rigidbody2D:
   serializedVersion: 4
@@ -174,6 +160,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.375, y: 0.15625}
   m_EdgeRadius: 0
+--- !u!114 &8025263021160079409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534525023338773965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c8a029ec4edb941a93f026773e4a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 1.5
 --- !u!114 &7376203555813692701
 MonoBehaviour:
   m_ObjectHideFlags: 0

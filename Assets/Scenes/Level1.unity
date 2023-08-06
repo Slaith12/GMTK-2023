@@ -3841,21 +3841,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
   - {x: 4.5, y: 4.5}
-  - {x: -4, y: 4.5}
-  - {x: -4.5, y: 4}
-  - {x: -4.5, y: -1}
-  - {x: -4, y: -1.5}
-  - {x: 1, y: -1.5}
-  - {x: 1.5, y: -1}
-  - {x: 1.5, y: 1}
-  - {x: 2, y: 1.5}
+  - {x: -4.5, y: 4.5}
+  - {x: -4.5, y: -1.5}
+  - {x: 1.5, y: -1.5}
+  - {x: 1.5, y: 1.5}
   - {x: 4.5, y: 1.5}
-  - {x: 4.5, y: -4}
-  - {x: 4.5, y: -4.1}
-  - {x: 4.5, y: -4.2}
-  - {x: 4.5, y: -4.3}
-  - {x: 4.5, y: -4.4}
-  - {x: 4.5, y: -4.5}
   - {x: 4.5, y: -4.5}
 --- !u!1001 &1487424867
 PrefabInstance:
@@ -4089,11 +4079,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1334141695311438238, guid: 15aa0617c434d0542a9b7175f768c0c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1334141695311438238, guid: 15aa0617c434d0542a9b7175f768c0c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.49
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1334141695311438238, guid: 15aa0617c434d0542a9b7175f768c0c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4212,22 +4202,6 @@ PrefabInstance:
     - target: {fileID: 648080917179119126, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
       propertyPath: m_Name
       value: gate
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Size.x
-      value: 2.498065
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3899026
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.0050296783
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751103529991600818, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.19003463
       objectReference: {fileID: 0}
     - target: {fileID: 6925010584607510433, guid: e70697ec3ff4baf4baf9213a46c62f85, type: 3}
       propertyPath: m_RootOrder

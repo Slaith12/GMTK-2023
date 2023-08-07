@@ -146,6 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  healthBarPrefab: {fileID: 2198554356396913429, guid: 9ae2b1af5db3da0459ef51ec162c5122, type: 3}
+  healthBarOffset: {x: 0, y: -1.2}
   healthPoints: 20
   damageType: OrcProj
 --- !u!114 &9051540786115100221

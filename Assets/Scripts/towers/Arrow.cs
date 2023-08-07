@@ -10,9 +10,13 @@ public class Arrow : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Sieger>().transform;
-        rb.SetRotation(
-            Mathf.Atan((transform.position.y - player.position.y) / (transform.position.x - player.position.x)) *
-            Mathf.Rad2Deg);
+        float rot = Mathf.Atan((player.position.y - transform.position.y) /
+                                 (player.position.x - transform.position.x)) * Mathf.Rad2Deg;
+        if (player.position.x < transform.position.x)
+        {
+            rot -= 180;
+        }
+        transform.eulerAngles = new Vector3(0, 0, rot);
         rb.AddForce((player.position - transform.position).normalized * arrowForce);
 
         Destroy(gameObject, 1.5f);

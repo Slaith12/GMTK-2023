@@ -30,6 +30,11 @@ public class Sieger : MonoBehaviour
 
     private OrcCage _cage;
 
+    private void Awake()
+    {
+        GetComponent<HealthObject>().enabled = false; //prevent HealthObject from initializing until after this has initialized
+    }
+
     private void Start()
     {
         BeginNewPath(debugInitialPath);
@@ -38,6 +43,7 @@ public class Sieger : MonoBehaviour
         mspeed = movementSpeed;
         mspeedslow = movementSpeed * .5f;
         _cage = GetComponentInChildren<OrcCage>();
+        GetComponent<HealthObject>().enabled = true;
     }
 
     private void InitModules()

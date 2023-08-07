@@ -115,10 +115,10 @@
                     <UIs.PaletteModule module-type="shield-down" label="Shield (down)" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
                     <UIs.PaletteModule module-type="shield-left" label="Shield (left)" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
                     <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate machine" />
-                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)" description="3 orcs\nPress Space to release\norcs to attack towers" />
-                    <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="3 orcs\nPress Space to release\norcs to attack towers" />
-                    <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)" description="3 orcs\nPress Space to release\norcs to attack towers" />
-                    <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)" description="3 orcs\nPress Space to release\norcs to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)" description="4 orcs\nPress Space to release\norcs to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="4 orcs\nPress Space to release\norcs to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-180" label="Attack Party (3)" description="4 orcs\nPress Space to release\norcs to attack towers" />
+                    <UIs.PaletteModule module-type="orc-attack-party-270" label="Attack Party (4)" description="4 orcs\nPress Space to release\norcs to attack towers" />
                     <UIs.PaletteModule module-type="autobow" label="Autobow" description="3 orcs\nAutomatically shoots\nthe nearest tower" />
                     <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="2 orcs\nIncreases vehicle speed" />
                 </ui:VisualElement>

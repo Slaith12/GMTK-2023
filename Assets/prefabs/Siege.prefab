@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 40
-  healthBarPrefab: {fileID: 0}
+  healthBarPrefab: {fileID: 2198554356396913429, guid: 9ae2b1af5db3da0459ef51ec162c5122, type: 3}
   healthBarOffset: {x: 0, y: -0.5}
   healthPoints: 0
   damageType: HumanProj
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 0.5
-  shotSpeed: 6
+  shotSpeed: 8
   _projectile: {fileID: 0}
   timers: []
 --- !u!114 &-6229194671123869058
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numBows: 0
   cooldownTime: 0.25
-  shotSpeed: 6
+  shotSpeed: 8
   _projectile: {fileID: 0}
 --- !u!1 &6498319682392849101
 GameObject:

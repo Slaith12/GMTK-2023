@@ -13,25 +13,36 @@ public class LightningBolt : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        dir = Random.Range(0, 4);
-        switch (dir)
+        Sieger sieger = FindObjectOfType<Sieger>();
+        do
         {
-            case 0: //left
-                rb.velocity = new Vector2(-boltspeed, 0);
-                break;
-            case 1: //down
-                rb.velocity = new Vector2(0, -boltspeed);
-                rb.SetRotation(90);
-                break;
-            case 2: //right
-                rb.velocity = new Vector2(boltspeed, 0);
-                break;
-            case 3: //up
-                rb.velocity = new Vector2(0, boltspeed);
-                rb.SetRotation(90);
-                break;
-        }
-
+            dir = Random.Range(0, 4);
+            switch (dir)
+            {
+                case 0: //left
+                    if (sieger != null && sieger.transform.position.x > transform.position.x && Random.Range(0, 5) == 0)
+                        continue;
+                    rb.velocity = new Vector2(-boltspeed, 0);
+                    break;
+                case 1: //down
+                    if (sieger != null && sieger.transform.position.y > transform.position.y && Random.Range(0, 5) == 0)
+                        continue;
+                    rb.velocity = new Vector2(0, -boltspeed);
+                    rb.SetRotation(90);
+                    break;
+                case 2: //right
+                    if (sieger != null && sieger.transform.position.x < transform.position.x && Random.Range(0, 5) == 0)
+                        continue;
+                    rb.velocity = new Vector2(boltspeed, 0);
+                    break;
+                case 3: //up
+                    if (sieger != null && sieger.transform.position.y < transform.position.y && Random.Range(0, 5) == 0)
+                        continue;
+                    rb.velocity = new Vector2(0, boltspeed);
+                    rb.SetRotation(90);
+                    break;
+            }
+        } while (false);
         Destroy(gameObject, 2f);
     }
 }

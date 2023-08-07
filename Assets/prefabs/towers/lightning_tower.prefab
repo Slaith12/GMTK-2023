@@ -100,8 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340c126461cb5745be15053d212b4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthPoints: 100
+  maxHealth: 50
+  healthBarPrefab: {fileID: 2198554356396913429, guid: 9ae2b1af5db3da0459ef51ec162c5122, type: 3}
+  healthBarOffset: {x: 0, y: -1.2}
+  healthPoints: 50
   damageType: OrcProj
 --- !u!114 &4058626950803886616
 MonoBehaviour:

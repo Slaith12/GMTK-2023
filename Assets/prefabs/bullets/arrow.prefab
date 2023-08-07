@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7414503b21579749ab756c32adbbada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 8
+  damageAmount: 5
   bullet: 1
 --- !u!114 &2940310923376589636
 MonoBehaviour:
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2593910053001279614}
-  arrowForce: 450
+  arrowForce: 550
   player: {fileID: 8398430009872771401, guid: 1077d19cac6ccbe4e94ad94ae4785388, type: 3}
 --- !u!82 &-1503332141775950643
 AudioSource:

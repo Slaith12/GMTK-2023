@@ -218,8 +218,8 @@ namespace Builder2
         public override int OriginalWidth => 3;
         public override int OriginalHeight => 3;
         public override int Weight => 7;
-        public override int Orcs => 4;
-        public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 4;
+        public override int Orcs => 3;
+        public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 3;
     }
 
     public class OrcAttackParty0 : OrcAttackParty

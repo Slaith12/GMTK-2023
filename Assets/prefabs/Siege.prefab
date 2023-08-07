@@ -163,6 +163,8 @@ MonoBehaviour:
   numBows: 0
   cooldownTime: 0.25
   shotSpeed: 8
+  maxRange: 4
+  rangeDecrement: 0.45
   _projectile: {fileID: 0}
 --- !u!1 &6498319682392849101
 GameObject:

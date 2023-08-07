@@ -7,6 +7,8 @@ namespace modules
         public int numBows;
         [SerializeField] float cooldownTime = 0.25f;
         [SerializeField] float shotSpeed = 6;
+        [SerializeField] float maxRange = 5;
+        [SerializeField] float rangeDecrement = 0.75f;
         [SerializeField] GameObject _projectile;
         private float timer;
 
@@ -42,6 +44,8 @@ namespace modules
                     target = t.transform;
                 }
             }
+            if (dist > maxRange)
+                return;
 
             float rot = Mathf.Atan((target.position.y - transform.position.y) /
                                  (target.position.x - transform.position.x)) * Mathf.Rad2Deg;
@@ -53,7 +57,9 @@ namespace modules
             GameObject proj = Instantiate(_projectile, transform.position, Quaternion.Euler(Vector3.forward * rot));
 
             proj.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * shotSpeed;
-            timer = cooldownTime / numBows;
+
+            int availableBows = (int)((maxRange - dist) / rangeDecrement) + 1;
+            timer = cooldownTime / Mathf.Min(availableBows, numBows);
         }
     }
 }

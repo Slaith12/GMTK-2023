@@ -105,7 +105,7 @@ MonoBehaviour:
   attackCooldown: 0.3
   speed: 5
   moveChangeTime: 0.2
-  siegeProtectionRadius: 6
+  siegeProtectionRadius: 4
   siegeMachine: {fileID: 0}
 --- !u!114 &1355356113341517528
 MonoBehaviour:

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7414503b21579749ab756c32adbbada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 6
+  damageAmount: 4
   bullet: 0
 --- !u!114 &1862355049446844582
 MonoBehaviour:
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb551936c1fb5bc488afefd4e7332c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTime: 1.2
-  radius: 3.2
+  attackTime: 0.4
+  radius: 5
 --- !u!58 &7465219977204386053
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -119,7 +119,7 @@ namespace Builder2
         }
 
         public override int Weight => 5;
-        public override int Orcs => 2;
+        public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => (sieger => { 
             HealthObject health = sieger.GetComponent<HealthObject>();
             health.healthPoints += 30;

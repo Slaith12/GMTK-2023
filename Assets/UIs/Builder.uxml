@@ -110,10 +110,10 @@
                 <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
                 <ui:VisualElement name="palette-items">
                     <UIs.PaletteModule module-type="crossbow" label="Crossbow Turret" description="1 orc\nClick to shoot the\nnearest tower" />
-                    <UIs.PaletteModule module-type="shield-up" label="Shield (up)" description="2 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
-                    <UIs.PaletteModule module-type="shield-right" label="Shield (right)" description="2 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
-                    <UIs.PaletteModule module-type="shield-down" label="Shield (down)" description="2 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
-                    <UIs.PaletteModule module-type="shield-left" label="Shield (left)" description="2 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-up" label="Shield (up)" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-right" label="Shield (right)" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-down" label="Shield (down)" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
+                    <UIs.PaletteModule module-type="shield-left" label="Shield (left)" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
                     <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate machine" />
                     <UIs.PaletteModule module-type="orc-attack-party-0" label="Attack Party (1)" description="3 orcs\nPress Space to release\norcs to attack towers" />
                     <UIs.PaletteModule module-type="orc-attack-party-90" label="Attack Party (2)" description="3 orcs\nPress Space to release\norcs to attack towers" />

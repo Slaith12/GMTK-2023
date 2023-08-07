@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 1.5
-  siegeMachine: {fileID: 0}
   projectile: {fileID: 4152060149500657793, guid: ccdc9211774d3f94eab9d9227f89000d, type: 3}
   shots: 1
 --- !u!61 &2560144494980065457

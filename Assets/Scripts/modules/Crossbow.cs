@@ -39,29 +39,15 @@ public class Crossbow : MonoBehaviour
 
     private void Shoot()
     {
-        //find closest tower
-        Tower[] targetlist = FindObjectsByType<Tower>(FindObjectsSortMode.None);
-        if (targetlist.Length == 0)
-            return;
-        Transform target = targetlist[0].transform;
-        float dist = Vector2.Distance(target.position, transform.position);
-        foreach (Tower t in targetlist)
-        {
-            if (Vector2.Distance(t.transform.position, transform.position) < dist)
-            {
-                dist = Vector2.Distance(t.transform.position, transform.position);
-                target = t.transform;
-            }
-        }
-
-        float rot = Mathf.Atan((target.position.y - transform.position.y) /
-                             (target.position.x - transform.position.x)) * Mathf.Rad2Deg;
-        if (target.position.x < transform.position.x)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float rot = Mathf.Atan((mousePos.y - transform.position.y) /
+                             (mousePos.x - transform.position.x)) * Mathf.Rad2Deg;
+        if (mousePos.x < transform.position.x)
         {
             rot -= 180;
         }
         GameObject proj = Instantiate(_projectile, transform.position, Quaternion.Euler(Vector3.forward*rot));
 
-        proj.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * shotSpeed;
+        proj.GetComponent<Rigidbody2D>().velocity = (mousePos - (Vector2)transform.position).normalized * shotSpeed;
     }
 }

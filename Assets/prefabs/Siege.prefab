@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 40
+  healthBarPrefab: {fileID: 0}
+  healthBarOffset: {x: 0, y: -0.5}
   healthPoints: 0
   damageType: HumanProj
 --- !u!114 &769707537930575225
@@ -142,6 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894459781209f5d49a35b60e1ee92e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownTime: 0.5
+  shotSpeed: 6
+  _projectile: {fileID: 0}
+  timers: []
 --- !u!114 &-6229194671123869058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad4b89917f749298f66ab5e68db4c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numBows: 0
+  cooldownTime: 0.25
+  shotSpeed: 6
+  _projectile: {fileID: 0}
 --- !u!1 &6498319682392849101
 GameObject:
   m_ObjectHideFlags: 0

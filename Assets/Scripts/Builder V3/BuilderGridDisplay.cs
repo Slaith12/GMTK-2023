@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum CellCategory { All, Edges }
+
 public class BuilderGridDisplay : MonoBehaviour
 {
+    const string CLASS_LIGHTEN = "lighten";
     const string CLASS_OCCUPIED = "occupied";
     const string CLASS_HIGHLIGHT = "highlighted";
     const string CLASS_INVALID = "invalid";
@@ -53,7 +56,7 @@ public class BuilderGridDisplay : MonoBehaviour
         }
     }
 
-    public Vector2Int GetClosestCellFromMouse(Vector2 mousePos)
+    public Vector2Int GetClosestCellFromMouse(Vector2 mousePos, CellCategory filter = CellCategory.All)
     {
         Vector2 gridOrigin = placementGrid.worldBound.min; //top-left corner
         Vector2 cellSize = visualCells[0, 0].worldBound.size;
@@ -70,6 +73,17 @@ public class BuilderGridDisplay : MonoBehaviour
             cellY = 0;
         else if (cellY >= visualCells.GetLength(1))
             cellY = visualCells.GetLength(1) - 1;
+
+        if(filter == CellCategory.Edges && 
+            cellX > 0 && cellX < visualCells.GetLength(0) - 1 &&
+            cellY > 0 && cellY < visualCells.GetLength(1) - 1) 
+        {
+            if (cellY >= visualCells.GetLength(1) / 2)
+                cellY = visualCells.GetLength(1) - 1;
+            else
+                cellY = 0;
+        }
+
         return new Vector2Int(cellX, cellY);
     }
 
@@ -82,6 +96,8 @@ public class BuilderGridDisplay : MonoBehaviour
         }
         return true;
     }
+
+    #region Highlight
 
     public void HighlightCells(List<Vector2Int> cellPositions)
     {
@@ -113,6 +129,10 @@ public class BuilderGridDisplay : MonoBehaviour
         highlightedCells.Clear();
     }
 
+    #endregion
+
+    #region Occupied
+
     public void MarkOccupied(Vector2Int cellPos)
     {
         VisualElement cell = visualCells[cellPos.x, cellPos.y];
@@ -124,4 +144,52 @@ public class BuilderGridDisplay : MonoBehaviour
         VisualElement cell = visualCells[cellPos.x, cellPos.y];
         cell.RemoveFromClassList(CLASS_OCCUPIED);
     }
+
+    #endregion
+
+    #region Lighten
+
+    public void LightenCells(CellCategory filter = CellCategory.All)
+    {
+        switch(filter)
+        {
+            case CellCategory.All:
+                for (int i = 0; i < visualCells.GetLength(0); i++)
+                {
+                    for (int j = 0; j < visualCells.GetLength(1); j++)
+                    {
+                        visualCells[i, j].AddToClassList(CLASS_LIGHTEN);
+                    }
+                }
+                break;
+            case CellCategory.Edges:
+                for (int i = 0; i < visualCells.GetLength(0); i++)
+                {
+                    int lastY = visualCells.GetLength(1) - 1;
+                    visualCells[i, 0].AddToClassList(CLASS_LIGHTEN);
+                    visualCells[i, lastY].AddToClassList(CLASS_LIGHTEN);
+                }
+                for (int j = 1; j < visualCells.GetLength(1) - 1; j++)
+                {
+                    int lastX = visualCells.GetLength(0) - 1;
+                    visualCells[0, j].AddToClassList(CLASS_LIGHTEN);
+                    visualCells[lastX, j].AddToClassList(CLASS_LIGHTEN);
+                }
+                break;
+        }
+    }
+
+    public void UnLightenCells()
+    {
+        for (int i = 0; i < visualCells.GetLength(0); i++)
+        {
+            for (int j = 0; j < visualCells.GetLength(1); j++)
+            {
+                visualCells[i, j].RemoveFromClassList(CLASS_LIGHTEN);
+            }
+        }
+    }
+
+    #endregion
+
 }

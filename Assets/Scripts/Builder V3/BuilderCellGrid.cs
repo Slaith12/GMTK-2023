@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public enum CellCategory { All, Edges }
 
-public class BuilderGridDisplay : MonoBehaviour
+public class BuilderCellGrid : MonoBehaviour
 {
     const string CLASS_LIGHTEN = "lighten";
     const string CLASS_OCCUPIED = "occupied";
@@ -16,8 +16,14 @@ public class BuilderGridDisplay : MonoBehaviour
     private VisualElement[,] visualCells;
     private List<VisualElement> highlightedCells;
 
+    public int gridWidth { get; private set; }
+    public int gridHeight { get; private set; }
+
     private void Init(int gridWidth, int gridHeight)
     {
+        this.gridWidth = gridWidth;
+        this.gridHeight = gridHeight;
+
         visualCells = new VisualElement[gridWidth, gridHeight];
         highlightedCells = new List<VisualElement>();
 
@@ -60,7 +66,6 @@ public class BuilderGridDisplay : MonoBehaviour
     {
         Vector2 gridOrigin = placementGrid.worldBound.min; //top-left corner
         Vector2 cellSize = visualCells[0, 0].worldBound.size;
-        mousePos.y = Screen.height - mousePos.y; //input system uses y = 0 at bottom of screen, ui uses y = 0 at top of screen
 
         int cellX = (int)((mousePos.x - gridOrigin.x) / cellSize.x);
         if (cellX < 0)

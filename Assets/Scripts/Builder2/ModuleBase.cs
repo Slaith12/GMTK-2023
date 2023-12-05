@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using modules;
+using UnityEngine;
 
 namespace Builder2
 {
@@ -35,6 +36,10 @@ namespace Builder2
 
         // y is vertical, x is horizontal, apparently
         protected abstract bool[][] Blocked { get; }
+
+        protected virtual Vector2Int[] GridCollision => new Vector2Int[] { Vector2Int.zero };
+        public virtual RectInt GridBounds => new RectInt(0, 0, 1, 1);
+        public virtual CellCategory PlacementType => CellCategory.All;
 
         public string DisplayType { get; }
 
@@ -73,6 +78,16 @@ namespace Builder2
             if (offsetX >= Blocked[0].Length || offsetY < 0) return false;
 
             return Blocked[offsetY][offsetX];
+        }
+
+        public List<Vector2Int> GetCollisionInfo(Vector2Int origin)
+        {
+            List<Vector2Int> cellPositions = new List<Vector2Int>(GridCollision);
+            for (int i = 0; i < cellPositions.Count; i++)
+            {
+                cellPositions[i] += origin;
+            }
+            return cellPositions;
         }
     }
 
@@ -120,6 +135,8 @@ namespace Builder2
 
         public override int Weight => 5;
         public override int Orcs => 3;
+        public override CellCategory PlacementType => CellCategory.Edges;
+
         public override Action<Sieger> ModuleEffect => (sieger => { 
             HealthObject health = sieger.GetComponent<HealthObject>();
             health.maxHealth += 12;
@@ -139,6 +156,8 @@ namespace Builder2
         {
             new[] {true, true, true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[] { new Vector2Int(0,0), new Vector2Int(-1,0), new Vector2Int(1,0) };
+        public override RectInt GridBounds => new RectInt(-1, 0, 3, 1);
     }
 
     public class ShieldDown : Shield
@@ -154,6 +173,8 @@ namespace Builder2
         {
             new[] {true, true, true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int(1, 0) };
+        public override RectInt GridBounds => new RectInt(-1, 0, 3, 1);
     }
 
     public class ShieldLeft : Shield
@@ -171,6 +192,8 @@ namespace Builder2
             new[] {true},
             new[] {true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, -1), new Vector2Int(0, 1) };
+        public override RectInt GridBounds => new RectInt(0, -1, 1, 3);
     }
 
 
@@ -189,6 +212,8 @@ namespace Builder2
             new[] {true},
             new[] {true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, -1), new Vector2Int(0, 1) };
+        public override RectInt GridBounds => new RectInt(0, -1, 1, 3);
     }
 
     public class Cockpit : ModuleBase
@@ -220,13 +245,18 @@ namespace Builder2
         public override int Weight => 7;
         public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 3;
+
+        public abstract int rotation { get; }
     }
 
+    //middle piece = lower-left corner
     public class OrcAttackParty0 : OrcAttackParty
     {
         public OrcAttackParty0() : base("orc-attack-party-0")
         {
         }
+
+        public override int rotation => 0;
 
         protected override bool[][] Blocked => new[]
         {
@@ -234,13 +264,19 @@ namespace Builder2
             new[] {true, true, false},
             new[] {true, true, true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[] 
+        { Vector2Int.zero, Vector2Int.up, Vector2Int.up * 2, Vector2Int.right, Vector2Int.right * 2 };
+        public override RectInt GridBounds => new RectInt(0, -2, 3, 3);
     }
 
+    //middle piece = upper-left corner
     public class OrcAttackParty90 : OrcAttackParty
     {
         public OrcAttackParty90() : base("orc-attack-party-90")
         {
         }
+
+        public override int rotation => 1;
 
         protected override bool[][] Blocked => new[]
         {
@@ -248,13 +284,19 @@ namespace Builder2
             new[] {true, true, false},
             new[] {true, false, false}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[]
+        { Vector2Int.zero, Vector2Int.down, Vector2Int.down * 2, Vector2Int.right, Vector2Int.right * 2 };
+        public override RectInt GridBounds => new RectInt(0, 0, 3, 3);
     }
 
+    //middle piece = upper-right corner
     public class OrcAttackParty180 : OrcAttackParty
     {
         public OrcAttackParty180() : base("orc-attack-party-180")
         {
         }
+
+        public override int rotation => 2;
 
         protected override bool[][] Blocked => new[]
         {
@@ -262,13 +304,19 @@ namespace Builder2
             new[] {false, true, true},
             new[] {false, false, true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[]
+        { Vector2Int.zero, Vector2Int.down, Vector2Int.down * 2, Vector2Int.left, Vector2Int.left * 2 };
+        public override RectInt GridBounds => new RectInt(-2, 0, 3, 3);
     }
 
+    //middle piece = lower-right corner
     public class OrcAttackParty270 : OrcAttackParty
     {
         public OrcAttackParty270() : base("orc-attack-party-270")
         {
         }
+
+        public override int rotation => 3;
 
         protected override bool[][] Blocked => new[]
         {
@@ -276,6 +324,9 @@ namespace Builder2
             new[] {false, true, true},
             new[] {true, true, true}
         };
+        protected override Vector2Int[] GridCollision => new Vector2Int[]
+        { Vector2Int.zero, Vector2Int.up, Vector2Int.up * 2, Vector2Int.left, Vector2Int.left * 2 };
+        public override RectInt GridBounds => new RectInt(-2, -2, 3, 3);
     }
 
     public class SmallMotor : ModuleBase

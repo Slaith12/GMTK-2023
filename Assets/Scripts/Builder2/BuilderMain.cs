@@ -76,7 +76,7 @@ namespace Builder2
                         _dragVisualizer.Add(copy);
                         copy.transform.position = rootSpace;
                         new DragAndDropManipulator(copy, slotRoot, _vslots.Values.ToList(), _dragVisualizer, evt);
-                        _orcs -= ModuleBase.ModuleTypes[((ModuleImage)copy).Type]().Orcs;
+                        _orcs -= ModuleBase.ModuleTypes[((ModuleImage)copy).Type].Orcs;
                         RefreshDisplays();
                     });
                 });
@@ -190,7 +190,7 @@ namespace Builder2
                 ModuleImage image = slot.PlacementSlot.Children().FirstOrDefault() as ModuleImage;
                 if (image == null)
                     continue;
-                ModuleBase module = ModuleBase.ModuleTypes[image.Type]();
+                ModuleBase module = ModuleBase.ModuleTypes[image.Type];
                 modules.Add(new ModuleData(module, new Vector2(slot.X, slot.Y)));
             }
 

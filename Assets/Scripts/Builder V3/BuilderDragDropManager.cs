@@ -2,13 +2,13 @@ using Builder2;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UIs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BuilderDragDropManager : MonoBehaviour
 {
-    private VisualElement currentlyDraggedVisual;
-    private ModuleBase currentDraggedModule;
+    public ModuleImage currentDraggedModule { get; private set; }
 
     private Vector2Int originalModulePos;
     private ModuleBase originalModuleType; //different rotations are considered different module types, so this is needed to return to the original rotation
@@ -20,73 +20,78 @@ public class BuilderDragDropManager : MonoBehaviour
     private ModuleBase[] attackPartiesCache;
 
     private BuilderCellGrid cellGrid;
+    private BuilderModuleManager moduleManager;
 
     private void Start()
     {
         cellGrid = GetComponent<BuilderCellGrid>();
+        moduleManager = GetComponent<BuilderModuleManager>();
+
         shieldsCache = new ModuleBase[] {
-            ModuleBase.ModuleTypes["shield-left"](),
-            ModuleBase.ModuleTypes["shield-right"](),
-            ModuleBase.ModuleTypes["shield-up"](),
-            ModuleBase.ModuleTypes["shield-down"]() };
+            ModuleBase.ModuleTypes["shield-left"],
+            ModuleBase.ModuleTypes["shield-right"],
+            ModuleBase.ModuleTypes["shield-up"],
+            ModuleBase.ModuleTypes["shield-down"] };
         attackPartiesCache = new ModuleBase[] {
-            ModuleBase.ModuleTypes["orc-attack-party-0"](),
-            ModuleBase.ModuleTypes["orc-attack-party-90"](),
-            ModuleBase.ModuleTypes["orc-attack-party-180"](),
-            ModuleBase.ModuleTypes["orc-attack-party-270"]()
+            ModuleBase.ModuleTypes["orc-attack-party-0"],
+            ModuleBase.ModuleTypes["orc-attack-party-90"],
+            ModuleBase.ModuleTypes["orc-attack-party-180"],
+            ModuleBase.ModuleTypes["orc-attack-party-270"]
         };
     }
 
-    void Update()
+    public void Grab(ModuleImage module)
     {
-        if(currentlyDraggedVisual != null)
-        {
-            if ((OrcAttackParty)currentDraggedModule != null && Input.GetKeyDown(KeyCode.R))
-                UpdateAttackPartyRotation();
-            Drag();
-        }
-    }
+        if (currentDraggedModule != null)
+            Release();
+        currentDraggedModule = module;
 
-    public void Grab()
-    {
+        originalModulePos = moduleManager.RemoveModule(module);
+        originalModuleType = module.module;
 
+        currentFocusCellPos = new Vector2Int(-1, -1);
     }
 
     public void Release()
     {
-        if (currentlyDraggedVisual == null)
+        if (currentDraggedModule == null)
             return;
         if(!draggingOverCells) //means it's dragging over module library, aka trash
         {
-            //probably will go to a BuilderModuleManager script
-            //moduleManager.Delete([probably a class that combines VisualElement and ModuleBase]);
+            currentDraggedModule.RemoveFromHierarchy();
+            currentDraggedModule = null;
         }
         else
         {
-            if (cellGrid.CellsAvailable(currentDraggedModule.GetCollisionInfo(currentFocusCellPos)))
+            if (cellGrid.CellsAvailable(currentDraggedModule.module.GetCollisionInfo(currentFocusCellPos)))
             {
-                //moduleManager.AddModuleToGrid([class that combines VisualElement and ModuleBase], currentFocusCellPos);
+                moduleManager.AddModule(currentDraggedModule, currentFocusCellPos);
+                currentDraggedModule = null;
             }
             else
             {
-                if (originalModulePos.x < 0) //means module came from library, not moving within the grid
-                {
-                    //moduleManager.Delete([probably a class that combines VisualElement and ModuleBase]);
-                }
-                else
-                {
-                    //revert VisualElement and ModuleBase to original values
-                    //moduleManager.AddModuleToGrid([class that combines VisualElement and ModuleBase], originalModulePos);
-                }
+                Revert();
             }
         }
     }
 
-    private void Drag()
+    public void Revert()
     {
-        Vector2 mousePos = Input.mousePosition;
-        mousePos.y = Screen.height - mousePos.y; //input system uses y = 0 at bottom of screen, ui uses y = 0 at top of screen
-        currentlyDraggedVisual.transform.position = mousePos;
+        if (originalModulePos.x < 0) //means module came from library, not moving within the grid
+        {
+            currentDraggedModule.RemoveFromHierarchy();
+        }
+        else
+        {
+            currentDraggedModule.module = originalModuleType;
+            moduleManager.AddModule(currentDraggedModule, originalModulePos);
+        }
+        currentDraggedModule = null;
+    }
+
+    public void Drag(Vector2 mousePos)
+    {
+        currentDraggedModule.transform.position = mousePos;
 
         //check if cursor is over module library. if not, continue
         draggingOverCells = true;
@@ -94,9 +99,9 @@ public class BuilderDragDropManager : MonoBehaviour
 
         void DragOverGrid()
         {
-            Vector2Int newClosestCellPos = cellGrid.GetClosestCellFromMouse(mousePos, currentDraggedModule.PlacementType);
+            Vector2Int newClosestCellPos = cellGrid.GetClosestCellFromMouse(mousePos, currentDraggedModule.module.PlacementType);
 
-            if ((Shield)currentDraggedModule != null)
+            if ((Shield)currentDraggedModule.module != null)
             {
                 UpdateShieldRotation(newClosestCellPos);
             }
@@ -108,13 +113,19 @@ public class BuilderDragDropManager : MonoBehaviour
             currentFocusCellPos = newClosestCellPos;
 
 
-            cellGrid.HighlightCells(currentDraggedModule.GetCollisionInfo(newClosestCellPos));
+            cellGrid.HighlightCells(currentDraggedModule.module.GetCollisionInfo(newClosestCellPos));
         }
+    }
+
+    public void Rotate()
+    {
+        if (currentDraggedModule != null && (OrcAttackParty)currentDraggedModule.module != null)
+            UpdateAttackPartyRotation();
     }
 
     private void EnforceModuleBounds(ref Vector2Int targetCell)
     {
-        RectInt bounds = currentDraggedModule.GridBounds;
+        RectInt bounds = currentDraggedModule.module.GridBounds;
         int top = targetCell.y - bounds.yMin;
         int bottom = top + bounds.height; //this is actually 1 row below the lowest point on the module, but this makes calculations easier
         if (top < 0)
@@ -140,28 +151,28 @@ public class BuilderDragDropManager : MonoBehaviour
 
         if(targetCell.x == 0) //left edge
         {
-            currentDraggedModule = shieldsCache[0];
+            currentDraggedModule.module = shieldsCache[0];
         }
         else if(targetCell.x == cellGrid.gridWidth - 1) //right edge
         {
-            currentDraggedModule = shieldsCache[1];
+            currentDraggedModule.module = shieldsCache[1];
         }
         else if (targetCell.y == 0) //top edge
         {
-            currentDraggedModule = shieldsCache[2];
+            currentDraggedModule.module = shieldsCache[2];
         }
         else if (targetCell.y == cellGrid.gridHeight - 1) //bottom edge
         {
-            currentDraggedModule = shieldsCache[3];
+            currentDraggedModule.module = shieldsCache[3];
         }
     }
 
     private void UpdateAttackPartyRotation()
     {
-        OrcAttackParty attackPartyModule = (OrcAttackParty)currentDraggedModule;
+        OrcAttackParty attackPartyModule = (OrcAttackParty)currentDraggedModule.module;
         int newRotation = attackPartyModule.rotation + 1;
         if (newRotation == 4)
             newRotation = 0;
-        currentDraggedModule = attackPartiesCache[newRotation];
+        currentDraggedModule.module = attackPartiesCache[newRotation];
     }
 }

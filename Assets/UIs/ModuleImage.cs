@@ -1,17 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using Builder2;
+using UnityEngine;
 
 namespace UIs
 {
     public class ModuleImage : VisualElement
     {
-        public ModuleImage()
+        public ModuleImage() : this((ModuleBase)null) {}
+
+        public ModuleImage(ModuleBase module)
         {
-            Type = string.Empty;
+            this.module = module;
+            AddToClassList("module-icon");
+            focusable = true;
         }
 
-        public string Type { get; set; }
+        private ModuleBase m_module;
+        public ModuleBase module
+        {
+            get => m_module;
+            set
+            {
+                if(m_module != null)
+                    RemoveFromClassList($"module-type-{m_module.DisplayType}");
+                m_module = value;
+                if(m_module != null)
+                    AddToClassList($"module-type-{m_module.DisplayType}");
+            }
+        }
+
+        public string Type => m_module.DisplayType;
+
+
 
         public new class UxmlFactory : UxmlFactory<ModuleImage, UxmlTraits>
         {
@@ -29,7 +51,9 @@ namespace UIs
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
-                ((ModuleImage) ve).Type = _type.GetValueFromBag(bag, cc);
+                string type = _type.GetValueFromBag(bag, cc);
+                if(ModuleBase.ModuleTypes.ContainsKey(type))
+                    ((ModuleImage) ve).module = ModuleBase.ModuleTypes[_type.GetValueFromBag(bag, cc)];
             }
         }
     }

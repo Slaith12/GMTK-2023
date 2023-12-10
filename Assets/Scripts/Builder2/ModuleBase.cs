@@ -7,20 +7,20 @@ namespace Builder2
 {
     public abstract class ModuleBase
     {
-        public static readonly Dictionary<string, Func<ModuleBase>> ModuleTypes = new()
+        public static readonly IReadOnlyDictionary<string, ModuleBase> ModuleTypes = new Dictionary<string, ModuleBase>()
         {
-            {"crossbow", () => new CrossbowTurret()},
-            {"autobow", () => new AutobowTurret()},
-            {"shield-up", () => new ShieldUp()},
-            {"shield-down", () => new ShieldDown()},
-            {"shield-left", () => new ShieldLeft()},
-            {"shield-right", () => new ShieldRight()},
-            {"cockpit", () => new Cockpit()},
-            {"orc-attack-party-0", () => new OrcAttackParty0()},
-            {"orc-attack-party-90", () => new OrcAttackParty90()},
-            {"orc-attack-party-180", () => new OrcAttackParty180()},
-            {"orc-attack-party-270", () => new OrcAttackParty270()},
-            {"small-motor", () => new SmallMotor()}
+            {"crossbow", new CrossbowTurret()},
+            {"autobow", new AutobowTurret()},
+            {"shield-up", new ShieldUp()},
+            {"shield-down", new ShieldDown()},
+            {"shield-left", new ShieldLeft()},
+            {"shield-right", new ShieldRight()},
+            {"cockpit", new Cockpit()},
+            {"orc-attack-party-0", new OrcAttackParty0()},
+            {"orc-attack-party-90", new OrcAttackParty90()},
+            {"orc-attack-party-180", new OrcAttackParty180()},
+            {"orc-attack-party-270", new OrcAttackParty270()},
+            {"small-motor", new SmallMotor()}
         };
 
         protected ModuleBase(string displayType)
@@ -28,8 +28,8 @@ namespace Builder2
             DisplayType = displayType;
         }
 
-        public abstract int OriginalWidth { get; }
-        public abstract int OriginalHeight { get; }
+        public abstract int Width { get; }
+        public abstract int Height { get; }
         public abstract int Weight { get; }
         public abstract int Orcs { get; }
         public abstract Action<Sieger> ModuleEffect { get; }
@@ -42,29 +42,6 @@ namespace Builder2
         public virtual CellCategory PlacementType => CellCategory.All;
 
         public string DisplayType { get; }
-
-        public int Rotation { get; set; }
-
-        public int Width => Rotation % 2 == 0 ? OriginalWidth : OriginalHeight;
-
-        public int Height => Rotation % 2 == 0 ? OriginalHeight : OriginalWidth;
-
-        // ReSharper disable once InconsistentNaming
-        public void RotateCW()
-        {
-            Rotation = (Rotation + 1) % 4;
-        }
-
-        // ReSharper disable once InconsistentNaming
-        public void RotateCCW()
-        {
-            Rotation = (Rotation + 3) % 4;
-        }
-
-        public float GetRotationAngle()
-        {
-            return Rotation * 90f;
-        }
 
         public bool IsBlocked(int offsetX, int offsetY)
         {
@@ -97,8 +74,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 1;
-        public override int OriginalHeight => 1;
+        public override int Width => 1;
+        public override int Height => 1;
         public override int Weight => 4;
         public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Autobow>().numBows++;
@@ -115,8 +92,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 1;
-        public override int OriginalHeight => 1;
+        public override int Width => 1;
+        public override int Height => 1;
         public override int Weight => 2;
         public override int Orcs => 1;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Crossbow>().timers.Add(0);
@@ -149,8 +126,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 3;
-        public override int OriginalHeight => 1;
+        public override int Width => 3;
+        public override int Height => 1;
 
         protected override bool[][] Blocked => new[]
         {
@@ -166,8 +143,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 3;
-        public override int OriginalHeight => 1;
+        public override int Width => 3;
+        public override int Height => 1;
 
         protected override bool[][] Blocked => new[]
         {
@@ -183,8 +160,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 1;
-        public override int OriginalHeight => 3;
+        public override int Width => 1;
+        public override int Height => 3;
 
         protected override bool[][] Blocked => new[]
         {
@@ -203,8 +180,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 1;
-        public override int OriginalHeight => 3;
+        public override int Width => 1;
+        public override int Height => 3;
 
         protected override bool[][] Blocked => new[]
         {
@@ -222,8 +199,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 1;
-        public override int OriginalHeight => 1;
+        public override int Width => 1;
+        public override int Height => 1;
         public override int Weight => 2;
         public override int Orcs => 1;
         public override Action<Sieger> ModuleEffect => sieger => sieger.enabled = true;
@@ -240,8 +217,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 3;
-        public override int OriginalHeight => 3;
+        public override int Width => 3;
+        public override int Height => 3;
         public override int Weight => 7;
         public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 3;
@@ -335,8 +312,8 @@ namespace Builder2
         {
         }
 
-        public override int OriginalWidth => 1;
-        public override int OriginalHeight => 1;
+        public override int Width => 1;
+        public override int Height => 1;
         public override int Weight => 7;
         public override int Orcs => 2;
 

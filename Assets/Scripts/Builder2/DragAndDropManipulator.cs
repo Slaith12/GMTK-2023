@@ -94,13 +94,13 @@ namespace Builder2
                 target.CapturePointer(evt.pointerId);
                 var type = ((ModuleImage) target).Type;
                 AllSlotRoot.AddToClassList("dragging-module-" + type);
-                _wip = ModuleBase.ModuleTypes[type]();
+                _wip = ModuleBase.ModuleTypes[type];
                 Enabled = true;
             }
             else if (evt.button == (int) MouseButton.RightMouse)
             {
                 var parent = SlotSlots.FirstOrDefault(x => x.PlacementSlot == target.parent);
-                ModuleBase moduleType = ModuleBase.ModuleTypes[((ModuleImage)target).Type]();
+                ModuleBase moduleType = ModuleBase.ModuleTypes[((ModuleImage)target).Type];
                 BeforeUnslot?.Invoke(this, moduleType, parent);
                 target.RemoveFromHierarchy();
                 OnDeleted?.Invoke(moduleType);
@@ -121,7 +121,7 @@ namespace Builder2
             else
             {
                 target.RemoveFromHierarchy();
-                OnDeleted?.Invoke(ModuleBase.ModuleTypes[((ModuleImage)target).Type]());
+                OnDeleted?.Invoke(ModuleBase.ModuleTypes[((ModuleImage)target).Type]);
                 // bye lol
             }
         }

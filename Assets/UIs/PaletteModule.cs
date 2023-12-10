@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Builder2;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 
 namespace UIs
@@ -8,16 +9,16 @@ namespace UIs
         private string m_Description;
         private string m_Label;
 
-        private string m_ModuleType;
+        private ModuleBase m_ModuleType;
 
         public PaletteModule()
         {
-            m_ModuleType = string.Empty;
+            m_ModuleType = null;
             m_Label = string.Empty;
             m_Description = string.Empty;
             AddToClassList("palette-item");
             // the image - actual image is handled in the USS
-            Add(GetImageCopy());
+            Add(GetImageCopy(inUse: false));
             // the stack
             var stack = new VisualElement();
             stack.AddToClassList("module-desc-stack");
@@ -35,7 +36,7 @@ namespace UIs
             Add(stack);
         }
 
-        public string ModuleType
+        public ModuleBase ModuleType
         {
             get => m_ModuleType;
             set
@@ -43,8 +44,9 @@ namespace UIs
                 var image = this.Q<VisualElement>(className: "module-icon");
                 if (image != null)
                 {
-                    image.RemoveFromClassList("module-type-" + m_ModuleType);
-                    image.AddToClassList("module-type-" + value);
+                    if(m_ModuleType != null)
+                        image.RemoveFromClassList("module-type-" + m_ModuleType.DisplayType);
+                    image.AddToClassList("module-type-" + value.DisplayType);
                 }
 
                 m_ModuleType = value;
@@ -75,15 +77,11 @@ namespace UIs
 
         public VisualElement Image => this.Q<VisualElement>(className: "module-icon");
 
-        public VisualElement GetImageCopy()
+        public ModuleImage GetImageCopy(bool inUse = true)
         {
-            var image = new ModuleImage
-            {
-                Type = ModuleType
-            };
-            image.AddToClassList("module-icon");
-            image.AddToClassList("module-type-" + ModuleType);
-            image.focusable = true;
+            var image = new ModuleImage(ModuleType);
+            if(inUse)
+                image.AddToClassList("module-in-use");
             return image;
         }
 
@@ -105,7 +103,9 @@ namespace UIs
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
-                ((PaletteModule) ve).ModuleType = m_ModuleType.GetValueFromBag(bag, cc);
+                string module = m_ModuleType.GetValueFromBag(bag, cc);
+                if(ModuleBase.ModuleTypes.ContainsKey(module))
+                    ((PaletteModule) ve).ModuleType = ModuleBase.ModuleTypes[module];
                 ((PaletteModule) ve).Label = m_Label.GetValueFromBag(bag, cc);
                 ((PaletteModule) ve).Description = m_Description.GetValueFromBag(bag, cc);
             }

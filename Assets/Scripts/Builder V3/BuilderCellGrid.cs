@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum CellCategory { All, Edges }
+public enum CellCategory { All, Edges, Exact }
 
 public class BuilderCellGrid : MonoBehaviour
 {
@@ -16,75 +16,85 @@ public class BuilderCellGrid : MonoBehaviour
     private VisualElement[,] visualCells;
     private List<VisualElement> highlightedCells;
 
-    public int gridWidth { get; private set; }
-    public int gridHeight { get; private set; }
+    [SerializeField] int m_gridWidth;
+    public int gridWidth => visualCells.GetLength(0);
+    [SerializeField] int m_gridHeight;
+    public int gridHeight => visualCells.GetLength(1);
+    public Vector2 cellSize => visualCells[0, 0].worldBound.size;
 
-    private void Init(int gridWidth, int gridHeight)
+    private void Awake()
     {
-        this.gridWidth = gridWidth;
-        this.gridHeight = gridHeight;
-
-        visualCells = new VisualElement[gridWidth, gridHeight];
+        visualCells = new VisualElement[m_gridWidth, m_gridHeight];
         highlightedCells = new List<VisualElement>();
+    }
 
+    private void Start()
+    {
         UIDocument document = GetComponent<UIDocument>();
         VisualElement rootPlacementsElement = document.rootVisualElement.Q(name: "placements");
         placementGrid = rootPlacementsElement.Q(className: "rows");
 
-        int cellY = 0;
-        foreach (VisualElement cellRow in placementGrid.Children())
+        int cellX = 0;
+        foreach (VisualElement cellColumn in placementGrid.Children())
         {
-            if (cellY >= gridHeight)
+            if (cellX >= gridWidth)
             {
-                Debug.LogError("Builder grid height bigger than expected. Please correct value in BuilderGridDisplay script.");
+                Debug.LogError("Builder grid width bigger than expected. Please correct value in BuilderGridDisplay script.");
                 break;
             }
-            int cellX = 0;
-            foreach (VisualElement cell in cellRow.Children())
+            int cellY = 0;
+            foreach (VisualElement cell in cellColumn.Children())
             {
-                if (cellX >= gridWidth)
+                if (cellY >= gridHeight)
                 {
-                    Debug.LogError("Builder grid width bigger than expected. Please correct value in BuilderGridDisplay script.");
+                    Debug.LogError("Builder grid height bigger than expected. Please correct value in BuilderGridDisplay script.");
                     break;
                 }
                 visualCells[cellX, cellY] = cell;
-                cellX++;
+                cellY++;
             }
-            if (cellX < gridWidth)
+            if (cellY < gridHeight)
             {
-                Debug.LogError("Builder grid width smaller than expected. Please correct value in BuilderGridDisplay script.");
+                Debug.LogError("Builder grid height smaller than expected. Please correct value in BuilderGridDisplay script.");
             }
-            cellY++;
+            cellX++;
         }
-        if (cellY < gridHeight)
+        if (cellX < gridWidth)
         {
-            Debug.LogError("Builder grid height smaller than expected. Please correct value in BuilderGridDisplay script.");
+            Debug.LogError("Builder grid width smaller than expected. Please correct value in BuilderGridDisplay script.");
         }
+    }
+
+    public bool IsMouseOnCell(Vector2 mousePos)
+    {
+        return placementGrid.ContainsPoint(mousePos);
     }
 
     public Vector2Int GetClosestCellFromMouse(Vector2 mousePos, CellCategory filter = CellCategory.All)
     {
+        if (filter == CellCategory.Exact && !IsMouseOnCell(mousePos))
+            return new Vector2Int(-1, -1);
+
         Vector2 gridOrigin = placementGrid.worldBound.min; //top-left corner
-        Vector2 cellSize = visualCells[0, 0].worldBound.size;
 
         int cellX = (int)((mousePos.x - gridOrigin.x) / cellSize.x);
         if (cellX < 0)
             cellX = 0;
-        else if (cellX >= visualCells.GetLength(0))
-            cellX = visualCells.GetLength(0) - 1;
+        else if (cellX >= gridWidth)
+            cellX = gridWidth - 1;
 
         int cellY = (int)((mousePos.y - gridOrigin.y) / cellSize.y);
         if (cellY < 0)
             cellY = 0;
-        else if (cellY >= visualCells.GetLength(1))
-            cellY = visualCells.GetLength(1) - 1;
+        else if (cellY >= gridHeight)
+            cellY = gridHeight - 1;
 
         if(filter == CellCategory.Edges && 
-            cellX > 0 && cellX < visualCells.GetLength(0) - 1 &&
-            cellY > 0 && cellY < visualCells.GetLength(1) - 1) 
+            cellX > 0 && cellX < gridWidth - 1 &&
+            cellY > 0 && cellY < gridHeight - 1) 
         {
-            if (cellY >= visualCells.GetLength(1) / 2)
-                cellY = visualCells.GetLength(1) - 1;
+            if (cellY >= gridHeight / 2)
+                cellY = gridHeight - 1;
             else
                 cellY = 0;
         }
@@ -96,6 +106,10 @@ public class BuilderCellGrid : MonoBehaviour
     {
         foreach(Vector2Int cellPos in cellPositions)
         {
+            if (cellPos.x < 0 || cellPos.x >= gridWidth)
+                return false;
+            if (cellPos.y < 0 || cellPos.y >= gridHeight)
+                return false;
             if (visualCells[cellPos.x, cellPos.y].ClassListContains(CLASS_OCCUPIED))
                 return false;
         }
@@ -104,7 +118,7 @@ public class BuilderCellGrid : MonoBehaviour
 
     #region Highlight
 
-    public void HighlightCells(List<Vector2Int> cellPositions)
+    public void HighlightCells(List<Vector2Int> cellPositions, bool markInvalid = true)
     {
         UnHighlightCells();
         if(cellPositions == null)
@@ -119,7 +133,7 @@ public class BuilderCellGrid : MonoBehaviour
             VisualElement cell = visualCells[cellPos.x, cellPos.y];
             highlightedCells.Add(cell);
             cell.AddToClassList(CLASS_HIGHLIGHT);
-            if (invalid)
+            if (invalid && markInvalid)
                 cell.AddToClassList(CLASS_INVALID);
         }
     }
@@ -170,11 +184,11 @@ public class BuilderCellGrid : MonoBehaviour
             case CellCategory.Edges:
                 for (int i = 0; i < visualCells.GetLength(0); i++)
                 {
-                    int lastY = visualCells.GetLength(1) - 1;
+                    int lastY = gridHeight - 1;
                     visualCells[i, 0].AddToClassList(CLASS_LIGHTEN);
                     visualCells[i, lastY].AddToClassList(CLASS_LIGHTEN);
                 }
-                for (int j = 1; j < visualCells.GetLength(1) - 1; j++)
+                for (int j = 1; j < gridHeight - 1; j++)
                 {
                     int lastX = visualCells.GetLength(0) - 1;
                     visualCells[0, j].AddToClassList(CLASS_LIGHTEN);

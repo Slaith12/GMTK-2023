@@ -331,8 +331,8 @@
 }
 
 #placements .rows .column .slot {
-    width: 68px;
-    height: 68px;
+    width: 64px;
+    height: 64px;
     border-width: 2px;
     border-color: rgb(136, 136, 136);
     background-color: rgb(64, 64, 64);
@@ -342,8 +342,20 @@
     -unity-background-image-tint-color: rgb(128, 128, 128);
 }
 
+#placements .rows .column .slot.lighten {
+    -unity-background-image-tint-color: rgb(180, 180, 180);
+}
+
+#placements .rows .column .slot.highlighted {
+    -unity-background-image-tint-color: rgb(128, 255, 154);
+}
+
 #placements .rows .column .slot.occupied {
     -unity-background-image-tint-color: rgb(64, 64, 64);
+}
+
+#placements .rows .column .slot.invalid {
+    -unity-background-image-tint-color: rgb(255, 93, 88);
 }
 
 #placements.dragging-module-crossbow .slot.highlight-any {

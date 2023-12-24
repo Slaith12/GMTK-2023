@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum CellCategory { All, Edges, Exact }
+public enum CellCategory { All, Edges }
 
 public class BuilderCellGrid : MonoBehaviour
 {
@@ -26,10 +26,7 @@ public class BuilderCellGrid : MonoBehaviour
     {
         visualCells = new VisualElement[m_gridWidth, m_gridHeight];
         highlightedCells = new List<VisualElement>();
-    }
 
-    private void Start()
-    {
         UIDocument document = GetComponent<UIDocument>();
         VisualElement rootPlacementsElement = document.rootVisualElement.Q(name: "placements");
         placementGrid = rootPlacementsElement.Q(className: "rows");
@@ -37,6 +34,8 @@ public class BuilderCellGrid : MonoBehaviour
         int cellX = 0;
         foreach (VisualElement cellColumn in placementGrid.Children())
         {
+            if (cellColumn.name == "module-table")
+                continue;
             if (cellX >= gridWidth)
             {
                 Debug.LogError("Builder grid width bigger than expected. Please correct value in BuilderGridDisplay script.");
@@ -67,23 +66,39 @@ public class BuilderCellGrid : MonoBehaviour
 
     public bool IsMouseOnCell(Vector2 mousePos)
     {
-        return placementGrid.ContainsPoint(mousePos);
+        Vector2 gridOrigin = placementGrid.worldBound.min; //top-left corner
+
+        float cellX = ((mousePos.x - gridOrigin.x) / cellSize.x);
+
+        if (cellX < 0)
+            return false;
+        else if (cellX >= gridWidth)
+            return false;
+
+        float cellY = ((mousePos.y - gridOrigin.y) / cellSize.y);
+
+        if (cellY < 0)
+            return false;
+        else if (cellY >= gridHeight)
+            return false;
+
+
+        return true;
     }
 
     public Vector2Int GetClosestCellFromMouse(Vector2 mousePos, CellCategory filter = CellCategory.All)
     {
-        if (filter == CellCategory.Exact && !IsMouseOnCell(mousePos))
-            return new Vector2Int(-1, -1);
-
         Vector2 gridOrigin = placementGrid.worldBound.min; //top-left corner
 
         int cellX = (int)((mousePos.x - gridOrigin.x) / cellSize.x);
+
+        int cellY = (int)((mousePos.y - gridOrigin.y) / cellSize.y);
+
         if (cellX < 0)
             cellX = 0;
         else if (cellX >= gridWidth)
             cellX = gridWidth - 1;
 
-        int cellY = (int)((mousePos.y - gridOrigin.y) / cellSize.y);
         if (cellY < 0)
             cellY = 0;
         else if (cellY >= gridHeight)

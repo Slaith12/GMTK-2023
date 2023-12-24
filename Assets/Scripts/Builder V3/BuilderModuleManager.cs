@@ -2,30 +2,106 @@ using Builder2;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UIs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(BuilderCellGrid))]
 public class BuilderModuleManager : MonoBehaviour
 {
     private BuilderCellGrid cellGrid;
 
     private ModuleImage[,] moduleGrid;
     private Dictionary<ModuleImage, Vector2Int> moduleList;
+    private int numOrcs;
+    private bool hasCockpit;
 
-    private VisualElement rootElement;
-    private VisualElement placementGrid;
+    public VisualElement placementGrid { get; private set; }
+    public Label orcDisplay { get; private set; }
+    public Button siegeButton { get; private set; }
+
+    private void Awake()
+    {
+        cellGrid = GetComponent<BuilderCellGrid>();
+        numOrcs = 21;
+
+        UIDocument document = GetComponent<UIDocument>();
+        VisualElement rootElement = document.rootVisualElement;
+        placementGrid = rootElement.Q(name: "module-table");
+        VisualElement statusPanel = rootElement.Q(name: "status-header");
+        orcDisplay = statusPanel.Q<Label>(name: "orcs-test-info");
+        siegeButton = statusPanel.Q<Button>(name: "siege-button");
+    }
 
     private void Start()
     {
-        cellGrid = GetComponent<BuilderCellGrid>();
-
         moduleGrid = new ModuleImage[cellGrid.gridWidth, cellGrid.gridHeight];
         moduleList = new Dictionary<ModuleImage, Vector2Int>();
+        //for some reason, if this isn't delayed by 1 frame after start, the builder freezes.
+        StartCoroutine(InitMachine());
+    }
 
-        UIDocument document = GetComponent<UIDocument>();
-        rootElement = document.rootVisualElement;
-        placementGrid = rootElement.Q(name: "placements");
+    private IEnumerator InitMachine()
+    {
+        yield return null;
+        List<ModuleData> siegeData = GameManager.gameManager.siegeMachineData;
+        if (siegeData != null)
+        {
+            foreach (ModuleData data in siegeData)
+            {
+                ModuleImage module = new ModuleImage(data.type);
+                module.SetAsGridItem();
+                AddModule(module, data.position);
+                RegisterModule(module);
+            }
+        }
+        UpdateDisplays();
+    }
+
+    public bool ValidSetup()
+    {
+        return numOrcs >= 0 && hasCockpit;
+    }    
+
+    public void RegisterModule(ModuleBase module)
+    {
+        numOrcs -= module.Orcs;
+        if (module.DisplayType == "cockpit")
+            hasCockpit = true;
+        UpdateDisplays();
+    }
+
+    public void UnregisterModule(ModuleBase module)
+    {
+        numOrcs += module.Orcs;
+        if (module.DisplayType == "cockpit" && !moduleList.Keys.Any(module => module.module.DisplayType == "cockpit"))
+            hasCockpit = false;
+        UpdateDisplays();
+    }
+
+    private void UpdateDisplays()
+    {
+        orcDisplay.text = numOrcs.ToString();
+        if (numOrcs < 0)
+        {
+            siegeButton.text = "Too many modules!";
+            siegeButton.parent.RemoveFromClassList("test-pass");
+            siegeButton.parent.AddToClassList("test-fail");
+        }
+        else
+        {
+            if (!hasCockpit)
+            {
+                siegeButton.text = "Cockpit needed!";
+                siegeButton.parent.RemoveFromClassList("test-pass");
+                siegeButton.parent.AddToClassList("test-fail");
+                return;
+            }
+            siegeButton.text = "Siege!";
+            siegeButton.parent.AddToClassList("test-pass");
+            siegeButton.parent.RemoveFromClassList("test-fail");
+        }
     }
 
     public bool AddModule(ModuleImage module, Vector2Int pos)
@@ -36,7 +112,7 @@ public class BuilderModuleManager : MonoBehaviour
         if(moduleList.ContainsKey(module))
         {
             Debug.LogWarning("Added module that was already present in grid. Removing module from previous location.");
-            RemoveModule(module, false);
+            RemoveModule(module);
         }
 
         module.RemoveFromHierarchy();
@@ -80,7 +156,7 @@ public class BuilderModuleManager : MonoBehaviour
         return new Dictionary<ModuleImage, Vector2Int>(moduleList);
     }
 
-    public Vector2Int RemoveModule(ModuleImage module, bool restoreToRootElement = true)
+    public Vector2Int RemoveModule(ModuleImage module)
     {
         if (module == null || !moduleList.ContainsKey(module))
             return new Vector2Int(-1, -1);
@@ -100,15 +176,13 @@ public class BuilderModuleManager : MonoBehaviour
         }
         moduleList.Remove(module);
         module.RemoveFromHierarchy();
-        if (restoreToRootElement)
-            rootElement.Add(module);
         return originPos;
     }
 
-    public ModuleImage RemoveModuleAt(Vector2Int pos, out Vector2Int originPos, bool restoreToRootElement = true)
+    public ModuleImage RemoveModuleAt(Vector2Int pos, out Vector2Int originPos)
     {
         ModuleImage module = GetModuleAt(pos);
-        originPos = RemoveModule(module, restoreToRootElement);
+        originPos = RemoveModule(module);
         return module;
     }
 }

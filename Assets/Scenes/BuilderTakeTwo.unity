@@ -354,6 +354,10 @@ GameObject:
   - component: {fileID: 2018604441}
   - component: {fileID: 2018604440}
   - component: {fileID: 2018604442}
+  - component: {fileID: 2018604446}
+  - component: {fileID: 2018604445}
+  - component: {fileID: 2018604444}
+  - component: {fileID: 2018604443}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -399,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018604439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49fe99910011408a973592c44d8935cb, type: 3}
   m_Name: 
@@ -409,3 +413,53 @@ MonoBehaviour:
   delSound: {fileID: 8300000, guid: 0a0db02cd03ddcd49876bf3f2086c46a, type: 3}
   failSound: {fileID: 8300000, guid: 6b59769ed3ef5c04dbcee1cf71b206d6, type: 3}
   nextLevel: 0
+--- !u!114 &2018604443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018604439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d0a2b3294194c4eb65614e7c547a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2018604444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018604439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de25bfd820bca643bd81b1320ddf187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2018604445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018604439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fead938a7d8bd7746af33732725e0f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2018604446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018604439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5cb59382d16ee4eb52e4543194c65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gridWidth: 8
+  m_gridHeight: 4

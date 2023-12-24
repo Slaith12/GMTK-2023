@@ -30,7 +30,6 @@ namespace Builder2
 
         public abstract int Width { get; }
         public abstract int Height { get; }
-        public abstract int Weight { get; }
         public abstract int Orcs { get; }
         public abstract Action<Sieger> ModuleEffect { get; }
 
@@ -60,9 +59,11 @@ namespace Builder2
         public List<Vector2Int> GetCollisionInfo(Vector2Int origin)
         {
             List<Vector2Int> cellPositions = new List<Vector2Int>(GridCollision);
+            string poses = "";
             for (int i = 0; i < cellPositions.Count; i++)
             {
                 cellPositions[i] += origin;
+                poses += cellPositions[i] + ", ";
             }
             return cellPositions;
         }
@@ -76,7 +77,6 @@ namespace Builder2
 
         public override int Width => 1;
         public override int Height => 1;
-        public override int Weight => 4;
         public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Autobow>().numBows++;
 
@@ -94,7 +94,6 @@ namespace Builder2
 
         public override int Width => 1;
         public override int Height => 1;
-        public override int Weight => 2;
         public override int Orcs => 1;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Crossbow>().timers.Add(0);
 
@@ -110,7 +109,6 @@ namespace Builder2
         {
         }
 
-        public override int Weight => 5;
         public override int Orcs => 3;
         public override CellCategory PlacementType => CellCategory.Edges;
 
@@ -201,7 +199,6 @@ namespace Builder2
 
         public override int Width => 1;
         public override int Height => 1;
-        public override int Weight => 2;
         public override int Orcs => 1;
         public override Action<Sieger> ModuleEffect => sieger => sieger.enabled = true;
 
@@ -219,7 +216,6 @@ namespace Builder2
 
         public override int Width => 3;
         public override int Height => 3;
-        public override int Weight => 7;
         public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 3;
 
@@ -242,7 +238,7 @@ namespace Builder2
             new[] {true, true, true}
         };
         protected override Vector2Int[] GridCollision => new Vector2Int[] 
-        { Vector2Int.zero, Vector2Int.up, Vector2Int.up * 2, Vector2Int.right, Vector2Int.right * 2 };
+        { Vector2Int.zero, -Vector2Int.up, -Vector2Int.up * 2, Vector2Int.right, Vector2Int.right * 2 };
         public override RectInt GridBounds => new RectInt(0, -2, 3, 3);
     }
 
@@ -262,7 +258,7 @@ namespace Builder2
             new[] {true, false, false}
         };
         protected override Vector2Int[] GridCollision => new Vector2Int[]
-        { Vector2Int.zero, Vector2Int.down, Vector2Int.down * 2, Vector2Int.right, Vector2Int.right * 2 };
+        { Vector2Int.zero, -Vector2Int.down, -Vector2Int.down * 2, Vector2Int.right, Vector2Int.right * 2 };
         public override RectInt GridBounds => new RectInt(0, 0, 3, 3);
     }
 
@@ -282,7 +278,7 @@ namespace Builder2
             new[] {false, false, true}
         };
         protected override Vector2Int[] GridCollision => new Vector2Int[]
-        { Vector2Int.zero, Vector2Int.down, Vector2Int.down * 2, Vector2Int.left, Vector2Int.left * 2 };
+        { Vector2Int.zero, -Vector2Int.down, -Vector2Int.down * 2, Vector2Int.left, Vector2Int.left * 2 };
         public override RectInt GridBounds => new RectInt(-2, 0, 3, 3);
     }
 
@@ -302,7 +298,7 @@ namespace Builder2
             new[] {true, true, true}
         };
         protected override Vector2Int[] GridCollision => new Vector2Int[]
-        { Vector2Int.zero, Vector2Int.up, Vector2Int.up * 2, Vector2Int.left, Vector2Int.left * 2 };
+        { Vector2Int.zero, -Vector2Int.up, -Vector2Int.up * 2, Vector2Int.left, Vector2Int.left * 2 };
         public override RectInt GridBounds => new RectInt(-2, -2, 3, 3);
     }
 
@@ -314,7 +310,6 @@ namespace Builder2
 
         public override int Width => 1;
         public override int Height => 1;
-        public override int Weight => 7;
         public override int Orcs => 2;
 
         public override Action<Sieger> ModuleEffect => (sieger => sieger.movementSpeed += 0.5f);

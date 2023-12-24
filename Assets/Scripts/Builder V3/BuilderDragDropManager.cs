@@ -6,12 +6,14 @@ using UIs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(BuilderModuleManager))]
 public class BuilderDragDropManager : MonoBehaviour
 {
     public ModuleImage currentDraggedModule { get; private set; }
 
     private Vector2Int originalModulePos;
     private ModuleBase originalModuleType; //different rotations are considered different module types, so this is needed to return to the original rotation
+    private bool moduleCameFromLibrary => originalModulePos.x < 0;
 
     private bool draggingOverCells;
     private Vector2Int currentFocusCellPos;
@@ -22,7 +24,11 @@ public class BuilderDragDropManager : MonoBehaviour
     private BuilderCellGrid cellGrid;
     private BuilderModuleManager moduleManager;
 
-    private void Start()
+    private VisualElement dragDropLayer;
+
+    private Vector2 currentMousePos;
+
+    private void Awake()
     {
         cellGrid = GetComponent<BuilderCellGrid>();
         moduleManager = GetComponent<BuilderModuleManager>();
@@ -38,16 +44,24 @@ public class BuilderDragDropManager : MonoBehaviour
             ModuleBase.ModuleTypes["orc-attack-party-180"],
             ModuleBase.ModuleTypes["orc-attack-party-270"]
         };
+
+        UIDocument document = GetComponent<UIDocument>();
+        dragDropLayer = document.rootVisualElement.Q<VisualElement>("drag-overlay");
     }
 
     public void Grab(ModuleImage module)
     {
         if (currentDraggedModule != null)
             Release();
-        currentDraggedModule = module;
 
         originalModulePos = moduleManager.RemoveModule(module);
         originalModuleType = module.module;
+
+        module.RemoveFromHierarchy();
+        dragDropLayer.Add(module);
+
+        currentDraggedModule = module;
+        cellGrid.LightenCells(module.module.PlacementType);
 
         currentFocusCellPos = new Vector2Int(-1, -1);
     }
@@ -59,14 +73,23 @@ public class BuilderDragDropManager : MonoBehaviour
         if(!draggingOverCells) //means it's dragging over module library, aka trash
         {
             currentDraggedModule.RemoveFromHierarchy();
+            if (!moduleCameFromLibrary)
+                moduleManager.UnregisterModule(currentDraggedModule.module);
             currentDraggedModule = null;
+            cellGrid.UnHighlightCells();
+            cellGrid.UnLightenCells();
         }
         else
         {
             if (cellGrid.CellsAvailable(currentDraggedModule.module.GetCollisionInfo(currentFocusCellPos)))
             {
                 moduleManager.AddModule(currentDraggedModule, currentFocusCellPos);
+                if (moduleCameFromLibrary)
+                    moduleManager.RegisterModule(currentDraggedModule.module);
+
                 currentDraggedModule = null;
+                cellGrid.UnHighlightCells();
+                cellGrid.UnLightenCells();
             }
             else
             {
@@ -77,7 +100,7 @@ public class BuilderDragDropManager : MonoBehaviour
 
     public void Revert()
     {
-        if (originalModulePos.x < 0) //means module came from library, not moving within the grid
+        if (moduleCameFromLibrary)
         {
             currentDraggedModule.RemoveFromHierarchy();
         }
@@ -87,21 +110,28 @@ public class BuilderDragDropManager : MonoBehaviour
             moduleManager.AddModule(currentDraggedModule, originalModulePos);
         }
         currentDraggedModule = null;
+        cellGrid.UnHighlightCells();
+        cellGrid.UnLightenCells();
     }
 
     public void Drag(Vector2 mousePos)
     {
-        currentDraggedModule.transform.position = mousePos;
-
+        currentMousePos = mousePos;
         //check if cursor is over module library. if not, continue
+        //TODO: add proper check for dragging over cell grid vs dragging over library.
         draggingOverCells = true;
-        DragOverGrid();
+        if(draggingOverCells)
+            DragOverGrid();
+
+        Vector2 mouseOffset = (currentDraggedModule.module.GridBounds.min - Vector2.one * 0.5f) * cellGrid.cellSize;
+        currentDraggedModule.transform.position = mousePos + mouseOffset;
 
         void DragOverGrid()
         {
             Vector2Int newClosestCellPos = cellGrid.GetClosestCellFromMouse(mousePos, currentDraggedModule.module.PlacementType);
 
-            if ((Shield)currentDraggedModule.module != null)
+            //TODO: Consider changing this to something that checks a property that indicates whether the module should auto-rotate
+            if (currentDraggedModule.module.PlacementType == CellCategory.Edges)
             {
                 UpdateShieldRotation(newClosestCellPos);
             }
@@ -112,28 +142,37 @@ public class BuilderDragDropManager : MonoBehaviour
                 return;
             currentFocusCellPos = newClosestCellPos;
 
-
             cellGrid.HighlightCells(currentDraggedModule.module.GetCollisionInfo(newClosestCellPos));
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Rotate();
         }
     }
 
     public void Rotate()
     {
-        if (currentDraggedModule != null && (OrcAttackParty)currentDraggedModule.module != null)
+        //TODO: Implement proper rotatable check that uses a property of the module rather than just checking if it's an OAP
+        if (currentDraggedModule != null && currentDraggedModule.module.DisplayType.Contains("orc-attack-party"))
             UpdateAttackPartyRotation();
     }
 
     private void EnforceModuleBounds(ref Vector2Int targetCell)
     {
+        //+y = down, -y = up
         RectInt bounds = currentDraggedModule.module.GridBounds;
-        int top = targetCell.y - bounds.yMin;
+        int top = targetCell.y + bounds.yMin;
         int bottom = top + bounds.height; //this is actually 1 row below the lowest point on the module, but this makes calculations easier
         if (top < 0)
             targetCell.y -= top; //top is negative so this will increase y, pushing the module down
         else if (bottom > cellGrid.gridHeight)
             targetCell.y -= (bottom - cellGrid.gridHeight);
 
-        int left = targetCell.x - bounds.xMin;
+        int left = targetCell.x + bounds.xMin;
         int right = left + bounds.width; //this is actually 1 column to the right of the rightmost point on the module, but this makes calculations easier
         if (left < 0)
             targetCell.x -= left; //top is negative so this will increase x, pushing the module to the right
@@ -174,5 +213,7 @@ public class BuilderDragDropManager : MonoBehaviour
         if (newRotation == 4)
             newRotation = 0;
         currentDraggedModule.module = attackPartiesCache[newRotation];
+        currentFocusCellPos = -Vector2Int.one;
+        Drag(currentMousePos);
     }
 }

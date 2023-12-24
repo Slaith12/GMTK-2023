@@ -6,9 +6,9 @@ using UnityEngine;
 public class ModuleData
 {
     public ModuleBase type;
-    public Vector2 position;
+    public Vector2Int position;
 
-    public ModuleData(ModuleBase type, Vector2 pos)
+    public ModuleData(ModuleBase type, Vector2Int pos)
     {
         this.type = type;
         position = pos;

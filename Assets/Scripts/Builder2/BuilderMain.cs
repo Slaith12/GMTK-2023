@@ -191,7 +191,7 @@ namespace Builder2
                 if (image == null)
                     continue;
                 ModuleBase module = ModuleBase.ModuleTypes[image.Type];
-                modules.Add(new ModuleData(module, new Vector2(slot.X, slot.Y)));
+                modules.Add(new ModuleData(module, new Vector2Int(slot.X, slot.Y)));
             }
 
             return modules;

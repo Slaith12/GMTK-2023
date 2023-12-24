@@ -18,7 +18,7 @@ namespace UIs
             m_Description = string.Empty;
             AddToClassList("palette-item");
             // the image - actual image is handled in the USS
-            Add(GetImageCopy(inUse: false));
+            Add(GetImageCopy(asGridItem: false));
             // the stack
             var stack = new VisualElement();
             stack.AddToClassList("module-desc-stack");
@@ -77,11 +77,11 @@ namespace UIs
 
         public VisualElement Image => this.Q<VisualElement>(className: "module-icon");
 
-        public ModuleImage GetImageCopy(bool inUse = true)
+        public ModuleImage GetImageCopy(bool asGridItem = true)
         {
             var image = new ModuleImage(ModuleType);
-            if(inUse)
-                image.AddToClassList("module-in-use");
+            if (asGridItem)
+                image.SetAsGridItem();
             return image;
         }
 

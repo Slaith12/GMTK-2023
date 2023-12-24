@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         m_gameManager = this;
         DontDestroyOnLoad(gameObject);
         onLevelSelect = false;
+        siegeMachineData = new List<ModuleData>() { new ModuleData(Builder2.ModuleBase.ModuleTypes["cockpit"], new Vector2Int(3, 1)) };
     }
 
     public static void GoToTitle()

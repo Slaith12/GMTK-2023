@@ -8,7 +8,7 @@ namespace UIs
 {
     public class ModuleImage : VisualElement
     {
-        public ModuleImage() : this((ModuleBase)null) {}
+        public ModuleImage() : this(null) {}
 
         public ModuleImage(ModuleBase module)
         {
@@ -31,9 +31,14 @@ namespace UIs
             }
         }
 
+        public void SetAsGridItem()
+        {
+            style.position = new StyleEnum<Position>(Position.Absolute);
+            AddToClassList("module-in-use");
+        }
         public string Type => m_module.DisplayType;
 
-
+        public static implicit operator ModuleBase(ModuleImage image) { return image.module; }
 
         public new class UxmlFactory : UxmlFactory<ModuleImage, UxmlTraits>
         {

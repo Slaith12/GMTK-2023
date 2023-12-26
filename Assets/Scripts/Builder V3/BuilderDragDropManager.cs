@@ -25,6 +25,7 @@ public class BuilderDragDropManager : MonoBehaviour
     private BuilderModuleManager moduleManager;
 
     private VisualElement dragDropLayer;
+    private VisualElement palette;
 
     private Vector2 currentMousePos;
 
@@ -46,7 +47,8 @@ public class BuilderDragDropManager : MonoBehaviour
         };
 
         UIDocument document = GetComponent<UIDocument>();
-        dragDropLayer = document.rootVisualElement.Q<VisualElement>("drag-overlay");
+        dragDropLayer = document.rootVisualElement.Q(name: "drag-overlay");
+        palette = document.rootVisualElement.Q(name: "palette");
     }
 
     public void Grab(ModuleImage module)
@@ -118,10 +120,11 @@ public class BuilderDragDropManager : MonoBehaviour
     {
         currentMousePos = mousePos;
         //check if cursor is over module library. if not, continue
-        //TODO: add proper check for dragging over cell grid vs dragging over library.
-        draggingOverCells = true;
-        if(draggingOverCells)
+        draggingOverCells = mousePos.y < palette.worldBound.yMin;
+        if (draggingOverCells)
             DragOverGrid();
+        else
+            cellGrid.UnHighlightCells();
 
         Vector2 mouseOffset = (currentDraggedModule.module.GridBounds.min - Vector2.one * 0.5f) * cellGrid.cellSize;
         currentDraggedModule.transform.position = mousePos + mouseOffset;

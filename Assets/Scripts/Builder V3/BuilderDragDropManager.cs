@@ -26,6 +26,7 @@ public class BuilderDragDropManager : MonoBehaviour
 
     private VisualElement dragDropLayer;
     private VisualElement palette;
+    private VisualElement trashOverlay;
 
     private Vector2 currentMousePos;
 
@@ -49,6 +50,8 @@ public class BuilderDragDropManager : MonoBehaviour
         UIDocument document = GetComponent<UIDocument>();
         dragDropLayer = document.rootVisualElement.Q(name: "drag-overlay");
         palette = document.rootVisualElement.Q(name: "palette");
+        trashOverlay = palette.Q(name: "trash-overlay");
+        trashOverlay.visible = false;
     }
 
     public void Grab(ModuleImage module)
@@ -64,6 +67,7 @@ public class BuilderDragDropManager : MonoBehaviour
 
         currentDraggedModule = module;
         cellGrid.LightenCells(module.module.PlacementType);
+        trashOverlay.visible = true;
 
         currentFocusCellPos = new Vector2Int(-1, -1);
     }
@@ -80,6 +84,7 @@ public class BuilderDragDropManager : MonoBehaviour
             currentDraggedModule = null;
             cellGrid.UnHighlightCells();
             cellGrid.UnLightenCells();
+            trashOverlay.visible = false;
         }
         else
         {
@@ -92,6 +97,7 @@ public class BuilderDragDropManager : MonoBehaviour
                 currentDraggedModule = null;
                 cellGrid.UnHighlightCells();
                 cellGrid.UnLightenCells();
+                trashOverlay.visible = false;
             }
             else
             {
@@ -114,6 +120,7 @@ public class BuilderDragDropManager : MonoBehaviour
         currentDraggedModule = null;
         cellGrid.UnHighlightCells();
         cellGrid.UnLightenCells();
+        trashOverlay.visible = false;
     }
 
     public void Drag(Vector2 mousePos)

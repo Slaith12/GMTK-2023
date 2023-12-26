@@ -107,7 +107,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="palette">
-            <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
+            <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
                 <ui:Label tabindex="-1" text="Parts" display-tooltip-when-elided="true" class="header-2" />
                 <ui:VisualElement name="palette-items">
                     <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate machine" />
@@ -118,6 +118,9 @@
                     <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="2 orcs\nIncreases vehicle speed" />
                 </ui:VisualElement>
             </ui:ScrollView>
+            <ui:VisualElement name="trash-overlay" style="flex-grow: 1; background-color: rgb(200, 0, 0); position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Trash%20Can.png?fileID=21300000&amp;guid=1975f37fcc024c043a670b34de856854&amp;type=3#Trash Can&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="status-header">
             <ui:VisualElement class="info-stack">

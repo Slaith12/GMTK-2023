@@ -86,6 +86,7 @@ public class BuilderController : MonoBehaviour
         {
             moduleManager.RemoveModule(module);
             moduleManager.UnregisterModule(module);
+            dragDrop.PlayDeleteSound();
         }
     }
 

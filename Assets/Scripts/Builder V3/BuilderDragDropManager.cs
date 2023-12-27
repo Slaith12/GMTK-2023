@@ -6,6 +6,7 @@ using UIs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+//TODO: move audio related stuff to a separate script
 [RequireComponent(typeof(BuilderModuleManager))]
 public class BuilderDragDropManager : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class BuilderDragDropManager : MonoBehaviour
     private VisualElement trashOverlay;
 
     private Vector2 currentMousePos;
+
+    [SerializeField] AudioSource audioPlayer;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] AudioClip placeSound;
+    [SerializeField] AudioClip deleteSound;
+    [SerializeField] AudioClip failSound;
 
     private void Awake()
     {
@@ -70,6 +77,7 @@ public class BuilderDragDropManager : MonoBehaviour
         trashOverlay.visible = true;
 
         currentFocusCellPos = new Vector2Int(-1, -1);
+        audioPlayer.PlayOneShot(pickupSound);
     }
 
     public void Release()
@@ -85,6 +93,7 @@ public class BuilderDragDropManager : MonoBehaviour
             cellGrid.UnHighlightCells();
             cellGrid.UnLightenCells();
             trashOverlay.visible = false;
+            audioPlayer.PlayOneShot(deleteSound);
         }
         else
         {
@@ -98,24 +107,35 @@ public class BuilderDragDropManager : MonoBehaviour
                 cellGrid.UnHighlightCells();
                 cellGrid.UnLightenCells();
                 trashOverlay.visible = false;
+                audioPlayer.PlayOneShot(placeSound);
             }
             else
             {
-                Revert();
+                Revert(playSound: false);
+                audioPlayer.PlayOneShot(failSound);
             }
         }
     }
 
-    public void Revert()
+    public void PlayDeleteSound()
+    {
+        audioPlayer.PlayOneShot(deleteSound);
+    }
+
+    public void Revert(bool playSound = true)
     {
         if (moduleCameFromLibrary)
         {
             currentDraggedModule.RemoveFromHierarchy();
+            if (playSound)
+                audioPlayer.PlayOneShot(deleteSound);
         }
         else
         {
             currentDraggedModule.module = originalModuleType;
             moduleManager.AddModule(currentDraggedModule, originalModulePos);
+            if (playSound)
+                audioPlayer.PlayOneShot(placeSound);
         }
         currentDraggedModule = null;
         cellGrid.UnHighlightCells();

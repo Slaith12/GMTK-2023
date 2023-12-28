@@ -29,7 +29,7 @@ public class DamageDealer : MonoBehaviour
         if (obj != null)
             if (CompareTag(obj.damageType))
             {
-                obj.healthPoints -= damageAmount;
+                obj.Damage(damageAmount);
                 if (bullet)
                     Destroy(gameObject);
             }

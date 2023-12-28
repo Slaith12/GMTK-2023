@@ -150,6 +150,16 @@ MonoBehaviour:
   healthBarOffset: {x: 0, y: -1.2}
   healthPoints: 20
   damageType: OrcProj
+  damageSound: {fileID: 8300000, guid: 6b59769ed3ef5c04dbcee1cf71b206d6, type: 3}
+  damageMinVolume: 0.9
+  damageMaxVolume: 1
+  damageMinPitch: 1.5
+  damageMaxPitch: 1.8
+  deathSound: {fileID: 8300000, guid: 486cac83aa9a1564ca48185c51428b15, type: 3}
+  deathMinVolume: 0.8
+  deathMaxVolume: 0.9
+  deathMinPitch: 0.4
+  deathMaxPitch: 0.5
 --- !u!114 &9051540786115100221
 MonoBehaviour:
   m_ObjectHideFlags: 0

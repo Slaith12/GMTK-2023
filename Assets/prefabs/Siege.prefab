@@ -119,6 +119,16 @@ MonoBehaviour:
   healthBarOffset: {x: 0, y: -0.5}
   healthPoints: 0
   damageType: HumanProj
+  damageSound: {fileID: 8300000, guid: 486cac83aa9a1564ca48185c51428b15, type: 3}
+  damageMinVolume: 0.9
+  damageMaxVolume: 1
+  damageMinPitch: 0.9
+  damageMaxPitch: 1.1
+  deathSound: {fileID: 8300000, guid: 3d8f0860295dd4848901337943291d17, type: 3}
+  deathMinVolume: 0.8
+  deathMaxVolume: 0.9
+  deathMinPitch: 0.6
+  deathMaxPitch: 0.6
 --- !u!114 &769707537930575225
 MonoBehaviour:
   m_ObjectHideFlags: 0

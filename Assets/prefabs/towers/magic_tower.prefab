@@ -121,8 +121,8 @@ MonoBehaviour:
   healthPoints: 50
   damageType: OrcProj
   damageSound: {fileID: 8300000, guid: 6b59769ed3ef5c04dbcee1cf71b206d6, type: 3}
-  damageMinVolume: 0.9
-  damageMaxVolume: 1
+  damageMinVolume: 0.8
+  damageMaxVolume: 0.9
   damageMinPitch: 1.5
   damageMaxPitch: 1.8
   deathSound: {fileID: 8300000, guid: 486cac83aa9a1564ca48185c51428b15, type: 3}

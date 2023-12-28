@@ -133,7 +133,7 @@ public class SiegePath : MonoBehaviour
         }
 
         var direction = next - current;
-        var angle = Vector2.SignedAngle(Vector2.up, direction.normalized);
+        var angle = Vector2.SignedAngle(Vector2.left, direction.normalized);
         return angle;
     }
 }

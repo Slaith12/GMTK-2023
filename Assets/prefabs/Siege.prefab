@@ -122,8 +122,8 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 486cac83aa9a1564ca48185c51428b15, type: 3}
   damageMinVolume: 0.9
   damageMaxVolume: 1
-  damageMinPitch: 0.9
-  damageMaxPitch: 1.1
+  damageMinPitch: 1.2
+  damageMaxPitch: 1.4
   deathSound: {fileID: 8300000, guid: 3d8f0860295dd4848901337943291d17, type: 3}
   deathMinVolume: 0.8
   deathMaxVolume: 0.9

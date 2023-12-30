@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : Activatable
 {
     [SerializeField] private float cooldownTime;
     [SerializeField] private GameObject projectile;

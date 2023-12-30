@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Sieger : MonoBehaviour
+public class Sieger : Activatable
 {
     public float movementSpeed;
     public float turningSpeed;

@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class IceTower : MonoBehaviour
+public class IceTower : Activatable
 {
     [SerializeField] private float cooldownTime;
     [SerializeField] private GameObject projectile;
 
-
+    /*
     // Start is called before the first frame update
     private void Start()
     {
@@ -16,4 +16,5 @@ public class IceTower : MonoBehaviour
     {
         Instantiate(projectile, transform);
     }
+    */
 }

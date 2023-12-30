@@ -47,7 +47,7 @@ public class BuilderController : MonoBehaviour
             modules.Add(new ModuleData(module.Key, module.Value));
         }
         GameManager.SetSiegeMachineData(modules);
-        GameManager.GoToLevelSelect();
+        GameManager.LeaveBuilder();
     }
 
     #region Module Palette Inputs

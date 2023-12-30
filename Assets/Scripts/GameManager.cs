@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     private const string SIEGE_SCENE_PREFIX = "Level";
     private static GameManager m_gameManager;
     public List<ModuleData> siegeMachineData;
-    [SerializeField] private bool onLevelSelect; //whether to go straight to level select when leaving title screen or go to workshop first
+    private bool onLevelSelect => currentLevel == 0;
+    private int currentLevel;
 
     public static GameManager gameManager
     {
@@ -31,31 +32,33 @@ public class GameManager : MonoBehaviour
 
         m_gameManager = this;
         DontDestroyOnLoad(gameObject);
-        onLevelSelect = false;
+        currentLevel = 0;
         siegeMachineData = new List<ModuleData>() { new ModuleData(Builder2.ModuleBase.ModuleTypes["cockpit"], new Vector2Int(3, 1)) };
     }
 
     public static void GoToTitle()
     {
         SceneManager.LoadScene(TITLE_SCENE);
-        MusicManager.instance.SetMusicLevel(gameManager.onLevelSelect
-            ? MusicManager.LEVEL_LEVEL_SELECT
-            : MusicManager.LEVEL_WORKSHOP);
+        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_LEVEL_SELECT);
     }
 
     public static void LeaveTitleScreen()
     {
-        if (gameManager.onLevelSelect)
-            GoToLevelSelect();
-        else
-            GoToBuilder();
+        GoToLevelSelect();
     }
 
     public static void GoToBuilder()
     {
         SceneManager.LoadScene(BUILDER_SCENE);
-        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_WORKSHOP);
-        gameManager.onLevelSelect = false;
+        MusicManager.instance.SetMusicLevel(gameManager.onLevelSelect ? MusicManager.LEVEL_WORKSHOP_FROM_LS : MusicManager.LEVEL_WORKSHOP_FROM_PREVIEW);
+    }
+
+    public static void LeaveBuilder()
+    {
+        if (gameManager.onLevelSelect)
+            GoToLevelSelect();
+        else
+            GoToSiege(gameManager.currentLevel);
     }
 
     public static void SetSiegeMachineData(List<ModuleData> data)
@@ -71,13 +74,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(LEVEL_SELECT_SCENE);
         MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_LEVEL_SELECT);
-        gameManager.onLevelSelect = true;
+        gameManager.currentLevel = 0;
     }
 
     public static void GoToSiege(int level)
     {
         SceneManager.LoadScene(SIEGE_SCENE_PREFIX + level);
-        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_SIEGE_PLAY);
-        MusicManager.instance.Restart();
+        MusicManager.instance.SetMusicLevel(MusicManager.LEVEL_SIEGE_PREVIEW);
+        gameManager.currentLevel = level;
     }
 }

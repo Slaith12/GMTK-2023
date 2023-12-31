@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace modules
 {
@@ -8,7 +10,7 @@ namespace modules
         [SerializeField] float cooldownTime = 0.25f;
         [SerializeField] float shotSpeed = 6;
         [SerializeField] float maxRange = 5;
-        [SerializeField] float rangeDecrement = 0.75f;
+        //[SerializeField] float rangeDecrement = 0.75f;
         [SerializeField] GameObject _projectile;
         private float timer;
 
@@ -30,36 +32,34 @@ namespace modules
 
         private void Shoot()
         {
-            //find closest tower
-            Tower[] targetlist = FindObjectsByType<Tower>(FindObjectsSortMode.None);
-            if (targetlist.Length == 0)
-                return;
-            Transform target = targetlist[0].transform;
-            float dist = Vector2.Distance(target.position, transform.position);
-            foreach (Tower t in targetlist)
+            //find closest towers
+            List<Tower> targetList = new List<Tower>(FindObjectsByType<Tower>(FindObjectsSortMode.None));
+            targetList.RemoveAll(tower => Vector2.Distance(tower.transform.position, this.transform.position) > maxRange);
+            targetList.Sort(delegate (Tower tower1, Tower tower2)
             {
-                if (Vector2.Distance(t.transform.position, transform.position) < dist)
+                float dist1 = Vector2.Distance(tower1.transform.position, this.transform.position);
+                float dist2 = Vector2.Distance(tower2.transform.position, this.transform.position);
+                if (dist1 > dist2)
+                    return 1;
+                else
+                    return -1;
+            });
+            for(int i = 0; i < Mathf.Min(numBows, targetList.Count); i++)
+            {
+                Transform target = targetList[i].transform;
+
+                float rot = Mathf.Atan((target.position.y - transform.position.y) /
+                                     (target.position.x - transform.position.x)) * Mathf.Rad2Deg;
+                if (target.position.x < transform.position.x)
                 {
-                    dist = Vector2.Distance(t.transform.position, transform.position);
-                    target = t.transform;
+                    rot -= 180;
                 }
+
+                GameObject proj = Instantiate(_projectile, transform.position, Quaternion.Euler(Vector3.forward * rot));
+
+                proj.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * shotSpeed;
             }
-            if (dist > maxRange)
-                return;
-
-            float rot = Mathf.Atan((target.position.y - transform.position.y) /
-                                 (target.position.x - transform.position.x)) * Mathf.Rad2Deg;
-            if (target.position.x < transform.position.x)
-            {
-                rot -= 180;
-            }
-
-            GameObject proj = Instantiate(_projectile, transform.position, Quaternion.Euler(Vector3.forward * rot));
-
-            proj.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * shotSpeed;
-
-            int availableBows = (int)((maxRange - dist) / rangeDecrement) + 1;
-            timer = cooldownTime / Mathf.Min(availableBows, numBows);
+            timer = cooldownTime;
         }
     }
 }

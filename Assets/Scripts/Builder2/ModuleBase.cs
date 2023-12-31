@@ -77,7 +77,7 @@ namespace Builder2
 
         public override int Width => 1;
         public override int Height => 1;
-        public override int Orcs => 3;
+        public override int Orcs => 2;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Autobow>().numBows++;
 
         protected override bool[][] Blocked => new[]
@@ -310,9 +310,9 @@ namespace Builder2
 
         public override int Width => 1;
         public override int Height => 1;
-        public override int Orcs => 2;
+        public override int Orcs => 3;
 
-        public override Action<Sieger> ModuleEffect => (sieger => sieger.movementSpeed += 0.5f);
+        public override Action<Sieger> ModuleEffect => (sieger => sieger.movementSpeed += 1f);
         protected override bool[][] Blocked => new[]
         {
             new[] {true}

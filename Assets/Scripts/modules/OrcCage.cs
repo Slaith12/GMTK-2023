@@ -17,11 +17,23 @@ public class OrcCage : MonoBehaviour
     public void SpawnOrcs()
     {
         var sieger = GetComponent<Sieger>();
+
+        if (sieger.attackOrcsAvailable <= 0)
+            return;
+
         for (var i = 0; i < sieger.attackOrcsAvailable; i++)
         {
-            GameObject newOrc = Instantiate(orc, transform.position, Quaternion.identity);
-            newOrc.GetComponent<OrcAttacker>().siegeMachine = sieger.transform;
+            Instantiate(orc, transform.position, Quaternion.identity);
         }
+        OrcAttacker.siegeMachine = sieger.transform;
+        OrcAttacker.attacking = true;
+        StartCoroutine(OrcAttacker.RepeatedlyChangeTarget());
         sieger.attackOrcsAvailable = 0;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        OrcAttacker.Disperse();
     }
 }

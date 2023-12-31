@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -6229194671123869058}
   m_Layer: 0
   m_Name: Siege
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,6 +227,5 @@ MonoBehaviour:
   numBows: 0
   cooldownTime: 0.25
   shotSpeed: 8
-  maxRange: 4
-  rangeDecrement: 0.45
+  maxRange: 6.5
   _projectile: {fileID: 0}

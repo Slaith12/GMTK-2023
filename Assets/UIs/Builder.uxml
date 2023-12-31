@@ -113,9 +113,9 @@
                     <UIs.PaletteModule module-type="cockpit" label="Cockpit" description="1 orc\nRequired to operate machine" />
                     <UIs.PaletteModule module-type="crossbow" label="Crossbow Turret" description="1 orc\nClick to shoot\nAim with your cursor" />
                     <UIs.PaletteModule module-type="shield-down" label="Shield" description="3 orcs\nBlocks incoming damage\nTakes a limited amount of hits" />
-                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Orc Attack Party" description="3 orcs\nPress Space to release\norcs to attack towers" />
-                    <UIs.PaletteModule module-type="autobow" label="Autobow" description="3 orcs\nAutomatically shoots\nthe nearest tower" />
-                    <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="2 orcs\nIncreases vehicle speed" />
+                    <UIs.PaletteModule module-type="orc-attack-party-0" label="Orc Attack Party" description="3 orcs\nSwarms around\nenemy towers" />
+                    <UIs.PaletteModule module-type="autobow" label="Autobow" description="2 orcs\nAutomatically shoots\nnearby towers" />
+                    <UIs.PaletteModule module-type="small-motor" label="Motor (small)" description="3 orcs\nIncreases vehicle speed" />
                 </ui:VisualElement>
             </ui:ScrollView>
             <ui:VisualElement name="trash-overlay" style="flex-grow: 1; background-color: rgb(200, 0, 0); position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">

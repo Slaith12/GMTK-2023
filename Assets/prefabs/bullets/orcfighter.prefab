@@ -102,11 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 2
   proj: {fileID: 2257683290785342888, guid: 5f3ade7611e957c439d1dce16102d6fc, type: 3}
-  attackCooldown: 0.3
-  speed: 5
-  moveChangeTime: 0.2
-  siegeProtectionRadius: 5
-  siegeMachine: {fileID: 0}
+  attackCooldown: 0.35
+  speed: 4
+  moveChangeTime: 0.25
 --- !u!114 &1355356113341517528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +120,20 @@ MonoBehaviour:
   maxHealth: 15
   healthBarPrefab: {fileID: 2198554356396913429, guid: 9ae2b1af5db3da0459ef51ec162c5122, type: 3}
   healthBarOffset: {x: 0, y: -0.25}
-  healthPoints: 10
+  healthPoints: 6
   damageType: HumanProj
+  damageFlashHoldDuration: 0.1
+  damageFlashTotalDuration: 0.25
+  damageSound: {fileID: 0}
+  damageMinVolume: 0.8
+  damageMaxVolume: 0.9
+  damageMinPitch: 0.9
+  damageMaxPitch: 1.1
+  deathSound: {fileID: 0}
+  deathMinVolume: 0.8
+  deathMaxVolume: 0.9
+  deathMinPitch: 0.9
+  deathMaxPitch: 1.1
 --- !u!61 &5497331486838754289
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ public class BuilderModuleManager : MonoBehaviour
     public void RegisterModule(ModuleBase module)
     {
         numOrcs -= module.Orcs;
-        if (module.DisplayType == "cockpit")
+        if (module.ModuleID == "cockpit")
             hasCockpit = true;
         UpdateDisplays();
     }
@@ -75,7 +75,7 @@ public class BuilderModuleManager : MonoBehaviour
     public void UnregisterModule(ModuleBase module)
     {
         numOrcs += module.Orcs;
-        if (module.DisplayType == "cockpit" && !moduleList.Keys.Any(module => module.module.DisplayType == "cockpit"))
+        if (module.ModuleID == "cockpit" && !moduleList.Keys.Any(module => module.module.ModuleID == "cockpit"))
             hasCockpit = false;
         UpdateDisplays();
     }

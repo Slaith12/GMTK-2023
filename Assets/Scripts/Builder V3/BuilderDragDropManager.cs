@@ -28,6 +28,7 @@ public class BuilderDragDropManager : MonoBehaviour
     private VisualElement dragDropLayer;
     private VisualElement palette;
     private VisualElement trashOverlay;
+    private VisualElement infoDisplay;
 
     private Vector2 currentMousePos;
 
@@ -59,12 +60,16 @@ public class BuilderDragDropManager : MonoBehaviour
         palette = document.rootVisualElement.Q(name: "palette");
         trashOverlay = palette.Q(name: "trash-overlay");
         trashOverlay.visible = false;
+        infoDisplay = document.rootVisualElement.Q(name: "top").Q(name: "info").Q(name: "item");
     }
 
     public void Grab(ModuleImage module)
     {
         if (currentDraggedModule != null)
             Release();
+
+        if(originalModuleType != null)
+            infoDisplay.Q(name: originalModuleType.ModuleType).visible = false;
 
         originalModulePos = moduleManager.RemoveModule(module);
         originalModuleType = module.module;
@@ -75,6 +80,7 @@ public class BuilderDragDropManager : MonoBehaviour
         currentDraggedModule = module;
         cellGrid.LightenCells(module.module.PlacementType);
         trashOverlay.visible = true;
+        infoDisplay.Q(name: module.module.ModuleType).visible = true;
 
         currentFocusCellPos = new Vector2Int(-1, -1);
         audioPlayer.PlayOneShot(pickupSound);
@@ -187,7 +193,7 @@ public class BuilderDragDropManager : MonoBehaviour
     public void Rotate()
     {
         //TODO: Implement proper rotatable check that uses a property of the module rather than just checking if it's an OAP
-        if (currentDraggedModule != null && currentDraggedModule.module.DisplayType.Contains("orc-attack-party"))
+        if (currentDraggedModule != null && currentDraggedModule.module.ModuleID.Contains("orc-attack-party"))
             UpdateAttackPartyRotation();
     }
 

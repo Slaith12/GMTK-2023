@@ -24,10 +24,10 @@ namespace UIs
             set
             {
                 if(m_module != null)
-                    RemoveFromClassList($"module-type-{m_module.DisplayType}");
+                    RemoveFromClassList($"module-type-{m_module.ModuleID}");
                 m_module = value;
                 if(m_module != null)
-                    AddToClassList($"module-type-{m_module.DisplayType}");
+                    AddToClassList($"module-type-{m_module.ModuleID}");
             }
         }
 
@@ -36,7 +36,7 @@ namespace UIs
             style.position = new StyleEnum<Position>(Position.Absolute);
             AddToClassList("module-in-use");
         }
-        public string Type => m_module.DisplayType;
+        public string Type => m_module.ModuleID;
 
         public static implicit operator ModuleBase(ModuleImage image) { return image.module; }
 

@@ -11,11 +11,13 @@ namespace Builder2
         {
             {"crossbow", new CrossbowTurret()},
             {"autobow", new AutobowTurret()},
+            {"shield", new ShieldDown()},
             {"shield-up", new ShieldUp()},
             {"shield-down", new ShieldDown()},
             {"shield-left", new ShieldLeft()},
             {"shield-right", new ShieldRight()},
             {"cockpit", new Cockpit()},
+            {"orc-attack-party", new OrcAttackParty0()},
             {"orc-attack-party-0", new OrcAttackParty0()},
             {"orc-attack-party-90", new OrcAttackParty90()},
             {"orc-attack-party-180", new OrcAttackParty180()},
@@ -23,9 +25,9 @@ namespace Builder2
             {"small-motor", new SmallMotor()}
         };
 
-        protected ModuleBase(string displayType)
+        protected ModuleBase(string id)
         {
-            DisplayType = displayType;
+            ModuleID = id;
         }
 
         public abstract int Width { get; }
@@ -40,7 +42,8 @@ namespace Builder2
         public virtual RectInt GridBounds => new RectInt(0, 0, 1, 1);
         public virtual CellCategory PlacementType => CellCategory.All;
 
-        public string DisplayType { get; }
+        public string ModuleID { get; }
+        public abstract string ModuleType { get; }
 
         public bool IsBlocked(int offsetX, int offsetY)
         {
@@ -79,6 +82,7 @@ namespace Builder2
         public override int Height => 1;
         public override int Orcs => 2;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Autobow>().numBows++;
+        public override string ModuleType => "Autobow";
 
         protected override bool[][] Blocked => new[]
         {
@@ -96,6 +100,7 @@ namespace Builder2
         public override int Height => 1;
         public override int Orcs => 1;
         public override Action<Sieger> ModuleEffect => sieger => sieger.GetComponent<Crossbow>().timers.Add(0);
+        public override string ModuleType => "Crossbow";
 
         protected override bool[][] Blocked => new[]
         {
@@ -111,6 +116,7 @@ namespace Builder2
 
         public override int Orcs => 3;
         public override CellCategory PlacementType => CellCategory.Edges;
+        public override string ModuleType => "Shield";
 
         public override Action<Sieger> ModuleEffect => (sieger => { 
             HealthObject health = sieger.GetComponent<HealthObject>();
@@ -201,6 +207,7 @@ namespace Builder2
         public override int Height => 1;
         public override int Orcs => 1;
         public override Action<Sieger> ModuleEffect => sieger => sieger.enabled = true;
+        public override string ModuleType => "Cockpit";
 
         protected override bool[][] Blocked => new[]
         {
@@ -218,6 +225,7 @@ namespace Builder2
         public override int Height => 3;
         public override int Orcs => 3;
         public override Action<Sieger> ModuleEffect => sieger => sieger.attackOrcsAvailable += 3;
+        public override string ModuleType => "OAP";
 
         public abstract int rotation { get; }
     }
@@ -311,6 +319,7 @@ namespace Builder2
         public override int Width => 1;
         public override int Height => 1;
         public override int Orcs => 3;
+        public override string ModuleType => "Motor";
 
         public override Action<Sieger> ModuleEffect => (sieger => sieger.movementSpeed += 1f);
         protected override bool[][] Blocked => new[]

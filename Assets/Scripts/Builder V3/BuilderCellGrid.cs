@@ -20,7 +20,7 @@ public class BuilderCellGrid : MonoBehaviour
     public int gridWidth => visualCells.GetLength(0);
     [SerializeField] int m_gridHeight;
     public int gridHeight => visualCells.GetLength(1);
-    public Vector2 cellSize => visualCells[0, 0].worldBound.size;
+    public Vector2 cellSize => new Vector2(64,64);
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class BuilderCellGrid : MonoBehaviour
         highlightedCells = new List<VisualElement>();
 
         UIDocument document = GetComponent<UIDocument>();
-        VisualElement rootPlacementsElement = document.rootVisualElement.Q(name: "placements");
+        VisualElement rootPlacementsElement = document.rootVisualElement.Q(name:"top").Q(name: "placements");
         placementGrid = rootPlacementsElement.Q(className: "rows");
 
         int cellX = 0;

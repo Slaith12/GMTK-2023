@@ -16,6 +16,6 @@ public class ModuleData
 
     public override string ToString()
     {
-        return "Module type " + type.DisplayType + " at postion " + position;
+        return "Module type " + type.ModuleID + " at postion " + position;
     }
 }

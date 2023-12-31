@@ -29,7 +29,7 @@ public class BuilderController : MonoBehaviour
 
         document.rootVisualElement.Query<PaletteModule>(className: "palette-item").ForEach(RegisterPaletteItem);
 
-        VisualElement grid = document.rootVisualElement.Q(name: "placements");
+        VisualElement grid = document.rootVisualElement.Q(name: "top").Q(name: "placements");
         grid.RegisterCallback<PointerDownEvent>(OnGridClicked);
 
         moduleManager.siegeButton.RegisterCallback<ClickEvent>(OnSiegeButtonClicked);

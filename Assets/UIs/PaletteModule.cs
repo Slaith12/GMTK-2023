@@ -45,8 +45,8 @@ namespace UIs
                 if (image != null)
                 {
                     if(m_ModuleType != null)
-                        image.RemoveFromClassList("module-type-" + m_ModuleType.DisplayType);
-                    image.AddToClassList("module-type-" + value.DisplayType);
+                        image.RemoveFromClassList("module-type-" + m_ModuleType.ModuleID);
+                    image.AddToClassList("module-type-" + value.ModuleID);
                 }
 
                 m_ModuleType = value;

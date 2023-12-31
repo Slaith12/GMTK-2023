@@ -1,107 +1,151 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIs/BuilderStyle.uss?fileID=7433441132597879392&amp;guid=d8db039d1bc33df4bb76b38e633d0299&amp;type=3#BuilderStyle" />
-    <ui:VisualElement name="main">
-        <ui:VisualElement name="placements">
-            <ui:VisualElement name="table" class="rows">
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-left" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-left" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-left" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-left" />
+    <ui:VisualElement name="main" style="min-width: 0;">
+        <ui:VisualElement name="top" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row-reverse; align-items: center; justify-content: flex-end;">
+            <ui:VisualElement name="placements" style="flex-direction: row-reverse; justify-content: center; align-items: center; height: 100%; width: 510px;">
+                <ui:VisualElement name="table" class="rows" style="margin-left: 10px; margin-right: 10px;">
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-left" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-left" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-left" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-left" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="column">
+                        <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-right" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-right" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-right" />
+                        <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-right" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="module-table" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; right: 0; bottom: 0; top: 0;" />
                 </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
+                <ui:VisualElement name="virtual-placements" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); display: none; visibility: hidden;">
+                    <ui:VisualElement class="rows">
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="column">
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                            <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
-                </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
-                </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
-                </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
-                </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down" />
-                </ui:VisualElement>
-                <ui:VisualElement class="column">
-                    <ui:VisualElement class="slot highlight-any highlight-shield-up highlight-shield-right" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-right" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-right" />
-                    <ui:VisualElement class="slot highlight-any highlight-shield-down highlight-shield-right" />
-                </ui:VisualElement>
-                <ui:VisualElement name="module-table" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; right: 0; bottom: 0; top: 0;" />
             </ui:VisualElement>
-            <ui:VisualElement name="virtual-placements" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); display: none; visibility: hidden;">
-                <ui:VisualElement class="rows">
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+            <ui:VisualElement name="info" style="flex-grow: 1; background-color: rgb(84, 84, 84); align-items: stretch; height: 100%; max-width: 250px; flex-direction: column; left: 0; width: 250px;">
+                <ui:Label tabindex="-1" text="Info" display-tooltip-when-elided="true" style="align-items: stretch; justify-content: flex-start; -unity-text-align: upper-center; color: rgb(251, 255, 83); font-size: 24px; margin-bottom: 0; padding-bottom: 0;" />
+                <ui:VisualElement name="item" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center;">
+                    <ui:VisualElement name="Cockpit" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                        <ui:Label tabindex="-1" text="Cockpit" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
+                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/Cockpit.png?fileID=-1775733644&amp;guid=cf41037b58f6aa2468367858b8bb4e4e&amp;type=3#Cockpit_0&apos;); width: 75px; height: 75px; align-items: stretch;" />
+                        <ui:Label tabindex="-1" text="Required to drive the\nsiege machine.\n\nOnly one is needed." display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
                     </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    <ui:VisualElement name="Crossbow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                        <ui:Label tabindex="-1" text="Crossbow\nTurret" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
+                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/CrossbowTurret.png?fileID=21300000&amp;guid=925f47a827176dd429025e5d4b9b4389&amp;type=3#CrossbowTurret&apos;); width: 75px; height: 75px; align-items: stretch;" />
+                        <ui:Label tabindex="-1" text="Fires arrows that\ndamage enemy towers.\n\nClick to Shoot.\n(1 bow at a time)\n\nFires towards\nmouse cursor.\n\nDamage: 4\nFire Rate: 0.5 sec (2/sec)\nRange: Infinite" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
                     </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    <ui:VisualElement name="Autobow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                        <ui:Label tabindex="-1" text="Autobow\nTurret" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
+                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/AutoBow.png?fileID=21300000&amp;guid=69bbcbe381a9e6944971b41b896b0620&amp;type=3#AutoBow&apos;); width: 75px; height: 75px; align-items: stretch;" />
+                        <ui:Label tabindex="-1" text="Automatically fires\nat enemy towers.\n\nMultiple autobows fire\nat different towers.\n\nUseful for consistent,\nspread out damage.\n\nDamage: 4\nFire Rate: 0.25 sec (4/sec)\nRange: 65 m" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
                     </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    <ui:VisualElement name="OAP" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                        <ui:Label tabindex="-1" text="Orc Attack\nParty" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
+                        <ui:VisualElement style="width: 75px; height: 75px; align-items: stretch;">
+                            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/AttackParty.png?fileID=21300000&amp;guid=b11429639136dca48ade9081fd67b1bd&amp;type=3#AttackParty&apos;);" />
+                            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 40%; height: 40%; top: -5px; right: 20px; background-image: url(&apos;project://database/Assets/Sprites/orcfighter.png?fileID=21300000&amp;guid=95f9a82dbd58f5842a2670340da7447d&amp;type=3#orcfighter&apos;);" />
+                            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 40%; height: 40%; top: 5px; right: 5px; background-image: url(&apos;project://database/Assets/Sprites/orcfighter.png?fileID=21300000&amp;guid=95f9a82dbd58f5842a2670340da7447d&amp;type=3#orcfighter&apos;);" />
+                            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 40%; height: 40%; top: 15px; right: -10px; background-image: url(&apos;project://database/Assets/Sprites/orcfighter.png?fileID=21300000&amp;guid=95f9a82dbd58f5842a2670340da7447d&amp;type=3#orcfighter&apos;);" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="Adds 3 orcs to attack party.\nPress Space to deploy.\n(All orcs deployed at once)\n\nOrcs swiftly surround and\ndestroy nearby towers.\n\nFast, concentrated damage.\nGets weaker as orcs die.\n\nOrc Health: 6\nDamage per orc: 1\nFire Rate: 0.35 sec (~3/sec)\nSpeed: 40 m/s" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 10px; top: 100px; width: 50px; height: 50px;" />
                     </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    <ui:VisualElement name="Motor" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                        <ui:Label tabindex="-1" text="Small Motor" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
+                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/MotorSmall.png?fileID=21300000&amp;guid=523d867c5f0353649806a3633d64adbc&amp;type=3#MotorSmall&apos;); width: 75px; height: 75px; align-items: stretch;" />
+                        <ui:Label tabindex="-1" text="Increases speed of the\nsiege machine.\n\nDoes not increase\nturning speed.\n\nBase Speed: 20 m/s\n\nSpeed Increase: +10 m/s" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
                     </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                    </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                    </ui:VisualElement>
-                    <ui:VisualElement picking-mode="Ignore" class="column">
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
-                        <ui:VisualElement picking-mode="Ignore" class="virtual-slot" />
+                    <ui:VisualElement name="Shield" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
+                        <ui:Label tabindex="-1" text="Shield" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
+                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/Shield.png?fileID=21300000&amp;guid=ca1341f4d6f597845b4af3fd7419d37e&amp;type=3#Shield&apos;); width: 120px; height: 40px; align-items: stretch;" />
+                        <ui:Label tabindex="-1" text="Increases health of the \nsiege machine.\n\nOnly placable on edges.\n\nBase Health: 40\n\nHealth Increase: +12" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 10px; top: 20px; width: 50px; height: 50px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

@@ -447,6 +447,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Preview
       objectReference: {fileID: 0}
+    - target: {fileID: 8232079044063793117, guid: d095ec200da5c1e4b82b945a311483ca, type: 3}
+      propertyPath: m_text
+      value: Close-Guarded
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232079044063793117, guid: d095ec200da5c1e4b82b945a311483ca, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232079044063793117, guid: d095ec200da5c1e4b82b945a311483ca, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

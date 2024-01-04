@@ -134,7 +134,7 @@
                             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 40%; height: 40%; top: 15px; right: -10px; background-image: url(&apos;project://database/Assets/Sprites/orcfighter.png?fileID=21300000&amp;guid=95f9a82dbd58f5842a2670340da7447d&amp;type=3#orcfighter&apos;);" />
                         </ui:VisualElement>
                         <ui:Label tabindex="-1" text="Adds 3 orcs to attack party.\nPress Space to deploy.\n(All orcs deployed at once)\n\nOrcs swiftly surround and\ndestroy nearby towers.\n\nFast, concentrated damage.\nGets weaker as orcs die.\n\nOrc Health: 6\nDamage per orc: 1\nFire Rate: 0.35 sec (~3/sec)\nSpeed: 40 m/s" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
-                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 10px; top: 100px; width: 50px; height: 50px;" />
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 10px; top: 100px; width: 50px; height: 50px; background-image: url(&apos;project://database/Assets/Sprites/Workshop/Rotate.png?fileID=21300000&amp;guid=58b05c1d000d7a747827e0cf27a39630&amp;type=3#Rotate&apos;); -unity-background-image-tint-color: rgb(255, 189, 73);" />
                     </ui:VisualElement>
                     <ui:VisualElement name="Motor" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
                         <ui:Label tabindex="-1" text="Small Motor" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
@@ -142,10 +142,10 @@
                         <ui:Label tabindex="-1" text="Increases speed of the\nsiege machine.\n\nDoes not increase\nturning speed.\n\nBase Speed: 20 m/s\n\nSpeed Increase: +10 m/s" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
                     </ui:VisualElement>
                     <ui:VisualElement name="Shield" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: hidden;">
-                        <ui:Label tabindex="-1" text="Shield" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0;" />
-                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/Shield.png?fileID=21300000&amp;guid=ca1341f4d6f597845b4af3fd7419d37e&amp;type=3#Shield&apos;); width: 120px; height: 40px; align-items: stretch;" />
+                        <ui:Label tabindex="-1" text="Shield" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px; margin-top: 0; padding-top: 0; margin-left: 34px;" />
+                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Workshop/Modules/Shield.png?fileID=21300000&amp;guid=ca1341f4d6f597845b4af3fd7419d37e&amp;type=3#Shield&apos;); width: 120px; height: 40px; align-items: stretch; margin-left: 30px;" />
                         <ui:Label tabindex="-1" text="Increases health of the \nsiege machine.\n\nOnly placable on edges.\n\nBase Health: 40\n\nHealth Increase: +12" display-tooltip-when-elided="true" style="color: rgb(214, 214, 214);" />
-                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 10px; top: 20px; width: 50px; height: 50px;" />
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 10px; top: 20px; width: 50px; height: 50px; background-image: url(&apos;project://database/Assets/Sprites/Workshop/Edges.png?fileID=21300000&amp;guid=f17efe224deeddc4e9989b8675804569&amp;type=3#Edges&apos;); -unity-background-image-tint-color: rgb(255, 190, 74);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

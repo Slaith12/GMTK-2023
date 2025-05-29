@@ -3,6 +3,8 @@ using UnityEngine;
 public class OrcCage : MonoBehaviour
 {
     [SerializeField] private GameObject orc;
+    [SerializeField] float siegeProtectionRadius = 5;
+    public static float _siegeProtectionRadius;
 
     // Start is called before the first frame update
     private void Start()
@@ -20,7 +22,7 @@ public class OrcCage : MonoBehaviour
 
         if (sieger.attackOrcsAvailable <= 0)
             return;
-
+        _siegeProtectionRadius = siegeProtectionRadius; 
         for (var i = 0; i < sieger.attackOrcsAvailable; i++)
         {
             Instantiate(orc, transform.position, Quaternion.identity);

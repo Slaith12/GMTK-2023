@@ -6,7 +6,7 @@ public class HealthObject : MonoBehaviour
     [SerializeField] GameObject healthBarPrefab;
     [SerializeField] Vector2 healthBarOffset;
     private Transform healthBar;
-    [SerializeField] int healthPoints;
+    [HideInInspector] public int healthPoints;
 
     public string damageType;
     [SerializeField] float damageFlashHoldDuration = 0.1f;

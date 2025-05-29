@@ -102,9 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 2
   proj: {fileID: 2257683290785342888, guid: 5f3ade7611e957c439d1dce16102d6fc, type: 3}
-  attackCooldown: 0.35
-  speed: 4
-  moveChangeTime: 0.25
+  attackCooldown: 0.25
+  speed: 6
+  moveChangeTime: 0.2
 --- !u!114 &1355356113341517528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340c126461cb5745be15053d212b4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 8
   healthBarPrefab: {fileID: 2198554356396913429, guid: 9ae2b1af5db3da0459ef51ec162c5122, type: 3}
   healthBarOffset: {x: 0, y: -0.25}
-  healthPoints: 6
+  healthPoints: 8
   damageType: HumanProj
   damageFlashHoldDuration: 0.1
   damageFlashTotalDuration: 0.25

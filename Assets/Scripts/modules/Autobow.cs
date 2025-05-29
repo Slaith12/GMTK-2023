@@ -44,6 +44,13 @@ namespace modules
                 else
                     return -1;
             });
+            targetList.Sort(delegate (Tower tower1, Tower tower2)
+            {
+                if (tower1.health.healthPoints > tower2.health.healthPoints)
+                    return 1;
+                else
+                    return -1;
+            });
             for(int i = 0; i < Mathf.Min(numBows, targetList.Count); i++)
             {
                 Transform target = targetList[i].transform;

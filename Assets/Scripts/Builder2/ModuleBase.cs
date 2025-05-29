@@ -114,7 +114,7 @@ namespace Builder2
         {
         }
 
-        public override int Orcs => 3;
+        public override int Orcs => 2;
         public override CellCategory PlacementType => CellCategory.Edges;
         public override string ModuleType => "Shield";
 

@@ -10,7 +10,6 @@ public class OrcAttacker : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private float speed;
     [SerializeField] private float moveChangeTime;
-    private static float siegeProtectionRadius = 7;
     [HideInInspector] public static Transform siegeMachine;
     private static int numOrcs;
     private static Transform target;
@@ -71,7 +70,7 @@ public class OrcAttacker : MonoBehaviour
         List<Transform> targetList = new List<Transform>();
         foreach (Tower tower in towerList)
             targetList.Add(tower.transform);
-        targetList.RemoveAll(tower => Vector2.Distance(tower.position, siegeMachine.position) > siegeProtectionRadius);
+        targetList.RemoveAll(tower => Vector2.Distance(tower.position, siegeMachine.position) > OrcCage._siegeProtectionRadius);
         if (targetList.Count == 0)
             target = siegeMachine;
         else if (!targetList.Contains(target))

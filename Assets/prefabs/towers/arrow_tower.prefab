@@ -145,11 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340c126461cb5745be15053d212b4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 40
   healthBarPrefab: {fileID: 2198554356396913429, guid: 9ae2b1af5db3da0459ef51ec162c5122, type: 3}
   healthBarOffset: {x: 0, y: -1.2}
   healthPoints: 50
   damageType: OrcProj
+  damageFlashHoldDuration: 0.1
+  damageFlashTotalDuration: 0.25
   damageSound: {fileID: 8300000, guid: 6b59769ed3ef5c04dbcee1cf71b206d6, type: 3}
   damageMinVolume: 0.8
   damageMaxVolume: 0.9
@@ -175,6 +177,7 @@ MonoBehaviour:
   cooldownTime: 1.5
   projectile: {fileID: 4152060149500657793, guid: ccdc9211774d3f94eab9d9227f89000d, type: 3}
   shots: 1
+  health: {fileID: 0}
 --- !u!61 &2560144494980065457
 BoxCollider2D:
   m_ObjectHideFlags: 0

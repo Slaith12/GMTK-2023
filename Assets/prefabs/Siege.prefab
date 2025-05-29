@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2.5
-  turningSpeed: 250
+  turningSpeed: 200
   arrowPrefab: {fileID: 1534525023338773965, guid: d7ca5434c5c04da4b84952173497e9a7, type: 3}
   levelEnd: {fileID: 0}
   attackOrcsAvailable: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orc: {fileID: 5691266888755789611, guid: 0fcb1fadbd0abf249aed242a5ba8a31d, type: 3}
+  siegeProtectionRadius: 6
 --- !u!114 &-3453220867504552364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 0.5
-  shotSpeed: 8
+  shotSpeed: 15
   _projectile: {fileID: 0}
   timers: []
 --- !u!114 &-6229194671123869058
@@ -226,6 +227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numBows: 0
   cooldownTime: 0.25
-  shotSpeed: 8
-  maxRange: 6.5
+  shotSpeed: 10
+  maxRange: 5
   _projectile: {fileID: 0}
